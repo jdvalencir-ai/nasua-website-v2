@@ -17,19 +17,19 @@ import { asset } from '../utils/asset';
 
     <!-- Etiqueta de sección -->
     <div class="flex items-center gap-4 mb-16 md:mb-20" data-reveal>
-      <div class="h-px w-10 bg-[#C41E3A]"></div>
-      <span class="font-[family-name:var(--font-family-display)] text-[10px] tracking-[0.6em] uppercase text-[#C41E3A] font-600">
+      <div class="h-px w-10 bg-[#E8681C]"></div>
+      <span class="font-[family-name:var(--font-display)] text-[10px] tracking-[0.6em] uppercase text-[#E8681C] font-600">
         Orígenes
       </span>
     </div>
 
     <!-- Cita enorme — primer impacto visual -->
     <div class="mb-20 md:mb-28" data-reveal>
-      <p class="font-[family-name:var(--font-family-display)] font-800 text-[#F2EDE3] leading-[0.9]"
+      <p class="font-[family-name:var(--font-display)] font-800 text-[#F2EDE3] leading-[0.9]"
          style="font-size: clamp(2.8rem, 7vw, 7rem);">
         No somos<br/>
         un género.<br/>
-        <span style="color: #C41E3A;">Somos</span> un<br/>
+        <span style="color: #E8681C;">Somos</span> un<br/>
         territorio.
       </p>
     </div>
@@ -71,10 +71,10 @@ import { asset } from '../utils/asset';
             { label: 'Idioma',   valor: 'Español · Global'       },
           ].map(d => (
             <div>
-              <dt class="font-[family-name:var(--font-family-display)] text-[9px] tracking-[0.5em] uppercase text-[#C41E3A] font-600 mb-0.5">
+              <dt class="font-[family-name:var(--font-display)] text-[9px] tracking-[0.5em] uppercase text-[#E8681C] font-600 mb-0.5">
                 {d.label}
               </dt>
-              <dd class="font-[family-name:var(--font-family-display)] text-[#F2EDE3] font-600 text-sm tracking-wide">
+              <dd class="font-[family-name:var(--font-display)] text-[#F2EDE3] font-600 text-sm tracking-wide">
                 {d.valor}
               </dd>
             </div>
@@ -88,8 +88,8 @@ import { asset } from '../utils/asset';
         <!-- Marco editorial para la imagen del artista -->
         <div class="relative w-full max-w-xs">
           <!-- Borde editorial -->
-          <div class="absolute -top-3 -left-3 w-16 h-16 border-l-2 border-t-2 border-[#C41E3A] opacity-60"></div>
-          <div class="absolute -bottom-3 -right-3 w-16 h-16 border-r-2 border-b-2 border-[#C41E3A] opacity-60"></div>
+          <div class="absolute -top-3 -left-3 w-16 h-16 border-l-2 border-t-2 border-[#E8681C] opacity-60"></div>
+          <div class="absolute -bottom-3 -right-3 w-16 h-16 border-r-2 border-b-2 border-[#E8681C] opacity-60"></div>
 
           <!-- Placeholder de foto de banda -->
           <div class="relative aspect-[3/4] w-full overflow-hidden"
@@ -98,13 +98,13 @@ import { asset } from '../utils/asset';
             <img
               src={asset('/logos/logo-icon.png')}
               alt="Nasúa Narica"
-              class="logo-img absolute inset-0 m-auto w-2/3 h-auto opacity-[0.12]"
+              class="logo-inv absolute inset-0 m-auto w-2/3 h-auto opacity-[0.12]"
               width="200" height="200"
             />
             <!-- Texto de contexto discreto -->
             <div class="absolute bottom-0 left-0 right-0 p-4"
                  style="background: linear-gradient(to top, rgba(6,9,6,0.9), transparent);">
-              <p class="font-[family-name:var(--font-family-display)] text-[9px] tracking-[0.4em] uppercase text-[#6B7280]">
+              <p class="font-[family-name:var(--font-display)] text-[9px] tracking-[0.4em] uppercase text-[#6B7280]">
                 Foto del colectivo
               </p>
             </div>
@@ -112,7 +112,7 @@ import { asset } from '../utils/asset';
         </div>
 
         <!-- Año en tipografía enorme — elemento decorativo -->
-        <p class="mt-6 font-[family-name:var(--font-family-display)] font-800 text-[#F2EDE3] opacity-[0.04]"
+        <p class="mt-6 font-[family-name:var(--font-display)] font-800 text-[#F2EDE3] opacity-[0.04]"
            style="font-size: 7rem; line-height: 1; letter-spacing: -0.04em;">
           2022
         </p>

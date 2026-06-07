@@ -1,182 +1,261 @@
 ---
-import { LOGOS, LOGO_VARIANTE } from '../data/config';
 import { asset } from '../utils/asset';
 
-const logoSrc = asset(LOGOS[LOGO_VARIANTE]);
-
-const NAV_LINKS = [
-  { href: '#about',     label: 'Orígenes'  },
-  { href: '#musica',    label: 'Música'    },
-  { href: '#videos',    label: 'Videos'    },
-  { href: '#fanclub',   label: 'Fanclub'   },
-  { href: '#shop',      label: 'Shop'      },
-  { href: '#contacto',  label: 'Contacto'  },
+const NAV = [
+  { href: '#about',    label: 'Orígenes'  },
+  { href: '#musica',   label: 'Música'    },
+  { href: '#videos',   label: 'Videos'    },
+  { href: '#fanclub',  label: 'Fanclub'   },
+  { href: '#shop',     label: 'Shop'      },
+  { href: '#contacto', label: 'Contacto'  },
 ];
 ---
 
+<!-- ══ HEADER FIJO ════════════════════════════════════════════ -->
 <header
   id="site-header"
-  class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 lg:px-16"
-  style="height: 72px;"
+  class="fixed top-0 left-0 right-0 z-[90] h-[68px] flex items-center px-5 md:px-10 lg:px-14"
 >
-  <!-- Fondo glassmorphism (se activa al hacer scroll) -->
+  <!-- Fondo glassmorphism (aparece al hacer scroll) -->
   <div
     id="header-bg"
-    class="absolute inset-0 opacity-0 transition-all duration-500"
-    style="background: rgba(7,10,7,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(42,107,42,0.15);"
+    class="absolute inset-0 pointer-events-none opacity-0 transition-opacity duration-500"
+    style="background: rgba(8,6,4,0.88); backdrop-filter: blur(20px) saturate(1.4); -webkit-backdrop-filter: blur(20px) saturate(1.4); border-bottom: 1px solid rgba(232,104,28,0.1);"
     aria-hidden="true"
   ></div>
 
   <!-- Logo -->
-  <a href="#inicio" class="relative z-10 flex items-center" aria-label="Nasúa Narica — Inicio">
+  <a href="#inicio" id="header-logo" class="relative z-10 flex items-center opacity-0"
+     aria-label="Nasúa — inicio">
     <img
-      src={logoSrc}
-      alt="Logo Nasúa Narica"
-      class="logo-img h-9 md:h-11 w-auto object-contain"
-      id="header-logo"
+      src={asset('/logos/logo-horizontal.png')}
+      alt="Nasúa Narica"
+      class="logo-inv h-8 md:h-9 w-auto"
+      width="220" height="48"
     />
   </a>
 
-  <!-- Navegación desktop -->
-  <nav class="relative z-10 hidden md:flex items-center gap-8 lg:gap-10" aria-label="Navegación principal">
-    {NAV_LINKS.map((link) => (
+  <!-- Nav desktop -->
+  <nav class="relative z-10 hidden md:flex items-center gap-7 lg:gap-9 ml-auto mr-2"
+       aria-label="Navegación principal">
+    {NAV.map(link => (
       <a
         href={link.href}
-        class="nav-link font-[family-name:var(--font-family-display)] text-sm font-600 tracking-widest uppercase text-[#9CA3AF] hover:text-[#F2EDE3] transition-colors duration-300 relative"
+        class="nav-link relative font-[family-name:var(--font-display)] text-[11px] font-600 tracking-[0.5em] uppercase text-[#A89880] hover:text-[#F5EDE0] transition-colors duration-300 opacity-0 pb-0.5"
       >
         {link.label}
-        <span class="absolute -bottom-0.5 left-0 h-px w-0 bg-[#C41E3A] transition-all duration-300 group-hover:w-full nav-underline"></span>
+        <span class="nav-underline absolute bottom-0 left-0 h-px w-0 bg-[#E8681C] transition-none"></span>
       </a>
     ))}
   </nav>
 
-  <!-- Botón menú móvil -->
+  <!-- Botón hamburguesa (mobile) -->
   <button
-    id="menu-toggle"
-    class="relative z-10 md:hidden flex flex-col gap-1.5 p-2"
+    id="menu-btn"
+    class="relative z-[200] md:hidden ml-auto flex flex-col items-end gap-[5px] p-2.5 -mr-1"
     aria-label="Abrir menú"
     aria-expanded="false"
   >
-    <span class="menu-line block h-0.5 w-6 bg-[#F2EDE3] transition-all duration-300 origin-center"></span>
-    <span class="menu-line block h-0.5 w-6 bg-[#F2EDE3] transition-all duration-300 origin-center"></span>
-    <span class="menu-line block h-0.5 w-4 bg-[#F2EDE3] transition-all duration-300 origin-center self-end"></span>
+    <span class="burger-line w-6"></span>
+    <span class="burger-line w-4"></span>
+    <span class="burger-line w-6"></span>
   </button>
+</header>
 
-  <!-- Menú móvil overlay -->
-  <div
-    id="mobile-menu"
-    class="fixed inset-0 z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none transition-all duration-500"
-    style="background: rgba(7,10,7,0.97); backdrop-filter: blur(20px);"
-    aria-hidden="true"
-  >
-    <!-- Hoja decorativa -->
-    <div class="absolute top-16 right-8 opacity-10" aria-hidden="true">
-      <svg width="80" height="130" viewBox="0 0 80 130" fill="#2A6B2A">
-        <path d="M40 125 C40 125 20 80 15 50 C10 20 30 2 40 2 C50 2 70 20 65 50 C60 80 40 125 40 125Z"/>
-      </svg>
+<!-- ══ OVERLAY FULL-SCREEN ══════════════════════════════════ -->
+<!-- Está FUERA del header para evitar clipping -->
+<div
+  id="menu-overlay"
+  class="fixed inset-0 z-[150] flex flex-col pointer-events-none"
+  style="background: #0D0904;"
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menú de navegación"
+>
+  <!-- Grain interior del menú -->
+  <div class="grain-overlay absolute inset-0" aria-hidden="true"></div>
+
+  <!-- Decoración jungle en el overlay -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <!-- Hoja izquierda -->
+    <svg class="absolute -left-16 bottom-0 opacity-[0.07]"
+         style="animation: float-leaf 10s ease-in-out infinite;"
+         width="300" height="480" viewBox="0 0 80 130" fill="#2A6B1A">
+      <path d="M40 125 C40 125 20 80 15 50 C10 20 30 2 40 2 C50 2 70 20 65 50 C60 80 40 125 40 125Z"/>
+    </svg>
+    <!-- Hoja derecha -->
+    <svg class="absolute -right-10 top-12 opacity-[0.05]"
+         style="transform: rotate(155deg); animation: float-leaf 13s ease-in-out infinite 2s;"
+         width="200" height="320" viewBox="0 0 80 130" fill="#1A4A10">
+      <path d="M40 125 C40 125 20 80 15 50 C10 20 30 2 40 2 C50 2 70 20 65 50 C60 80 40 125 40 125Z"/>
+    </svg>
+    <!-- "NASUA" ghost en el fondo -->
+    <span
+      class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 font-[family-name:var(--font-display)] font-800 text-transparent select-none pointer-events-none whitespace-nowrap"
+      style="font-size: clamp(6rem, 22vw, 18rem); letter-spacing: -0.02em; -webkit-text-stroke: 1px rgba(232,104,28,0.05);"
+      aria-hidden="true"
+    >NASUA</span>
+  </div>
+
+  <!-- Contenido del menú -->
+  <div class="relative z-10 flex flex-col h-full px-8 md:px-14 py-8">
+
+    <!-- Fila superior: logo + cerrar -->
+    <div class="flex items-center justify-between mb-auto">
+      <img
+        src={asset('/logos/logo-icon.png')}
+        alt="Nasúa"
+        class="logo-inv h-10 w-auto opacity-60"
+        width="40" height="40"
+        aria-hidden="true"
+      />
     </div>
 
-    <nav class="flex flex-col items-center gap-8" aria-label="Navegación móvil">
-      {NAV_LINKS.map((link, i) => (
+    <!-- Links de navegación -->
+    <nav class="flex flex-col gap-1 mt-auto mb-10" aria-label="Menú principal">
+      {NAV.map((link, i) => (
         <a
           href={link.href}
-          class="mobile-nav-link font-[family-name:var(--font-family-display)] text-3xl font-800 tracking-widest uppercase text-[#F2EDE3] hover:text-[#C41E3A] transition-colors duration-300 opacity-0"
-          style={`transition-delay: ${i * 60}ms`}
-          data-mobile-link
+          class="overlay-link group flex items-center gap-5 py-2 opacity-0"
+          data-index={i}
+          style={`transform: translateX(-40px);`}
+          data-overlay-link
         >
-          {link.label}
+          <!-- Número pequeño -->
+          <span class="font-[family-name:var(--font-display)] text-xs tracking-widest text-[#5C5248] font-600 w-6 shrink-0">
+            0{i + 1}
+          </span>
+          <!-- Nombre -->
+          <span
+            class="font-[family-name:var(--font-display)] font-800 text-[#F5EDE0] leading-none group-hover:text-[#E8681C] transition-colors duration-200"
+            style="font-size: clamp(2.2rem, 7vw, 4.5rem); letter-spacing: -0.02em;"
+          >
+            {link.label}
+          </span>
+          <!-- Flecha que aparece en hover -->
+          <svg class="ml-auto opacity-0 group-hover:opacity-100 transition-opacity duration-200 shrink-0"
+               width="24" height="24" viewBox="0 0 24 24" fill="none"
+               stroke="#E8681C" stroke-width="2" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
         </a>
       ))}
     </nav>
+
+    <!-- Redes sociales -->
+    <div class="overlay-socials flex items-center gap-6 pt-6 border-t border-[rgba(245,237,224,0.08)] opacity-0">
+      <a href="https://instagram.com/nasuamusica" target="_blank" rel="noopener"
+         class="font-[family-name:var(--font-display)] text-[10px] tracking-[0.5em] uppercase text-[#5C5248] hover:text-[#E8681C] transition-colors duration-300 font-600">
+        Instagram
+      </a>
+      <div class="h-3 w-px bg-[rgba(245,237,224,0.15)]" aria-hidden="true"></div>
+      <a href="https://youtube.com/@nasuamusica" target="_blank" rel="noopener"
+         class="font-[family-name:var(--font-display)] text-[10px] tracking-[0.5em] uppercase text-[#5C5248] hover:text-[#E8681C] transition-colors duration-300 font-600">
+        YouTube
+      </a>
+    </div>
   </div>
-</header>
+</div>
 
 <script>
   import { animate, createTimeline } from 'animejs';
 
-  // ── Entrada del header al cargar ──────────────────────
-  const tl = createTimeline({ defaults: { ease: 'outExpo', duration: 800 } });
+  const header    = document.getElementById('site-header')!;
+  const headerBg  = document.getElementById('header-bg')!;
+  const logo      = document.getElementById('header-logo')!;
+  const menuBtn   = document.getElementById('menu-btn')!;
+  const overlay   = document.getElementById('menu-overlay')!;
+  const navLinks  = document.querySelectorAll<HTMLElement>('.overlay-link');
+  const socials   = document.querySelector<HTMLElement>('.overlay-socials')!;
 
-  tl.add('#site-header', {
-    translateY: ['-100%', '0%'],
-    opacity:    [0, 1],
-    delay:      400,
-    duration:   600,
+  // ── Entrada inicial del header ─────────────────────────────
+  animate(logo, {
+    opacity: [0, 1], translateY: [-10, 0],
+    duration: 600, delay: 500, ease: 'outExpo',
+  });
+  animate('.nav-link', {
+    opacity: [0, 1], translateY: [-8, 0],
+    delay: (el: Element, i: number) => 600 + i * 60,
+    duration: 400, ease: 'outQuart',
   });
 
-  tl.add('.nav-link', {
-    opacity:    [0, 1],
-    translateY: [-12, 0],
-    delay:      (el, i) => i * 70,
-    duration:   500,
-  }, '-=200');
-
-  // ── Glassmorphism al hacer scroll ─────────────────────
-  const headerBg = document.getElementById('header-bg')!;
-  const SCROLL_THRESHOLD = 80;
-
+  // ── Glassmorphism al hacer scroll ──────────────────────────
   window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY > SCROLL_THRESHOLD;
-    headerBg.style.opacity = scrolled ? '1' : '0';
+    headerBg.style.opacity = window.scrollY > 60 ? '1' : '0';
   }, { passive: true });
 
-  // ── Menú móvil ────────────────────────────────────────
-  const toggle     = document.getElementById('menu-toggle')!;
-  const mobileMenu = document.getElementById('mobile-menu')!;
-  const mobileLinks = document.querySelectorAll('[data-mobile-link]');
-  const lines      = document.querySelectorAll('.menu-line');
-  let isOpen = false;
-
-  toggle.addEventListener('click', () => {
-    isOpen = !isOpen;
-    toggle.setAttribute('aria-expanded', String(isOpen));
-    mobileMenu.setAttribute('aria-hidden', String(!isOpen));
-
-    if (isOpen) {
-      mobileMenu.style.pointerEvents = 'auto';
-      animate(mobileMenu, { opacity: [0, 1], duration: 400, ease: 'outQuart' });
-      animate(mobileLinks, {
-        opacity:    [0, 1],
-        translateY: [20, 0],
-        delay:      (el, i) => 100 + i * 60,
-        duration:   400,
-        ease:       'outExpo',
-      });
-      // Animar hamburguesa → X
-      lines[0].style.transform = 'rotate(45deg) translate(3px, 3px)';
-      lines[1].style.opacity   = '0';
-      (lines[2] as HTMLElement).style.transform = 'rotate(-45deg) translate(4px, -4px)';
-      (lines[2] as HTMLElement).style.width = '24px';
-    } else {
-      animate(mobileMenu, {
-        opacity:  [1, 0],
-        duration: 300,
-        ease:     'inQuart',
-        onComplete: () => { mobileMenu.style.pointerEvents = 'none'; }
-      });
-      lines[0].style.transform = '';
-      lines[1].style.opacity   = '1';
-      (lines[2] as HTMLElement).style.transform = '';
-      (lines[2] as HTMLElement).style.width = '16px';
-    }
-  });
-
-  // Cerrar menú al click en link
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (isOpen) toggle.click();
-    });
-  });
-
-  // Subrayado hover en nav links
-  document.querySelectorAll('.nav-link').forEach(link => {
-    const underline = link.querySelector('.nav-underline') as HTMLElement;
-    if (!underline) return;
+  // ── Subrayado animado en nav desktop ──────────────────────
+  document.querySelectorAll<HTMLElement>('.nav-link').forEach(link => {
+    const line = link.querySelector<HTMLElement>('.nav-underline')!;
     link.addEventListener('mouseenter', () => {
-      animate(underline, { width: ['0%', '100%'], duration: 250, ease: 'outQuart' });
+      line.style.transition = 'width 0.22s cubic-bezier(0.4,0,0.2,1)';
+      line.style.width = '100%';
     });
     link.addEventListener('mouseleave', () => {
-      animate(underline, { width: ['100%', '0%'], duration: 200, ease: 'inQuart' });
+      line.style.transition = 'width 0.18s cubic-bezier(0.4,0,0.2,1)';
+      line.style.width = '0%';
     });
+  });
+
+  // ── Hamburguesa / Overlay ──────────────────────────────────
+  let isOpen = false;
+
+  function openMenu() {
+    isOpen = true;
+    menuBtn.classList.add('is-open');
+    menuBtn.setAttribute('aria-expanded', 'true');
+    overlay.classList.add('is-open');
+    overlay.style.pointerEvents = 'auto';
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-open');
+
+    // Stagger de links (esperar a que el clip-path termine ~500ms)
+    animate(navLinks, {
+      opacity:    [0, 1],
+      translateX: [-40, 0],
+      delay:      (el: Element, i: number) => 320 + i * 65,
+      duration:   500,
+      ease:       'outExpo',
+    });
+    animate(socials, {
+      opacity: [0, 1], translateY: [12, 0],
+      delay: 320 + navLinks.length * 65,
+      duration: 400, ease: 'outQuart',
+    });
+  }
+
+  function closeMenu() {
+    isOpen = false;
+    menuBtn.classList.remove('is-open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+
+    // Resetear links para la próxima apertura
+    navLinks.forEach(l => {
+      l.style.opacity = '0';
+      l.style.transform = 'translateX(-40px)';
+    });
+    if (socials) socials.style.opacity = '0';
+
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-open');
+
+    // Deshabilitar pointer-events al acabar la transición
+    overlay.addEventListener('transitionend', () => {
+      if (!isOpen) overlay.style.pointerEvents = 'none';
+    }, { once: true });
+  }
+
+  menuBtn.addEventListener('click', () => isOpen ? closeMenu() : openMenu());
+
+  // Cerrar al hacer click en un link del overlay
+  document.querySelectorAll('[data-overlay-link]').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  // Cerrar con Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && isOpen) closeMenu();
   });
 </script>

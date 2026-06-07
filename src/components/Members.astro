@@ -33,12 +33,12 @@ import { asset } from '../utils/asset';
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-end mb-16 md:mb-20">
       <div>
         <div class="flex items-center gap-4 mb-5" data-reveal>
-          <div class="h-px w-10 bg-[#C41E3A]"></div>
-          <span class="font-[family-name:var(--font-family-display)] text-[10px] tracking-[0.6em] uppercase text-[#C41E3A] font-600">
+          <div class="h-px w-10 bg-[#E8681C]"></div>
+          <span class="font-[family-name:var(--font-display)] text-[10px] tracking-[0.6em] uppercase text-[#E8681C] font-600">
             El Colectivo
           </span>
         </div>
-        <h2 class="font-[family-name:var(--font-family-display)] font-800 text-[#F2EDE3] leading-[0.88]"
+        <h2 class="font-[family-name:var(--font-display)] font-800 text-[#F2EDE3] leading-[0.88]"
             style="font-size: clamp(2.5rem, 6vw, 5rem);" data-reveal>
           Tres voces.<br/>Un solo<br/>territorio.
         </h2>
@@ -83,7 +83,7 @@ import { asset } from '../utils/asset';
               <img
                 src={asset('/logos/logo-icon.png')}
                 alt=""
-                class="logo-img absolute inset-0 m-auto h-auto opacity-[0.07] transition-opacity duration-500 group-hover:opacity-[0.12]"
+                class="logo-inv absolute inset-0 m-auto h-auto opacity-[0.07] transition-opacity duration-500 group-hover:opacity-[0.12]"
                 style={`width: ${isFeature ? '55%' : '60%'};`}
                 aria-hidden="true"
                 width="200" height="200"
@@ -95,7 +95,7 @@ import { asset } from '../utils/asset';
               </div>
 
               <!-- Número de posición decorativo -->
-              <span class="absolute top-4 right-4 font-[family-name:var(--font-family-display)] font-800 text-[#F2EDE3] opacity-[0.06]"
+              <span class="absolute top-4 right-4 font-[family-name:var(--font-display)] font-800 text-[#F2EDE3] opacity-[0.06]"
                     style={`font-size: ${isFeature ? '5rem' : '3.5rem'}; line-height: 1;`}
                     aria-hidden="true">
                 0{index + 1}
@@ -104,15 +104,15 @@ import { asset } from '../utils/asset';
               <!-- Info del miembro sobre la imagen -->
               <div class="absolute bottom-0 left-0 right-0 p-5 md:p-6">
                 <!-- Línea roja -->
-                <div class="h-0.5 bg-[#C41E3A] mb-3 transition-all duration-500 origin-left"
+                <div class="h-0.5 bg-[#E8681C] mb-3 transition-all duration-500 origin-left"
                      style="width: 24px;"
                      id={`member-line-${index}`}></div>
 
-                <h3 class="font-[family-name:var(--font-family-display)] font-800 text-[#F2EDE3] mb-0.5"
+                <h3 class="font-[family-name:var(--font-display)] font-800 text-[#F2EDE3] mb-0.5"
                     style={`font-size: ${isFeature ? '2rem' : '1.3rem'};`}>
                   {miembro.nombre}
                 </h3>
-                <p class="font-[family-name:var(--font-family-display)] text-[10px] tracking-[0.4em] uppercase font-600"
+                <p class="font-[family-name:var(--font-display)] text-[10px] tracking-[0.4em] uppercase font-600"
                    style="color: #2A6B2A;">
                   {miembro.rol}
                 </p>

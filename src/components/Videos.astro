@@ -23,13 +23,13 @@ import { VIDEOS } from '../data/videos';
     <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-6">
       <div>
         <div class="flex items-center gap-4 mb-4" data-reveal>
-          <div class="h-px w-12 bg-[#C41E3A]"></div>
-          <span class="font-[family-name:var(--font-family-display)] text-xs tracking-[0.5em] uppercase text-[#C41E3A] font-600">
+          <div class="h-px w-12 bg-[#E8681C]"></div>
+          <span class="font-[family-name:var(--font-display)] text-xs tracking-[0.5em] uppercase text-[#E8681C] font-600">
             Audiovisual
           </span>
         </div>
         <h2
-          class="font-[family-name:var(--font-family-display)] font-800 text-[#F2EDE3] leading-none"
+          class="font-[family-name:var(--font-display)] font-800 text-[#F2EDE3] leading-none"
           style="font-size: clamp(2.4rem, 5vw, 4rem);"
           data-reveal
         >
@@ -41,7 +41,7 @@ import { VIDEOS } from '../data/videos';
         href="https://youtube.com/@nasuamusica"
         target="_blank"
         rel="noopener noreferrer"
-        class="btn-outline self-start md:self-auto"
+        class="btn-ghost self-start md:self-auto"
         data-reveal
       >
         <span>Ver canal completo</span>
@@ -69,11 +69,11 @@ import { VIDEOS } from '../data/videos';
                     class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2"
                     style="background: rgba(196,30,58,0.1); border: 1px solid rgba(196,30,58,0.3);"
                   >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#C41E3A" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#E8681C" aria-hidden="true">
                       <path d="M8 5v14l11-7z"/>
                     </svg>
                   </div>
-                  <p class="text-[10px] text-[#6B7280] font-[family-name:var(--font-family-display)] tracking-wider uppercase">
+                  <p class="text-[10px] text-[#6B7280] font-[family-name:var(--font-display)] tracking-wider uppercase">
                     {video.titulo}
                   </p>
                 </div>
@@ -97,7 +97,7 @@ import { VIDEOS } from '../data/videos';
               class="p-3 flex items-center justify-between"
               style="background: rgba(13,18,13,0.6); border: 1px solid rgba(42,107,42,0.15); border-top: none;"
             >
-              <span class="text-xs text-[#6B7280] font-[family-name:var(--font-family-display)] tracking-wider truncate">
+              <span class="text-xs text-[#6B7280] font-[family-name:var(--font-display)] tracking-wider truncate">
                 {video.titulo}
               </span>
               {!isPending && (
@@ -105,7 +105,7 @@ import { VIDEOS } from '../data/videos';
                   href={`https://youtube.com/watch?v=${video.youtubeId}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="ml-2 text-[#6B7280] hover:text-[#C41E3A] transition-colors flex-shrink-0"
+                  class="ml-2 text-[#6B7280] hover:text-[#E8681C] transition-colors flex-shrink-0"
                   aria-label={`Ver ${video.titulo} en YouTube`}
                 >
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

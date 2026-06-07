@@ -1,186 +1,235 @@
 @import "tailwindcss";
 
 @theme {
-  /* ─── Colores principales ─────────────────────────── */
-  --color-nasua-black:       #070A07;
-  --color-nasua-dark:        #0D120D;
-  --color-nasua-jungle:      #0A1A0A;
-  --color-nasua-green-deep:  #0F2B0F;
-  --color-nasua-green-mid:   #1A4A1A;
-  --color-nasua-green-glow:  #2A6B2A;
-  --color-nasua-red:         #C41E3A;
-  --color-nasua-crimson:     #8B0000;
-  --color-nasua-cream:       #F2EDE3;
-  --color-nasua-gray:        #6B7280;
-  --color-nasua-gray-light:  #9CA3AF;
-  --color-nasua-border:      #1A2A1A;
+  /* ── Paleta Nasúa (naranja = color de marca original) ── */
+  --color-bg:            #080604;
+  --color-surface:       #0F0B08;
+  --color-surface-2:     #161008;
 
-  /* ─── Tipografías ─────────────────────────────────── */
-  --font-family-display: 'Syne', sans-serif;
-  --font-family-body:    'Plus Jakarta Sans', sans-serif;
+  --color-orange:        #E8681C;
+  --color-orange-dark:   #B44E0E;
+  --color-orange-dim:    rgba(232, 104, 28, 0.12);
+  --color-orange-glow:   rgba(232, 104, 28, 0.25);
 
-  /* ─── Animaciones ─────────────────────────────────── */
-  --animate-float: float 8s ease-in-out infinite;
-  --animate-float-slow: float-slow 12s ease-in-out infinite;
-  --animate-pulse-red: pulse-red 3s ease-in-out infinite;
+  --color-jungle-deep:   #050D03;
+  --color-jungle-mid:    #0A1B06;
+  --color-jungle-green:  #1A4A10;
+  --color-jungle-bright: #2A6B1A;
 
-  @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    33%       { transform: translateY(-18px) rotate(3deg); }
-    66%       { transform: translateY(-8px) rotate(-2deg); }
+  --color-cream:         #F5EDE0;
+  --color-cream-dim:     #A89880;
+  --color-muted:         #5C5248;
+  --color-border:        rgba(245, 237, 224, 0.07);
+
+  /* ── Tipografías ───────────────────────────────────── */
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'Plus Jakarta Sans', sans-serif;
+
+  /* ── Keyframes ─────────────────────────────────────── */
+  @keyframes float-leaf {
+    0%, 100% { transform: translateY(0) rotate(0deg);   }
+    40%       { transform: translateY(-22px) rotate(4deg); }
+    70%       { transform: translateY(-10px) rotate(-2deg); }
   }
-
-  @keyframes float-slow {
-    0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
-    50%       { transform: translateY(-25px) rotate(5deg) scale(1.02); }
+  @keyframes pulse-orange {
+    0%, 100% { opacity: 0.5; }
+    50%       { opacity: 1;   }
   }
-
-  @keyframes pulse-red {
-    0%, 100% { opacity: 0.6; }
-    50%       { opacity: 1; }
+  @keyframes glitch-h {
+    0%, 87%, 100% { transform: translateX(-3px) skewX(0deg); }
+    90%           { transform: translateX(5px) skewX(-6deg); }
+    94%           { transform: translateX(-4px) skewX(4deg); }
   }
-
-  @keyframes shimmer {
-    0%   { background-position: -200% center; }
-    100% { background-position: 200% center; }
-  }
-
-  @keyframes scan-line {
-    0%   { transform: translateY(-100%); }
-    100% { transform: translateY(100vh); }
+  @keyframes glitch-v {
+    0%, 85%, 100% { transform: translateX(3px) skewX(0deg); }
+    88%           { transform: translateX(-5px) skewX(5deg); }
+    92%           { transform: translateX(4px) skewX(-4deg); }
   }
 }
 
-/* ─── Base ─────────────────────────────────────────── */
+/* ══ Reset / base ══════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 70px;
 }
 
 body {
-  background-color: #060906;
-  color: var(--color-nasua-cream);
-  font-family: var(--font-family-body);
+  background-color: var(--color-bg);
+  color: var(--color-cream);
+  font-family: var(--font-body);
   overflow-x: hidden;
   cursor: none;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ─── Grano de película (grain overlay) ──────────────
-   Aplicado via clase en cada section que lo necesite.
-   Se genera con SVG feTurbulence — sin imagen externa. */
-.grain-overlay {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  opacity: 0.032;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-  z-index: 9001;
+/* Bloquear scroll cuando el menú está abierto */
+body.menu-open {
+  overflow: hidden;
 }
 
 ::selection {
-  background-color: var(--color-nasua-red);
-  color: var(--color-nasua-cream);
+  background-color: var(--color-orange);
+  color: #080604;
 }
 
-::-webkit-scrollbar {
-  width: 4px;
+::-webkit-scrollbar       { width: 3px; }
+::-webkit-scrollbar-track { background: #0F0B08; }
+::-webkit-scrollbar-thumb { background: var(--color-orange); border-radius: 2px; }
+
+/* ══ Tipografía ════════════════════════════════════════ */
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--color-nasua-dark);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-nasua-red);
-  border-radius: 2px;
-}
-
-/* ─── Cursor personalizado ────────────────────────── */
+/* ══ Cursor personalizado ══════════════════════════════ */
 
 #cursor-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--color-nasua-red);
+  width: 7px;
+  height: 7px;
+  background: var(--color-orange);
   border-radius: 50%;
   position: fixed;
   top: 0; left: 0;
   pointer-events: none;
   z-index: 9999;
-  transition: transform 0.1s ease, opacity 0.2s ease;
   mix-blend-mode: normal;
+  transition: opacity 0.2s;
 }
 
 #cursor-ring {
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid rgba(196, 30, 58, 0.5);
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid rgba(232, 104, 28, 0.45);
   border-radius: 50%;
   position: fixed;
   top: 0; left: 0;
   pointer-events: none;
   z-index: 9998;
-  transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
 }
 
 body:has(a:hover) #cursor-ring,
 body:has(button:hover) #cursor-ring {
-  width: 56px;
-  height: 56px;
-  border-color: rgba(196, 30, 58, 0.8);
+  width: 52px;
+  height: 52px;
+  border-color: rgba(232, 104, 28, 0.7);
 }
 
-/* ─── Tipografía base ─────────────────────────────── */
-
-h1, h2, h3, h4, h5 {
-  font-family: var(--font-family-display);
-  font-weight: 700;
-  line-height: 1.1;
+/* En móvil, cursor normal */
+@media (pointer: coarse) {
+  #cursor-dot, #cursor-ring { display: none; }
+  body { cursor: auto; }
 }
 
-/* ─── Logo: adaptación a fondo oscuro ────────────── */
+/* ══ Logos: adaptación a fondo oscuro ════════════════ */
 
-.logo-img {
+.logo-inv {
   filter: invert(1);
   mix-blend-mode: screen;
 }
 
-.logo-img-with-red {
-  /* Mantiene el rojo original usando filter hue-rotate selectivo */
-  filter: invert(1) hue-rotate(180deg);
-  mix-blend-mode: screen;
+/* ══ Grano de película global ════════════════════════ */
+
+.grain-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.038;
+  mix-blend-mode: overlay;
+  pointer-events: none;
 }
 
-/* ─── Textura selvática ────────────────────────────── */
+/* ══ Botones ═════════════════════════════════════════ */
 
-.jungle-texture {
-  background-image:
-    radial-gradient(ellipse at 15% 40%, rgba(10, 40, 10, 0.5) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 15%, rgba(5, 30, 5, 0.4) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 90%, rgba(15, 35, 5, 0.3) 0%, transparent 60%),
-    radial-gradient(ellipse at 70% 60%, rgba(8, 25, 8, 0.35) 0%, transparent 45%);
+.btn-orange {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-orange);
+  color: #080604;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  padding: 0.85rem 2.2rem;
+  border: 1.5px solid var(--color-orange);
+  transition: background 0.25s, color 0.25s;
+  cursor: none;
+  white-space: nowrap;
 }
 
-.section-divider {
-  background: linear-gradient(90deg, transparent, var(--color-nasua-green-mid), transparent);
+.btn-orange:hover {
+  background: transparent;
+  color: var(--color-orange);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--color-cream-dim);
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  padding: 0.85rem 2.2rem;
+  border: 1.5px solid rgba(245, 237, 224, 0.18);
+  transition: border-color 0.25s, color 0.25s;
+  cursor: none;
+  white-space: nowrap;
+}
+
+.btn-ghost:hover {
+  border-color: rgba(232, 104, 28, 0.5);
+  color: var(--color-cream);
+}
+
+/* ══ Divisores ══════════════════════════════════════ */
+
+.rule-orange {
   height: 1px;
-  opacity: 0.3;
+  background: linear-gradient(90deg, var(--color-orange) 0%, transparent 100%);
 }
 
-/* ─── Elementos animados por scroll ──────────────── */
+.rule-dim {
+  height: 1px;
+  background: var(--color-border);
+}
+
+/* ══ Hojas flotantes ════════════════════════════════ */
+
+.float-leaf {
+  animation: float-leaf 9s ease-in-out infinite;
+  pointer-events: none;
+}
+.float-leaf-2 {
+  animation: float-leaf 12s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ══ Reveal por scroll (estado inicial) ════════════ */
 
 [data-reveal] {
   opacity: 0;
-  transform: translateY(50px);
+  transform: translateY(48px);
 }
 
 [data-reveal-left] {
   opacity: 0;
-  transform: translateX(-60px);
+  transform: translateX(-56px);
 }
 
 [data-reveal-right] {
   opacity: 0;
-  transform: translateX(60px);
+  transform: translateX(56px);
 }
 
 [data-reveal-scale] {
@@ -188,142 +237,71 @@ h1, h2, h3, h4, h5 {
   transform: scale(0.88);
 }
 
-/* ─── Glitch effect ────────────────────────────────── */
+/* ══ Glitch en letras del hero ══════════════════════ */
 
-.glitch {
+.hero-char {
   position: relative;
+  display: inline-block;
+  transition: color 0.2s;
 }
 
-.glitch::before,
-.glitch::after {
-  content: attr(data-text);
+.hero-char::before,
+.hero-char::after {
+  content: attr(data-char);
   position: absolute;
   top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.glitch::before {
-  color: var(--color-nasua-green-glow);
-  clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
-  transform: translateX(-2px);
-  animation: glitch-1 4s infinite linear;
   opacity: 0;
-}
-
-.glitch::after {
-  color: var(--color-nasua-red);
-  clip-path: polygon(0 60%, 100% 60%, 100% 75%, 0 75%);
-  transform: translateX(2px);
-  animation: glitch-2 4s infinite linear;
-  opacity: 0;
-}
-
-.glitch:hover::before,
-.glitch:hover::after {
-  opacity: 1;
-}
-
-@keyframes glitch-1 {
-  0%, 90%, 100%  { transform: translateX(-2px) skewX(0deg); }
-  93%            { transform: translateX(4px) skewX(-5deg); }
-  96%            { transform: translateX(-4px) skewX(3deg); }
-}
-
-@keyframes glitch-2 {
-  0%, 88%, 100%  { transform: translateX(2px) skewX(0deg); }
-  91%            { transform: translateX(-4px) skewX(4deg); }
-  94%            { transform: translateX(4px) skewX(-3deg); }
-}
-
-/* ─── Botones ─────────────────────────────────────── */
-
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: var(--color-nasua-red);
-  color: var(--color-nasua-cream);
-  font-family: var(--font-family-display);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.9rem 2.5rem;
-  border: 2px solid var(--color-nasua-red);
-  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
-  transition: all 0.3s ease;
-  cursor: none;
-}
-
-.btn-primary:hover {
-  background: transparent;
-  color: var(--color-nasua-red);
-}
-
-.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: transparent;
-  color: var(--color-nasua-cream);
-  font-family: var(--font-family-display);
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.85rem 2.5rem;
-  border: 1.5px solid rgba(242, 237, 227, 0.3);
-  transition: all 0.3s ease;
-  cursor: none;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-outline::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--color-nasua-green-deep);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
-}
-
-.btn-outline:hover::before {
-  transform: scaleX(1);
-}
-
-.btn-outline:hover {
-  border-color: var(--color-nasua-green-glow);
-  color: var(--color-nasua-cream);
-}
-
-.btn-outline span {
-  position: relative;
-  z-index: 1;
-}
-
-/* ─── Números de sección ──────────────────────────── */
-
-.section-number {
-  font-family: var(--font-family-display);
-  font-size: 8rem;
-  font-weight: 800;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(242, 237, 227, 0.06);
-  line-height: 1;
-  user-select: none;
-  position: absolute;
-}
-
-/* ─── Hojas SVG flotantes ─────────────────────────── */
-
-.leaf {
-  position: absolute;
   pointer-events: none;
-  opacity: 0.12;
-  animation: var(--animate-float);
 }
 
-.leaf-slow {
-  animation: var(--animate-float-slow);
+.hero-char::before {
+  color: var(--color-jungle-bright);
+  clip-path: polygon(0 25%, 100% 25%, 100% 55%, 0 55%);
+  animation: glitch-h 5s infinite;
+}
+
+.hero-char::after {
+  color: var(--color-orange);
+  clip-path: polygon(0 60%, 100% 60%, 100% 78%, 0 78%);
+  animation: glitch-v 5s infinite;
+  animation-delay: 0.15s;
+}
+
+.hero-char:hover::before,
+.hero-char:hover::after {
+  opacity: 0.7;
+}
+
+/* ══ Menú hamburguesa / overlay ═════════════════════ */
+
+#menu-overlay {
+  clip-path: circle(0px at calc(100% - 28px) 35px);
+  transition: clip-path 680ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+#menu-overlay.is-open {
+  clip-path: circle(200% at calc(100% - 28px) 35px);
+}
+
+.burger-line {
+  display: block;
+  height: 1.5px;
+  background: var(--color-cream);
+  transform-origin: center;
+  transition: transform 0.35s cubic-bezier(0.77, 0, 0.175, 1),
+              opacity  0.35s ease,
+              width    0.35s ease;
+}
+
+/* hamburger → X */
+#menu-btn.is-open .burger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+#menu-btn.is-open .burger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+#menu-btn.is-open .burger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+  width: 24px !important;
 }

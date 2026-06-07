@@ -18,12 +18,12 @@ const year = new Date().getFullYear();
           <img
             src={asset('/logos/logo-wordmark.png')}
             alt="Nasúa Narica"
-            class="logo-img h-8 w-auto"
+            class="logo-inv h-8 w-auto"
             width="160"
             height="32"
           />
         </a>
-        <p class="text-[10px] tracking-[0.3em] uppercase text-[#6B7280] font-[family-name:var(--font-family-display)] font-600">
+        <p class="text-[10px] tracking-[0.3em] uppercase text-[#6B7280] font-[family-name:var(--font-display)] font-600">
           Música Sin Fronteras
         </p>
       </div>
@@ -40,7 +40,7 @@ const year = new Date().getFullYear();
         ].map(link => (
           <a
             href={link.href}
-            class="text-[11px] tracking-widest uppercase text-[#6B7280] hover:text-[#F2EDE3] transition-colors duration-300 font-[family-name:var(--font-family-display)] font-600"
+            class="text-[11px] tracking-widest uppercase text-[#6B7280] hover:text-[#F2EDE3] transition-colors duration-300 font-[family-name:var(--font-display)] font-600"
           >
             {link.label}
           </a>
@@ -83,10 +83,10 @@ const year = new Date().getFullYear();
 
     <!-- Copyright -->
     <div class="flex flex-col md:flex-row items-center md:justify-between gap-3 text-center">
-      <p class="text-[10px] tracking-wider uppercase text-[#6B7280] font-[family-name:var(--font-family-display)]">
+      <p class="text-[10px] tracking-wider uppercase text-[#6B7280] font-[family-name:var(--font-display)]">
         © {year} Nasúa Narica. Todos los derechos reservados.
       </p>
-      <p class="text-[10px] tracking-wider uppercase text-[#6B7280] font-[family-name:var(--font-family-display)]">
+      <p class="text-[10px] tracking-wider uppercase text-[#6B7280] font-[family-name:var(--font-display)]">
         Hecho con ♥ en América Latina
       </p>
     </div>
