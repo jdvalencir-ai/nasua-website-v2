@@ -1,7 +1,6 @@
 ---
-// Música Sin Fronteras — bloque conceptual
+import { asset } from '../utils/asset';
 // PENDIENTE: el cliente enviará el copy definitivo
-// Por ahora se usa el texto actual del sitio como placeholder
 
 const TITULO = 'Música Sin Fronteras';  // ← editar si cambia
 
@@ -65,7 +64,7 @@ const TEXTO_SECUNDARIO = `
         <!-- Logo horizontal como elemento visual -->
         <div class="relative">
           <img
-            src="/logos/logo-horizontal.png"
+            src={asset('/logos/logo-horizontal.png')}
             alt="Nasúa Narica"
             class="logo-img w-full max-w-sm h-auto mb-8"
             width="400"

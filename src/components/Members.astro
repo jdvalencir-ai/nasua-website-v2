@@ -1,5 +1,6 @@
 ---
 import { MIEMBROS } from '../data/members';
+import { asset } from '../utils/asset';
 ---
 
 <section id="colectivo" class="relative py-28 md:py-36 overflow-hidden"
@@ -53,7 +54,7 @@ import { MIEMBROS } from '../data/members';
             >
               <!-- Logo como placeholder hasta tener foto real -->
               <img
-                src="/logos/logo-icon.png"
+                src={asset('/logos/logo-icon.png')}
                 alt={`Foto de ${miembro.nombre} — PENDIENTE`}
                 class="logo-img w-24 h-auto opacity-20 group-hover:opacity-30 transition-opacity duration-500"
                 width="96"

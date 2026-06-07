@@ -1,6 +1,5 @@
 ---
-// About / Press Kit — sección editorial
-// Contenido basado en el press kit de Nasúa Narica 2026
+import { asset } from '../utils/asset';
 ---
 
 <section id="about" class="relative py-28 md:py-40 overflow-hidden">
@@ -106,7 +105,7 @@
               aria-hidden="true"
             ></div>
             <img
-              src="/logos/logo-icon.png"
+              src={asset('/logos/logo-icon.png')}
               alt="Ícono Nasúa"
               class="logo-img relative z-10 w-48 md:w-56 h-auto"
               width="224"

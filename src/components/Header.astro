@@ -1,7 +1,8 @@
 ---
 import { LOGOS, LOGO_VARIANTE } from '../data/config';
+import { asset } from '../utils/asset';
 
-const logoSrc = LOGOS[LOGO_VARIANTE];
+const logoSrc = asset(LOGOS[LOGO_VARIANTE]);
 
 const NAV_LINKS = [
   { href: '#about',     label: 'Orígenes'  },

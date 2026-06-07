@@ -1,5 +1,5 @@
 ---
-// Hero — pantalla completa con animaciones de entrada
+import { asset } from '../utils/asset';
 ---
 
 <section
@@ -61,7 +61,7 @@
     <!-- Logo principal -->
     <div id="hero-logo" class="opacity-0 mb-10 md:mb-12">
       <img
-        src="/logos/logo-full.png"
+        src={asset('/logos/logo-full.png')}
         alt="Nasúa Narica"
         class="logo-img w-48 md:w-64 lg:w-72 h-auto mx-auto"
         width="288"

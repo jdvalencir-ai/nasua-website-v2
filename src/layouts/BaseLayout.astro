@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { SEO } from '../data/config';
+import { asset } from '../utils/asset';
 
 interface Props {
   titulo?:      string;
@@ -43,7 +44,7 @@ const canonicalURL = Astro.url;
   <meta name="twitter:image"       content={SEO.sitio + ogImagen} />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/logos/logo-icon.png" />
+  <link rel="icon" type="image/png" href={asset('/logos/logo-icon.png')} />
 
   <!-- Google Fonts: Syne (display) + Plus Jakarta Sans (body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -1,5 +1,6 @@
 ---
 import { CONTACTO, REDES } from '../data/config';
+import { asset } from '../utils/asset';
 ---
 
 <section id="contacto" class="relative py-28 md:py-40 overflow-hidden">
@@ -154,7 +155,7 @@ import { CONTACTO, REDES } from '../data/config';
             aria-hidden="true"
           ></div>
           <img
-            src="/logos/logo-full.png"
+            src={asset('/logos/logo-full.png')}
             alt="Nasúa Narica"
             class="logo-img relative z-10 w-40 md:w-52 h-auto"
             width="208"

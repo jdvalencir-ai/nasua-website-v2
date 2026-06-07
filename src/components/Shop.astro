@@ -1,6 +1,6 @@
 ---
-// Shop / Merch — tienda de merchandise
-// Las imágenes de producto se colocan en /public/images/merch/
+import { asset } from '../utils/asset';
+// Imágenes de producto se colocan en /public/images/merch/
 
 interface Producto {
   nombre:       string;
@@ -113,7 +113,7 @@ const estadoColors = {
                   style="background: linear-gradient(135deg, #0A1A0A, #0D2B0D); border: 1px solid rgba(42,107,42,0.2);"
                 >
                   <img
-                    src="/logos/logo-icon.png"
+                    src={asset('/logos/logo-icon.png')}
                     alt=""
                     class="logo-img w-20 h-auto opacity-15 mb-4"
                     width="80"
