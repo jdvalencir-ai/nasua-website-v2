@@ -1,0 +1,132 @@
+---
+// Fanclub — CTA de alta tensión visual
+---
+
+<section
+  id="fanclub"
+  class="relative py-32 md:py-48 overflow-hidden flex items-center justify-center"
+>
+  <!-- Fondo con efecto de luz roja -->
+  <div class="absolute inset-0" style="background: #050805;" aria-hidden="true"></div>
+  <div
+    class="absolute inset-0"
+    style="background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(139,0,0,0.2) 0%, transparent 65%);"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Número de sección -->
+  <span class="section-number" style="top: 2rem; right: 1rem;" aria-hidden="true">06</span>
+
+  <!-- Hojas decorativas a los costados -->
+  <div class="absolute -left-12 bottom-0 opacity-[0.08] -rotate-30 hidden lg:block" aria-hidden="true">
+    <svg width="200" height="320" viewBox="0 0 80 130" fill="#1A4A1A">
+      <path d="M40 125 C40 125 20 80 15 50 C10 20 30 2 40 2 C50 2 70 20 65 50 C60 80 40 125 40 125Z"/>
+    </svg>
+  </div>
+  <div class="absolute -right-12 top-0 opacity-[0.06] rotate-[150deg] hidden lg:block" aria-hidden="true">
+    <svg width="160" height="256" viewBox="0 0 80 130" fill="#2A6B2A">
+      <path d="M40 125 C40 125 20 80 15 50 C10 20 30 2 40 2 C50 2 70 20 65 50 C60 80 40 125 40 125Z"/>
+    </svg>
+  </div>
+
+  <!-- Texto "FANCLUB" de fondo gigante -->
+  <div
+    class="absolute inset-0 flex items-center justify-center overflow-hidden select-none"
+    aria-hidden="true"
+  >
+    <span
+      class="font-[family-name:var(--font-family-display)] font-800 text-transparent whitespace-nowrap"
+      style="-webkit-text-stroke: 1px rgba(242,237,227,0.025); font-size: clamp(6rem, 20vw, 16rem);"
+    >
+      FANCLUB
+    </span>
+  </div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-6 text-center">
+
+    <!-- Logo pequeño arriba -->
+    <div class="flex justify-center mb-8" data-reveal>
+      <img
+        src="/logos/logo-icon.png"
+        alt="Nasúa"
+        class="logo-img w-16 h-auto"
+        width="64"
+        height="64"
+        id="fanclub-logo"
+      />
+    </div>
+
+    <!-- Encabezado -->
+    <div class="flex items-center justify-center gap-4 mb-6" data-reveal>
+      <div class="h-px w-12 bg-[#C41E3A]"></div>
+      <span class="font-[family-name:var(--font-family-display)] text-xs tracking-[0.5em] uppercase text-[#C41E3A] font-600">
+        Comunidad
+      </span>
+      <div class="h-px w-12 bg-[#C41E3A]"></div>
+    </div>
+
+    <h2
+      class="font-[family-name:var(--font-family-display)] font-800 text-[#F2EDE3] leading-none mb-6"
+      style="font-size: clamp(3rem, 8vw, 6.5rem);"
+      data-reveal
+    >
+      Únete ya
+    </h2>
+
+    <p class="text-[#9CA3AF] text-lg md:text-xl leading-relaxed max-w-lg mx-auto mb-10" data-reveal>
+      Sé parte del territorio Nasúa. Accede a contenido exclusivo,
+      preventa de entradas y el lado más salvaje del colectivo.
+    </p>
+
+    <!-- Beneficios del fanclub -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12 text-left" data-reveal>
+      {[
+        { icon: '🎵', titulo: 'Música exclusiva',    desc: 'Demos, sesiones y tracks no publicados.' },
+        { icon: '🎟',  titulo: 'Preventa de eventos', desc: 'Acceso prioritario a shows y giras.' },
+        { icon: '📸',  titulo: 'Backstage',           desc: 'Contenido detrás de cámaras y making of.' },
+      ].map(benefit => (
+        <div
+          class="p-5 rounded"
+          style="background: rgba(15,43,15,0.2); border: 1px solid rgba(42,107,42,0.2);"
+        >
+          <div class="text-2xl mb-3" aria-hidden="true">{benefit.icon}</div>
+          <h3 class="font-[family-name:var(--font-family-display)] font-700 text-[#F2EDE3] text-sm mb-1">
+            {benefit.titulo}
+          </h3>
+          <p class="text-[#6B7280] text-xs leading-relaxed">{benefit.desc}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4" data-reveal>
+      <a href="#contacto" class="btn-primary text-sm tracking-widest">
+        Unirse al Fanclub
+      </a>
+      <a
+        href="https://instagram.com/nasuamusica"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-outline text-sm tracking-widest"
+      >
+        <span>Seguir en Instagram</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { animate } from 'animejs';
+
+  // Logo con pulso suave
+  const logo = document.getElementById('fanclub-logo');
+  if (logo) {
+    animate(logo, {
+      rotate:   [0, 5, -5, 0],
+      duration: 4000,
+      loop:     true,
+      ease:     'inOutSine',
+      delay:    1000,
+    });
+  }
+</script>

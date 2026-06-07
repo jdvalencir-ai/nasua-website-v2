@@ -1,0 +1,149 @@
+---
+// Controlador global de animaciones por scroll
+// Importar una vez en index.astro
+---
+
+<script>
+  import { animate } from 'animejs';
+
+  // ── Configuración de animaciones por tipo ─────────────────
+  const CONFIGS = {
+    'data-reveal': {
+      from: { opacity: 0, translateY: 60 },
+      to:   { opacity: 1, translateY: 0  },
+      duration: 700,
+      ease: 'outExpo',
+    },
+    'data-reveal-left': {
+      from: { opacity: 0, translateX: -60 },
+      to:   { opacity: 1, translateX: 0   },
+      duration: 800,
+      ease: 'outExpo',
+    },
+    'data-reveal-right': {
+      from: { opacity: 0, translateX: 60 },
+      to:   { opacity: 1, translateX: 0  },
+      duration: 800,
+      ease: 'outExpo',
+    },
+    'data-reveal-scale': {
+      from: { opacity: 0, scale: 0.85 },
+      to:   { opacity: 1, scale: 1    },
+      duration: 700,
+      ease: 'outBack(1.4)',
+    },
+  };
+
+  // ── Inicializar estados de inicio ─────────────────────────
+  const allRevealEls = document.querySelectorAll<HTMLElement>(
+    '[data-reveal], [data-reveal-left], [data-reveal-right], [data-reveal-scale]'
+  );
+
+  allRevealEls.forEach(el => {
+    const type = el.hasAttribute('data-reveal')       ? 'data-reveal'
+               : el.hasAttribute('data-reveal-left')  ? 'data-reveal-left'
+               : el.hasAttribute('data-reveal-right') ? 'data-reveal-right'
+               : 'data-reveal-scale';
+
+    const cfg = CONFIGS[type];
+    Object.assign(el.style, {
+      opacity:   '0',
+      transform: type === 'data-reveal'       ? 'translateY(60px)'
+               : type === 'data-reveal-left'  ? 'translateX(-60px)'
+               : type === 'data-reveal-right' ? 'translateX(60px)'
+               : 'scale(0.85)',
+    });
+  });
+
+  // ── IntersectionObserver para activar animaciones ─────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+
+      const el = entry.target as HTMLElement;
+      const type = el.hasAttribute('data-reveal')       ? 'data-reveal'
+                 : el.hasAttribute('data-reveal-left')  ? 'data-reveal-left'
+                 : el.hasAttribute('data-reveal-right') ? 'data-reveal-right'
+                 : 'data-reveal-scale';
+
+      const cfg = CONFIGS[type];
+
+      // Obtener delay desde el estilo inline si existe
+      const delayMs = parseInt(el.style.transitionDelay || '0') || 0;
+
+      animate(el, {
+        opacity:    [cfg.from.opacity ?? 0, 1],
+        translateY: 'translateY' in cfg.from
+          ? [cfg.from.translateY as number, 0]
+          : undefined,
+        translateX: 'translateX' in cfg.from
+          ? [cfg.from.translateX as number, 0]
+          : undefined,
+        scale:      'scale' in cfg.from
+          ? [cfg.from.scale as number, 1]
+          : undefined,
+        duration:   cfg.duration,
+        delay:      delayMs,
+        ease:       cfg.ease as string,
+      });
+
+      observer.unobserve(el);
+    });
+  }, {
+    threshold:   0.12,
+    rootMargin: '0px 0px -40px 0px',
+  });
+
+  allRevealEls.forEach(el => observer.observe(el));
+
+  // ── Stagger para grupos de elementos ─────────────────────
+  // Tarjetas de miembros, videos, productos
+  const STAGGER_GROUPS = [
+    '.member-card',
+    '.video-card',
+    '.product-card',
+    '.genre-tag',
+  ];
+
+  STAGGER_GROUPS.forEach(selector => {
+    const elements = document.querySelectorAll(selector);
+    if (elements.length === 0) return;
+
+    const groupObserver = new IntersectionObserver((entries) => {
+      const visible = entries.filter(e => e.isIntersecting);
+      if (visible.length === 0) return;
+
+      animate(elements, {
+        opacity:    [0, 1],
+        translateY: [40, 0],
+        delay:      (el, i) => i * 90,
+        duration:   600,
+        ease:       'outQuart',
+      });
+
+      groupObserver.disconnect();
+    }, { threshold: 0.1 });
+
+    groupObserver.observe(elements[0]);
+  });
+
+  // ── Contador animado de números ───────────────────────────
+  // (para stats como "10+", "3+", etc.)
+  document.querySelectorAll<HTMLElement>('.stat-number').forEach(el => {
+    const target = parseInt(el.dataset.target || '0');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        let current = 0;
+        const increment = target / 40;
+        const timer = setInterval(() => {
+          current = Math.min(current + increment, target);
+          el.textContent = Math.floor(current).toString();
+          if (current >= target) clearInterval(timer);
+        }, 40);
+        obs.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+    obs.observe(el);
+  });
+</script>

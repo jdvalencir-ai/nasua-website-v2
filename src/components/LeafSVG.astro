@@ -1,0 +1,47 @@
+---
+// Hoja tropical decorativa SVG — reutilizable
+interface Props {
+  class?: string;
+  size?: number;
+  rotate?: number;
+  opacity?: number;
+  color?: string;
+}
+const {
+  class: cls = '',
+  size = 120,
+  rotate = 0,
+  opacity = 0.1,
+  color = '#2A6B2A',
+} = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size * 1.6}
+  viewBox="0 0 80 130"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  class={cls}
+  style={`transform: rotate(${rotate}deg); opacity: ${opacity};`}
+  aria-hidden="true"
+>
+  <!-- Nervadura central -->
+  <path
+    d="M40 125 C40 125 20 80 15 50 C10 20 30 2 40 2 C50 2 70 20 65 50 C60 80 40 125 40 125Z"
+    fill={color}
+  />
+  <path
+    d="M40 10 Q40 60 40 120"
+    stroke="rgba(0,0,0,0.3)"
+    stroke-width="1.5"
+    fill="none"
+  />
+  <!-- Nervaduras laterales -->
+  <path d="M40 30 Q25 25 18 30" stroke="rgba(0,0,0,0.2)" stroke-width="0.8" fill="none"/>
+  <path d="M40 45 Q22 38 14 44" stroke="rgba(0,0,0,0.2)" stroke-width="0.8" fill="none"/>
+  <path d="M40 60 Q24 52 16 58" stroke="rgba(0,0,0,0.2)" stroke-width="0.8" fill="none"/>
+  <path d="M40 30 Q55 25 62 30" stroke="rgba(0,0,0,0.2)" stroke-width="0.8" fill="none"/>
+  <path d="M40 45 Q58 38 66 44" stroke="rgba(0,0,0,0.2)" stroke-width="0.8" fill="none"/>
+  <path d="M40 60 Q56 52 64 58" stroke="rgba(0,0,0,0.2)" stroke-width="0.8" fill="none"/>
+</svg>

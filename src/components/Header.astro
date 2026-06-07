@@ -1,0 +1,181 @@
+---
+import { LOGOS, LOGO_VARIANTE } from '../data/config';
+
+const logoSrc = LOGOS[LOGO_VARIANTE];
+
+const NAV_LINKS = [
+  { href: '#about',     label: 'Orígenes'  },
+  { href: '#musica',    label: 'Música'    },
+  { href: '#videos',    label: 'Videos'    },
+  { href: '#fanclub',   label: 'Fanclub'   },
+  { href: '#shop',      label: 'Shop'      },
+  { href: '#contacto',  label: 'Contacto'  },
+];
+---
+
+<header
+  id="site-header"
+  class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-10 lg:px-16"
+  style="height: 72px;"
+>
+  <!-- Fondo glassmorphism (se activa al hacer scroll) -->
+  <div
+    id="header-bg"
+    class="absolute inset-0 opacity-0 transition-all duration-500"
+    style="background: rgba(7,10,7,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(42,107,42,0.15);"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Logo -->
+  <a href="#inicio" class="relative z-10 flex items-center" aria-label="Nasúa Narica — Inicio">
+    <img
+      src={logoSrc}
+      alt="Logo Nasúa Narica"
+      class="logo-img h-9 md:h-11 w-auto object-contain"
+      id="header-logo"
+    />
+  </a>
+
+  <!-- Navegación desktop -->
+  <nav class="relative z-10 hidden md:flex items-center gap-8 lg:gap-10" aria-label="Navegación principal">
+    {NAV_LINKS.map((link) => (
+      <a
+        href={link.href}
+        class="nav-link font-[family-name:var(--font-family-display)] text-sm font-600 tracking-widest uppercase text-[#9CA3AF] hover:text-[#F2EDE3] transition-colors duration-300 relative"
+      >
+        {link.label}
+        <span class="absolute -bottom-0.5 left-0 h-px w-0 bg-[#C41E3A] transition-all duration-300 group-hover:w-full nav-underline"></span>
+      </a>
+    ))}
+  </nav>
+
+  <!-- Botón menú móvil -->
+  <button
+    id="menu-toggle"
+    class="relative z-10 md:hidden flex flex-col gap-1.5 p-2"
+    aria-label="Abrir menú"
+    aria-expanded="false"
+  >
+    <span class="menu-line block h-0.5 w-6 bg-[#F2EDE3] transition-all duration-300 origin-center"></span>
+    <span class="menu-line block h-0.5 w-6 bg-[#F2EDE3] transition-all duration-300 origin-center"></span>
+    <span class="menu-line block h-0.5 w-4 bg-[#F2EDE3] transition-all duration-300 origin-center self-end"></span>
+  </button>
+
+  <!-- Menú móvil overlay -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none transition-all duration-500"
+    style="background: rgba(7,10,7,0.97); backdrop-filter: blur(20px);"
+    aria-hidden="true"
+  >
+    <!-- Hoja decorativa -->
+    <div class="absolute top-16 right-8 opacity-10" aria-hidden="true">
+      <svg width="80" height="130" viewBox="0 0 80 130" fill="#2A6B2A">
+        <path d="M40 125 C40 125 20 80 15 50 C10 20 30 2 40 2 C50 2 70 20 65 50 C60 80 40 125 40 125Z"/>
+      </svg>
+    </div>
+
+    <nav class="flex flex-col items-center gap-8" aria-label="Navegación móvil">
+      {NAV_LINKS.map((link, i) => (
+        <a
+          href={link.href}
+          class="mobile-nav-link font-[family-name:var(--font-family-display)] text-3xl font-800 tracking-widest uppercase text-[#F2EDE3] hover:text-[#C41E3A] transition-colors duration-300 opacity-0"
+          style={`transition-delay: ${i * 60}ms`}
+          data-mobile-link
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  import { animate, createTimeline } from 'animejs';
+
+  // ── Entrada del header al cargar ──────────────────────
+  const tl = createTimeline({ defaults: { ease: 'outExpo', duration: 800 } });
+
+  tl.add('#site-header', {
+    translateY: ['-100%', '0%'],
+    opacity:    [0, 1],
+    delay:      400,
+    duration:   600,
+  });
+
+  tl.add('.nav-link', {
+    opacity:    [0, 1],
+    translateY: [-12, 0],
+    delay:      (el, i) => i * 70,
+    duration:   500,
+  }, '-=200');
+
+  // ── Glassmorphism al hacer scroll ─────────────────────
+  const headerBg = document.getElementById('header-bg')!;
+  const SCROLL_THRESHOLD = 80;
+
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY > SCROLL_THRESHOLD;
+    headerBg.style.opacity = scrolled ? '1' : '0';
+  }, { passive: true });
+
+  // ── Menú móvil ────────────────────────────────────────
+  const toggle     = document.getElementById('menu-toggle')!;
+  const mobileMenu = document.getElementById('mobile-menu')!;
+  const mobileLinks = document.querySelectorAll('[data-mobile-link]');
+  const lines      = document.querySelectorAll('.menu-line');
+  let isOpen = false;
+
+  toggle.addEventListener('click', () => {
+    isOpen = !isOpen;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+
+    if (isOpen) {
+      mobileMenu.style.pointerEvents = 'auto';
+      animate(mobileMenu, { opacity: [0, 1], duration: 400, ease: 'outQuart' });
+      animate(mobileLinks, {
+        opacity:    [0, 1],
+        translateY: [20, 0],
+        delay:      (el, i) => 100 + i * 60,
+        duration:   400,
+        ease:       'outExpo',
+      });
+      // Animar hamburguesa → X
+      lines[0].style.transform = 'rotate(45deg) translate(3px, 3px)';
+      lines[1].style.opacity   = '0';
+      (lines[2] as HTMLElement).style.transform = 'rotate(-45deg) translate(4px, -4px)';
+      (lines[2] as HTMLElement).style.width = '24px';
+    } else {
+      animate(mobileMenu, {
+        opacity:  [1, 0],
+        duration: 300,
+        ease:     'inQuart',
+        onComplete: () => { mobileMenu.style.pointerEvents = 'none'; }
+      });
+      lines[0].style.transform = '';
+      lines[1].style.opacity   = '1';
+      (lines[2] as HTMLElement).style.transform = '';
+      (lines[2] as HTMLElement).style.width = '16px';
+    }
+  });
+
+  // Cerrar menú al click en link
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (isOpen) toggle.click();
+    });
+  });
+
+  // Subrayado hover en nav links
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const underline = link.querySelector('.nav-underline') as HTMLElement;
+    if (!underline) return;
+    link.addEventListener('mouseenter', () => {
+      animate(underline, { width: ['0%', '100%'], duration: 250, ease: 'outQuart' });
+    });
+    link.addEventListener('mouseleave', () => {
+      animate(underline, { width: ['100%', '0%'], duration: 200, ease: 'inQuart' });
+    });
+  });
+</script>

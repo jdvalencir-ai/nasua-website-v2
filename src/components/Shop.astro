@@ -1,0 +1,191 @@
+---
+// Shop / Merch — tienda de merchandise
+// Las imágenes de producto se colocan en /public/images/merch/
+
+interface Producto {
+  nombre:       string;
+  descripcion:  string;
+  imagen:       string;   // ruta en /public/images/merch/
+  estado:       'disponible' | 'pronto' | 'agotado';
+  precio?:      string;
+  link?:        string;
+}
+
+// ── Productos (editar aquí) ──────────────────────────────────────
+const PRODUCTOS: Producto[] = [
+  {
+    nombre:      'Interplanetario',
+    descripcion: 'El disco debut del colectivo. Pop tropical sin fronteras en formato físico.',
+    imagen:      '/images/merch/disco-interplanetario.jpg',  // ← PENDIENTE: foto del disco
+    estado:      'disponible',
+    precio:      '$25 USD',
+    link:        '#',   // ← PENDIENTE: link de venta
+  },
+  {
+    nombre:      'Gorra Nasúa',
+    descripcion: 'Trae la selva a donde vayas. Bordado exclusivo del colectivo.',
+    imagen:      '/images/merch/gorra-nasua.jpg',    // ← PENDIENTE: foto de la gorra
+    estado:      'pronto',
+    precio:      '$30 USD',
+  },
+  {
+    nombre:      'Camiseta — Edición Selva',
+    descripcion: 'Diseño exclusivo. Impresión de alta calidad sobre algodón premium.',
+    imagen:      '/images/merch/camiseta-selva.jpg', // ← PENDIENTE: foto de la camiseta
+    estado:      'pronto',
+    precio:      '$35 USD',
+  },
+];
+// ─────────────────────────────────────────────────────────────────
+
+const estadoLabels = {
+  disponible: 'Disponible',
+  pronto:     'Muy pronto...',
+  agotado:    'Agotado',
+};
+
+const estadoColors = {
+  disponible: '#2A6B2A',
+  pronto:     '#C41E3A',
+  agotado:    '#6B7280',
+};
+---
+
+<section id="shop" class="relative py-28 md:py-36 overflow-hidden">
+
+  <!-- Fondo -->
+  <div
+    class="absolute inset-0 jungle-texture"
+    style="background-color: #0A100A;"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Número de sección -->
+  <span class="section-number top-8 left-4 md:left-10" aria-hidden="true">07</span>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
+
+    <!-- Encabezado -->
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-6">
+      <div>
+        <div class="flex items-center gap-4 mb-4" data-reveal>
+          <div class="h-px w-12 bg-[#C41E3A]"></div>
+          <span class="font-[family-name:var(--font-family-display)] text-xs tracking-[0.5em] uppercase text-[#C41E3A] font-600">
+            Merch oficial
+          </span>
+        </div>
+        <h2
+          class="font-[family-name:var(--font-family-display)] font-800 text-[#F2EDE3] leading-none"
+          style="font-size: clamp(2.4rem, 5vw, 4rem);"
+          data-reveal
+        >
+          Shop
+        </h2>
+      </div>
+    </div>
+
+    <!-- Grid de productos -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+      {PRODUCTOS.map((producto, index) => {
+        const hasImage = false; // cambiar a true cuando haya fotos reales
+        return (
+          <article
+            class="product-card group relative overflow-hidden rounded flex flex-col"
+            data-reveal
+            style={`transition-delay: ${index * 80}ms`}
+          >
+            <!-- Imagen del producto -->
+            <div
+              class="relative overflow-hidden"
+              style="aspect-ratio: 1/1;"
+            >
+              {hasImage ? (
+                <img
+                  src={producto.imagen}
+                  alt={producto.nombre}
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+              ) : (
+                <!-- Placeholder con logo hasta tener imagen real -->
+                <div
+                  class="w-full h-full flex flex-col items-center justify-center"
+                  style="background: linear-gradient(135deg, #0A1A0A, #0D2B0D); border: 1px solid rgba(42,107,42,0.2);"
+                >
+                  <img
+                    src="/logos/logo-icon.png"
+                    alt=""
+                    class="logo-img w-20 h-auto opacity-15 mb-4"
+                    width="80"
+                    height="80"
+                    aria-hidden="true"
+                  />
+                  <span class="text-[10px] text-[#6B7280] font-[family-name:var(--font-family-display)] tracking-wider uppercase">
+                    Foto pendiente
+                  </span>
+                </div>
+              )}
+
+              <!-- Badge de estado -->
+              <div
+                class="absolute top-3 left-3 px-3 py-1 rounded-full text-[10px] tracking-wider uppercase font-700 font-[family-name:var(--font-family-display)]"
+                style={`background: rgba(7,10,7,0.9); color: ${estadoColors[producto.estado]}; border: 1px solid ${estadoColors[producto.estado]}40;`}
+              >
+                {estadoLabels[producto.estado]}
+              </div>
+            </div>
+
+            <!-- Info del producto -->
+            <div
+              class="flex-1 flex flex-col p-5"
+              style="background: rgba(13,18,13,0.8); border: 1px solid rgba(42,107,42,0.15); border-top: none;"
+            >
+              <!-- Línea roja -->
+              <div class="w-6 h-0.5 bg-[#C41E3A] mb-3 transition-all duration-300 group-hover:w-full"></div>
+
+              <h3 class="font-[family-name:var(--font-family-display)] font-800 text-[#F2EDE3] text-lg mb-2">
+                {producto.nombre}
+              </h3>
+              <p class="text-[#6B7280] text-sm leading-relaxed flex-1 mb-4">
+                {producto.descripcion}
+              </p>
+
+              <div class="flex items-center justify-between mt-auto">
+                {producto.precio && (
+                  <span class="font-[family-name:var(--font-family-display)] font-700 text-[#F2EDE3] text-lg">
+                    {producto.precio}
+                  </span>
+                )}
+
+                {producto.estado === 'disponible' && producto.link ? (
+                  <a
+                    href={producto.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-primary text-xs tracking-widest py-2 px-4"
+                  >
+                    Comprar
+                  </a>
+                ) : producto.estado === 'pronto' ? (
+                  <span
+                    class="text-[11px] tracking-wider uppercase font-[family-name:var(--font-family-display)] font-600 text-[#C41E3A]"
+                  >
+                    Muy pronto...
+                  </span>
+                ) : null}
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <!-- Nota informativa -->
+    <p class="mt-10 text-center text-sm text-[#6B7280]" data-reveal>
+      Todos los productos son merch oficial del colectivo.
+      <a href="#contacto" class="text-[#F2EDE3] hover:text-[#C41E3A] transition-colors ml-1 underline underline-offset-4">
+        Contactar para mayoristas.
+      </a>
+    </p>
+  </div>
+</section>

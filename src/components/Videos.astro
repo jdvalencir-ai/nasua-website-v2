@@ -1,0 +1,132 @@
+---
+import { VIDEOS } from '../data/videos';
+---
+
+<section id="videos" class="relative py-28 md:py-36 overflow-hidden">
+
+  <!-- Fondo -->
+  <div
+    class="absolute inset-0"
+    style="background: linear-gradient(180deg, #070A07 0%, #0D120D 100%);"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Número de sección -->
+  <span class="section-number top-8 left-4 md:left-10" aria-hidden="true">05</span>
+
+  <!-- Divisor superior -->
+  <div class="section-divider" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16 pt-16">
+
+    <!-- Encabezado -->
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-14 gap-6">
+      <div>
+        <div class="flex items-center gap-4 mb-4" data-reveal>
+          <div class="h-px w-12 bg-[#C41E3A]"></div>
+          <span class="font-[family-name:var(--font-family-display)] text-xs tracking-[0.5em] uppercase text-[#C41E3A] font-600">
+            Audiovisual
+          </span>
+        </div>
+        <h2
+          class="font-[family-name:var(--font-family-display)] font-800 text-[#F2EDE3] leading-none"
+          style="font-size: clamp(2.4rem, 5vw, 4rem);"
+          data-reveal
+        >
+          Videos
+        </h2>
+      </div>
+
+      <a
+        href="https://youtube.com/@nasuamusica"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-outline self-start md:self-auto"
+        data-reveal
+      >
+        <span>Ver canal completo</span>
+      </a>
+    </div>
+
+    <!-- Grid de videos -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+      {VIDEOS.map((video, index) => {
+        const isPending = video.youtubeId.startsWith('PENDIENTE');
+        return (
+          <article
+            class="video-card group relative overflow-hidden rounded"
+            data-reveal
+            style={`transition-delay: ${(index % 3) * 80}ms`}
+          >
+            {isPending ? (
+              <!-- Placeholder de video -->
+              <div
+                class="relative w-full flex items-center justify-center"
+                style="aspect-ratio: 16/9; background: #0A1A0A; border: 1px solid rgba(42,107,42,0.2);"
+              >
+                <div class="text-center p-4">
+                  <div
+                    class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-2"
+                    style="background: rgba(196,30,58,0.1); border: 1px solid rgba(196,30,58,0.3);"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="#C41E3A" aria-hidden="true">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                  <p class="text-[10px] text-[#6B7280] font-[family-name:var(--font-family-display)] tracking-wider uppercase">
+                    {video.titulo}
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <!-- Video real de YouTube (lazy load) -->
+              <div class="relative w-full" style="aspect-ratio: 16/9;">
+                <iframe
+                  class="absolute inset-0 w-full h-full"
+                  src={`https://www.youtube.com/embed/${video.youtubeId}?rel=0&modestbranding=1`}
+                  title={video.titulo}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                  loading="lazy"
+                ></iframe>
+              </div>
+            )}
+
+            <!-- Info del video -->
+            <div
+              class="p-3 flex items-center justify-between"
+              style="background: rgba(13,18,13,0.6); border: 1px solid rgba(42,107,42,0.15); border-top: none;"
+            >
+              <span class="text-xs text-[#6B7280] font-[family-name:var(--font-family-display)] tracking-wider truncate">
+                {video.titulo}
+              </span>
+              {!isPending && (
+                <a
+                  href={`https://youtube.com/watch?v=${video.youtubeId}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="ml-2 text-[#6B7280] hover:text-[#C41E3A] transition-colors flex-shrink-0"
+                  aria-label={`Ver ${video.titulo} en YouTube`}
+                >
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+                  </svg>
+                </a>
+              )}
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <!-- Nota si todos son placeholders -->
+    {VIDEOS.every(v => v.youtubeId.startsWith('PENDIENTE')) && (
+      <p class="mt-8 text-center text-xs text-[#6B7280] font-mono opacity-60">
+        ✏️ Agregar IDs de YouTube en <code>src/data/videos.ts</code>
+      </p>
+    )}
+  </div>
+
+  <!-- Divisor inferior -->
+  <div class="section-divider mt-16" aria-hidden="true"></div>
+</section>

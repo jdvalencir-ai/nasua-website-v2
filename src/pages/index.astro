@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Members from '../components/Members.astro';
+import MusicaSinFronteras from '../components/MusicaSinFronteras.astro';
+import LaLeyenda from '../components/LaLeyenda.astro';
+import Videos from '../components/Videos.astro';
+import Fanclub from '../components/Fanclub.astro';
+import Shop from '../components/Shop.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import ScrollAnimations from '../components/ScrollAnimations.astro';
+---
+
+<BaseLayout>
+  <Header />
+
+  <main>
+    <Hero />
+    <About />
+    <Members />
+    <MusicaSinFronteras />
+    <LaLeyenda />
+    <Videos />
+    <Fanclub />
+    <Shop />
+    <Contact />
+  </main>
+
+  <Footer />
+
+  <!-- Controlador global de animaciones por scroll (carga al final del body) -->
+  <ScrollAnimations />
+</BaseLayout>
