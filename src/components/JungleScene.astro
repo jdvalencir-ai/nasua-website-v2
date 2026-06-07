@@ -1,0 +1,150 @@
+---
+// Escena selvática con animales — SVG artístico
+// Usada en el hero y secciones clave
+interface Props {
+  variant?: 'hero' | 'section' | 'footer';
+}
+const { variant = 'hero' } = Astro.props;
+---
+
+{variant === 'hero' && (
+  <div class="jungle-scene absolute bottom-0 left-0 right-0 pointer-events-none" aria-hidden="true" style="height: 340px; overflow: hidden;">
+
+    <!-- Serpiente que atraviesa la escena -->
+    <svg class="snake-svg absolute" viewBox="0 0 1400 140" preserveAspectRatio="none"
+         style="width: 100%; height: 140px; bottom: 80px; opacity: 0.55;">
+      <path id="snake-body"
+        d="M-40 90 C60 90 80 20 160 55 C240 90 280 10 380 50 C480 90 520 15 620 48 C720 82 760 8 860 44 C960 80 1000 12 1100 46 C1200 80 1270 20 1400 60"
+        stroke="#1A4A1A" stroke-width="18" fill="none" stroke-linecap="round"/>
+      <!-- Escamas sutiles -->
+      <path
+        d="M-40 90 C60 90 80 20 160 55 C240 90 280 10 380 50 C480 90 520 15 620 48 C720 82 760 8 860 44 C960 80 1000 12 1100 46 C1200 80 1270 20 1400 60"
+        stroke="#2A6B2A" stroke-width="6" fill="none" stroke-linecap="round" stroke-dasharray="0 24" opacity="0.4"/>
+      <!-- Cabeza de la serpiente -->
+      <ellipse cx="1400" cy="60" rx="22" ry="13" fill="#1A4A1A" transform="rotate(-20, 1400, 60)"/>
+      <!-- Lengua -->
+      <path d="M1415 56 L1434 50 M1434 50 L1442 45" stroke="#C41E3A" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M1415 56 L1434 52 M1434 52 L1442 57" stroke="#C41E3A" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- Ojo -->
+      <circle cx="1407" cy="55" r="4" fill="#0F0F0F"/>
+      <circle cx="1408" cy="54" r="1.5" fill="rgba(255,255,255,0.3)"/>
+    </svg>
+
+    <!-- Follaje izquierdo — capas de profundidad -->
+    <svg class="foliage-left absolute left-0 bottom-0" viewBox="0 0 480 340" style="height: 340px; width: auto;">
+      <!-- Hoja grande trasera -->
+      <path d="M-30 340 C-30 340 10 200 60 120 C110 40 160 20 140 80 C120 140 80 200 60 340 Z"
+            fill="#0A1E0A" opacity="0.9"/>
+      <!-- Hoja media -->
+      <path d="M-10 340 C20 340 70 220 100 140 C130 60 180 30 165 95 C150 160 100 240 80 340 Z"
+            fill="#0D2B0D" opacity="0.85"/>
+      <!-- Hoja frontal pequeña -->
+      <path d="M20 340 C40 300 80 230 110 170 C130 130 155 110 148 155 C141 200 110 270 90 340 Z"
+            fill="#112E11" opacity="0.8"/>
+      <!-- Hoja delantera con nervadura -->
+      <path d="M0 340 C0 340 30 260 70 195 C100 145 130 120 125 165 C120 210 85 280 60 340 Z"
+            fill="#1A4A1A" opacity="0.7"/>
+      <path d="M30 330 C55 280 80 230 100 195" stroke="#0A1E0A" stroke-width="2" fill="none" opacity="0.5"/>
+      <!-- Tallo de palmera izquierdo -->
+      <path d="M-20 340 C-10 280 0 200 40 120 C70 55 110 20 130 40"
+            stroke="#0A1E0A" stroke-width="14" fill="none" stroke-linecap="round"/>
+      <path d="M-20 340 C-10 280 0 200 40 120 C70 55 110 20 130 40"
+            stroke="#0D2B0D" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <!-- Fronda de palma -->
+      <path d="M130 40 C140 10 180 -10 200 20 C170 30 150 50 130 40 Z" fill="#0D2B0D" opacity="0.8"/>
+      <path d="M130 40 C110 15 70 5 60 30 C90 35 115 45 130 40 Z"   fill="#0D2B0D" opacity="0.7"/>
+      <path d="M130 40 C145 -5 130 -30 110 -10 C115 15 125 30 130 40 Z" fill="#112E11" opacity="0.6"/>
+
+      <!-- Tucán posado en el tallo -->
+      <g transform="translate(85, 85) scale(0.85)">
+        <!-- Cuerpo -->
+        <ellipse cx="0" cy="30" rx="22" ry="18" fill="#0F0F0F"/>
+        <!-- Cabeza -->
+        <circle cx="22" cy="12" r="16" fill="#0F0F0F"/>
+        <!-- Pecho blanco -->
+        <ellipse cx="-2" cy="28" rx="13" ry="16" fill="rgba(255,255,255,0.08)"/>
+        <!-- Pico grande del tucán -->
+        <path d="M32 6 Q68 2 72 16 Q70 26 32 26 Q24 16 24 10 Z" fill="#C41E3A" opacity="0.9"/>
+        <!-- Filo del pico -->
+        <path d="M32 6 Q68 2 72 16" stroke="#8B0000" stroke-width="1.5" fill="none"/>
+        <!-- Ojo -->
+        <circle cx="28" cy="8" r="5" fill="white" opacity="0.9"/>
+        <circle cx="29" cy="8" r="3" fill="#111"/>
+        <circle cx="30" cy="7" r="1" fill="rgba(255,255,255,0.6)"/>
+        <!-- Alas cerradas -->
+        <path d="M-20 25 C-30 35 -28 50 -15 45 C-8 40 0 35 0 30 Z" fill="#111" opacity="0.8"/>
+        <!-- Cola -->
+        <path d="M-22 40 Q-35 55 -40 50 Q-32 42 -22 40 Z" fill="#1A1A1A"/>
+        <!-- Patitas -->
+        <path d="M-5 48 L-5 58 M-5 58 L-12 64 M-5 58 L0 64 M-5 58 L4 62" stroke="#333" stroke-width="2" stroke-linecap="round"/>
+        <path d="M8 48 L8 58 M8 58 L1 64 M8 58 L13 64 M8 58 L17 62" stroke="#333" stroke-width="2" stroke-linecap="round"/>
+      </g>
+    </svg>
+
+    <!-- Follaje derecho -->
+    <svg class="foliage-right absolute right-0 bottom-0" viewBox="0 0 480 340" style="height: 340px; width: auto;">
+      <!-- Hoja grande trasera -->
+      <path d="M510 340 C510 340 470 200 420 120 C370 40 320 20 340 80 C360 140 400 200 420 340 Z"
+            fill="#0A1E0A" opacity="0.9"/>
+      <!-- Hoja media -->
+      <path d="M490 340 C460 340 410 220 380 140 C350 60 300 30 315 95 C330 160 380 240 400 340 Z"
+            fill="#0D2B0D" opacity="0.85"/>
+      <!-- Hojas delanteras -->
+      <path d="M480 340 C460 300 420 230 390 170 C370 130 345 110 352 155 C359 200 390 270 410 340 Z"
+            fill="#112E11" opacity="0.8"/>
+      <path d="M500 340 C500 340 470 260 430 195 C400 145 370 120 375 165 C380 210 415 280 440 340 Z"
+            fill="#1A4A1A" opacity="0.7"/>
+      <!-- Tallo palmera derecho -->
+      <path d="M500 340 C490 280 480 200 440 120 C410 55 370 20 350 40"
+            stroke="#0A1E0A" stroke-width="14" fill="none" stroke-linecap="round"/>
+      <path d="M500 340 C490 280 480 200 440 120 C410 55 370 20 350 40"
+            stroke="#0D2B0D" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <!-- Fronda palma derecha -->
+      <path d="M350 40 C340 10 300 -10 280 20 C310 30 335 50 350 40 Z" fill="#0D2B0D" opacity="0.8"/>
+      <path d="M350 40 C370 15 410 5 420 30 C390 35 365 45 350 40 Z"   fill="#0D2B0D" opacity="0.7"/>
+
+      <!-- Coatí (nasua) asomándose desde la derecha -->
+      <g transform="translate(390, 200) scale(-0.7, 0.7)">
+        <!-- Cola anillada hacia arriba -->
+        <path d="M-10 -60 C-15 -90 -5 -110 10 -100 C25 -90 20 -70 5 -65 C-5 -62 -10 -60 -10 -60"
+              stroke="#1A1A1A" stroke-width="10" fill="none" stroke-linecap="round"/>
+        <path d="M-10 -60 C-15 -90 -5 -110 10 -100 C25 -90 20 -70 5 -65"
+              stroke="#333" stroke-width="3" fill="none" stroke-linecap="round" stroke-dasharray="6 6"/>
+        <!-- Cuerpo -->
+        <ellipse cx="0" cy="0" rx="30" ry="20" fill="#1A1A1A"/>
+        <!-- Cabeza con hocico largo -->
+        <ellipse cx="35" cy="-8" rx="20" ry="15" fill="#111"/>
+        <ellipse cx="55" cy="-5" rx="12" ry="7" fill="#1A1A1A"/>
+        <!-- Marcas blancas faciales -->
+        <path d="M38 -18 Q45 -22 50 -16" stroke="rgba(255,255,255,0.15)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M38 0 Q45 4 50 0"   stroke="rgba(255,255,255,0.15)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- Ojo -->
+        <circle cx="40" cy="-10" r="4" fill="white" opacity="0.7"/>
+        <circle cx="41" cy="-10" r="2.5" fill="#111"/>
+        <!-- Nariz -->
+        <ellipse cx="64" cy="-4" rx="5" ry="3.5" fill="#333"/>
+        <!-- Patitas -->
+        <line x1="-15" y1="18" x2="-20" y2="35" stroke="#1A1A1A" stroke-width="5" stroke-linecap="round"/>
+        <line x1="5"   y1="18" x2="0"   y2="35" stroke="#1A1A1A" stroke-width="5" stroke-linecap="round"/>
+      </g>
+    </svg>
+
+    <!-- Misterioso brillo de fondo en la base -->
+    <div class="absolute bottom-0 left-0 right-0 h-32"
+         style="background: linear-gradient(to top, rgba(5,10,5,0.95), transparent);">
+    </div>
+  </div>
+)}
+
+{variant === 'footer' && (
+  <!-- Coatí pequeño para el footer -->
+  <svg viewBox="0 0 120 80" style="width: 80px; opacity: 0.15;" aria-hidden="true">
+    <g transform="scale(0.5)">
+      <path d="M20 60 C15 30 25 10 40 20 C55 30 50 50 45 65" stroke="#F2EDE3" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <ellipse cx="60" cy="70" rx="35" ry="22" fill="#F2EDE3"/>
+      <ellipse cx="90" cy="58" rx="22" ry="16" fill="#F2EDE3"/>
+      <ellipse cx="110" cy="54" rx="12" ry="7" fill="#F2EDE3"/>
+      <circle cx="96" cy="52" r="4" fill="#0F0F0F"/>
+    </g>
+  </svg>
+)}

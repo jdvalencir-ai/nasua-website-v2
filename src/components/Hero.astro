@@ -1,222 +1,137 @@
 ---
 import { asset } from '../utils/asset';
+import JungleScene from './JungleScene.astro';
 ---
 
-<section
-  id="inicio"
-  class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
->
-  <!-- Fondo jungle: gradientes + partículas -->
-  <div class="absolute inset-0 jungle-texture" aria-hidden="true">
-    <!-- Gradiente central -->
-    <div
-      class="absolute inset-0"
-      style="background: radial-gradient(ellipse 70% 70% at 50% 45%, rgba(15,43,15,0.6) 0%, rgba(7,10,7,0) 70%);"
-    ></div>
+<section id="inicio" class="relative min-h-screen flex flex-col justify-center overflow-hidden"
+  style="background: #060906;">
 
-    <!-- Vignette -->
-    <div
-      class="absolute inset-0"
-      style="background: radial-gradient(ellipse at center, transparent 40%, rgba(7,10,7,0.95) 100%);"
-    ></div>
+  <!-- Grano de película sobre todo -->
+  <div class="grain-overlay absolute inset-0 z-20 pointer-events-none" aria-hidden="true"></div>
 
-    <!-- Líneas de scan decorativas -->
-    <div class="absolute inset-0 opacity-[0.02]"
-      style="background-image: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.1) 3px, rgba(255,255,255,0.1) 4px);">
-    </div>
+  <!-- Gradiente radial del centro -->
+  <div class="absolute inset-0"
+    style="background: radial-gradient(ellipse 80% 70% at 50% 40%, rgba(12,28,12,0.7) 0%, #060906 72%);"
+    aria-hidden="true">
   </div>
 
-  <!-- Hojas flotantes decorativas -->
-  <div class="leaf leaf-slow absolute -left-8 top-24 hidden lg:block" aria-hidden="true"
-       style="opacity:0.09; animation-delay: 0s;">
-    <svg width="140" height="220" viewBox="0 0 80 130" fill="#1A4A1A">
-      <path d="M40 125 C40 125 20 80 15 50 C10 20 30 2 40 2 C50 2 70 20 65 50 C60 80 40 125 40 125Z"/>
-    </svg>
-  </div>
-  <div class="leaf absolute right-12 top-32 hidden lg:block" aria-hidden="true"
-       style="opacity:0.07; animation-delay: 2s; transform: rotate(-45deg) scaleX(-1);">
-    <svg width="100" height="160" viewBox="0 0 80 130" fill="#2A6B2A">
-      <path d="M40 125 C40 125 20 80 15 50 C10 20 30 2 40 2 C50 2 70 20 65 50 C60 80 40 125 40 125Z"/>
-    </svg>
-  </div>
-  <div class="leaf-slow absolute left-1/4 bottom-32 hidden xl:block" aria-hidden="true"
-       style="opacity:0.06; animation-delay: 4s; transform: rotate(120deg);">
-    <svg width="80" height="130" viewBox="0 0 80 130" fill="#0F2B0F">
-      <path d="M40 125 C40 125 20 80 15 50 C10 20 30 2 40 2 C50 2 70 20 65 50 C60 80 40 125 40 125Z"/>
-    </svg>
-  </div>
-  <div class="leaf absolute right-1/4 bottom-16 hidden xl:block" aria-hidden="true"
-       style="opacity:0.08; animation-delay: 1.5s; transform: rotate(200deg);">
-    <svg width="110" height="175" viewBox="0 0 80 130" fill="#1A4A1A">
-      <path d="M40 125 C40 125 20 80 15 50 C10 20 30 2 40 2 C50 2 70 20 65 50 C60 80 40 125 40 125Z"/>
-    </svg>
+  <!-- Líneas de scan muy sutiles -->
+  <div class="absolute inset-0 pointer-events-none opacity-[0.018]"
+    style="background-image: repeating-linear-gradient(0deg, #fff 0px, #fff 1px, transparent 1px, transparent 4px);"
+    aria-hidden="true">
   </div>
 
-  <!-- Partículas de luz -->
-  <div id="hero-particles" class="absolute inset-0 overflow-hidden" aria-hidden="true"></div>
+  <!-- Logo pequeño — esquina superior izquierda (se oculta con el header) -->
 
-  <!-- Contenido principal del hero -->
-  <div class="relative z-10 flex flex-col items-center text-center px-6">
+  <!-- Contenido central -->
+  <div class="relative z-10 flex flex-col items-start justify-center px-6 md:px-10 lg:px-16 pt-20 pb-40">
 
-    <!-- Logo principal -->
-    <div id="hero-logo" class="opacity-0 mb-10 md:mb-12">
-      <img
-        src={asset('/logos/logo-full.png')}
-        alt="Nasúa Narica"
-        class="logo-img w-48 md:w-64 lg:w-72 h-auto mx-auto"
-        width="288"
-        height="320"
-      />
+    <!-- Etiqueta vertical discreta -->
+    <div class="flex items-center gap-3 mb-10 md:mb-14" data-reveal>
+      <div class="h-px w-10 bg-[#C41E3A] opacity-70"></div>
+      <span class="font-[family-name:var(--font-family-display)] text-[10px] tracking-[0.6em] uppercase text-[#C41E3A] opacity-80">
+        Colectivo · América Latina
+      </span>
     </div>
 
-    <!-- Título: "NASUA" con caracteres separados para animar -->
-    <div id="hero-title" class="overflow-hidden mb-6">
-      <h1
-        class="font-[family-name:var(--font-family-display)] font-800 tracking-[0.2em] text-[#F2EDE3]"
-        style="font-size: clamp(3.5rem, 10vw, 9rem); line-height: 0.9;"
-        aria-label="Nasua"
+    <!-- "NASUA" — tipografía que llena la pantalla -->
+    <div class="hero-wordmark-wrap w-full overflow-hidden" aria-label="Nasua">
+      <div
+        id="hero-title"
+        class="hero-wordmark font-[family-name:var(--font-family-display)] font-800 text-[#F2EDE3] leading-none select-none"
+        style="font-size: clamp(5rem, 21.5vw, 22rem); letter-spacing: -0.02em; line-height: 0.88;"
+        aria-hidden="true"
       >
-        <span class="hero-char inline-block opacity-0">N</span>
-        <span class="hero-char inline-block opacity-0">A</span>
-        <span class="hero-char inline-block opacity-0">S</span>
-        <span class="hero-char inline-block opacity-0">U</span>
-        <span class="hero-char inline-block opacity-0">A</span>
-      </h1>
+        <!-- Cada letra en su propio span para animar individualmente -->
+        <span class="hero-char inline-block" data-char="N">N</span><!--
+        --><span class="hero-char inline-block" data-char="A">A</span><!--
+        --><span class="hero-char inline-block" data-char="S">S</span><!--
+        --><span class="hero-char inline-block" data-char="U">U</span><!--
+        --><span class="hero-char inline-block" data-char="A" style="color: #C41E3A;">A</span>
+      </div>
     </div>
 
-    <!-- Tagline -->
-    <p
-      id="hero-tagline"
-      class="font-[family-name:var(--font-family-display)] text-sm md:text-base font-600 tracking-[0.5em] uppercase text-[#2A6B2A] opacity-0 mb-12"
-    >
-      Música Sin Fronteras
-    </p>
-
-    <!-- CTAs -->
-    <div id="hero-ctas" class="flex flex-col sm:flex-row items-center gap-4 opacity-0">
-      <a href="#about" class="btn-primary text-sm tracking-widest">
-        Conoce la historia
-      </a>
-      <a href="#musica" class="btn-outline text-sm tracking-widest">
-        <span>Escuchar música</span>
+    <!-- Subtítulo editorial debajo del wordmark -->
+    <div id="hero-sub" class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 mt-6 md:mt-8 opacity-0">
+      <p class="font-[family-name:var(--font-family-display)] text-[11px] md:text-xs tracking-[0.55em] uppercase text-[#6B7280] font-500 max-w-xs">
+        Música Sin Fronteras<br/>Pop Tropical · Fusión
+      </p>
+      <div class="h-px w-full sm:w-24 bg-[#6B7280] opacity-30 sm:self-center" aria-hidden="true"></div>
+      <a href="#contacto"
+         class="font-[family-name:var(--font-family-display)] text-[11px] tracking-[0.4em] uppercase text-[#F2EDE3] font-600 hover:text-[#C41E3A] transition-colors duration-300">
+        Booking →
       </a>
     </div>
   </div>
+
+  <!-- Escena selvática en el fondo inferior -->
+  <JungleScene variant="hero" />
 
   <!-- Indicador de scroll -->
-  <div id="scroll-indicator" class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0">
-    <span class="font-[family-name:var(--font-family-display)] text-[10px] tracking-[0.4em] uppercase text-[#6B7280]">
-      Scroll
-    </span>
-    <div class="w-px h-12 bg-gradient-to-b from-[#C41E3A] to-transparent" id="scroll-line"></div>
+  <div id="scroll-indicator"
+       class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-30 opacity-0">
+    <div id="scroll-line" class="w-px h-14 bg-gradient-to-b from-[#C41E3A] to-transparent"></div>
   </div>
-
-  <!-- Línea roja decorativa inferior -->
-  <div
-    class="absolute bottom-0 left-0 right-0 h-px"
-    style="background: linear-gradient(90deg, transparent, rgba(196,30,58,0.4), transparent);"
-    aria-hidden="true"
-  ></div>
 </section>
 
 <script>
   import { animate, createTimeline, spring } from 'animejs';
 
-  // ── Secuencia de entrada principal ───────────────────
-  const tl = createTimeline({ defaults: { ease: 'outExpo' } });
+  // ── Secuencia de entrada ──────────────────────────────────
+  const tl = createTimeline();
 
-  // 1. Logo entra cayendo desde arriba
-  tl.add('#hero-logo', {
-    opacity:    [0, 1],
-    translateY: [-80, 0],
-    scale:      [0.7, 1],
-    duration:   900,
-    delay:      300,
-    ease:       spring({ stiffness: 100, damping: 15 }),
-  });
-
-  // 2. Cada letra de "NASUA" entra con stagger
+  // Letras: entran una por una cayendo desde arriba con distinto ángulo
   tl.add('.hero-char', {
     opacity:    [0, 1],
-    translateY: [60, 0],
-    rotate:     [-8, 0],
-    delay:      (el, i) => i * 80,
-    duration:   600,
-    ease:       'outBack(1.7)',
-  }, '-=400');
+    translateY: (el: Element, i: number) => [-(60 + i * 20), 0],
+    rotate:     (el: Element, i: number) => [i % 2 === 0 ? -6 : 6, 0],
+    delay:      (el: Element, i: number) => i * 100 + 200,
+    duration:   700,
+    ease:       spring({ stiffness: 120, damping: 14 }),
+  });
 
-  // 3. Tagline aparece
-  tl.add('#hero-tagline', {
+  // Subtítulo
+  tl.add('#hero-sub', {
     opacity:    [0, 1],
-    translateY: [20, 0],
-    duration:   500,
-    ease:       'outQuart',
-  }, '-=100');
-
-  // 4. CTAs aparecen
-  tl.add('#hero-ctas', {
-    opacity:    [0, 1],
-    translateY: [20, 0],
+    translateY: [16, 0],
     duration:   500,
     ease:       'outQuart',
   }, '-=200');
 
-  // 5. Scroll indicator entra
+  // Scroll indicator
   tl.add('#scroll-indicator', {
-    opacity:    [0, 1],
-    translateY: [10, 0],
-    duration:   400,
-    ease:       'outQuart',
-  }, '-=100');
+    opacity: [0, 1],
+    duration: 600,
+    ease: 'outQuart',
+  }, '+=400');
 
-  // ── Animación continua de la línea de scroll ─────────
+  // Scroll indicator pulse
   animate('#scroll-line', {
-    scaleY:       [1, 0.3],
-    transformOrigin: 'top',
-    duration:     1200,
-    loop:         true,
-    alternate:    true,
-    ease:         'inOutSine',
-    delay:        1800,
+    scaleY:          [1, 0.2],
+    transformOrigin: 'top center',
+    duration:        1100,
+    loop:            true,
+    alternate:       true,
+    ease:            'inOutSine',
+    delay:           2000,
   });
 
-  // ── Partículas de luz flotantes ───────────────────────
-  const container = document.getElementById('hero-particles')!;
-  const PARTICLE_COUNT = 18;
-
-  for (let i = 0; i < PARTICLE_COUNT; i++) {
-    const dot = document.createElement('div');
-    dot.style.cssText = `
-      position: absolute;
-      width: ${Math.random() * 3 + 1}px;
-      height: ${Math.random() * 3 + 1}px;
-      border-radius: 50%;
-      background: ${Math.random() > 0.6 ? 'rgba(196,30,58,0.6)' : 'rgba(42,107,42,0.5)'};
-      left: ${Math.random() * 100}%;
-      top: ${Math.random() * 100}%;
-      filter: blur(${Math.random() > 0.5 ? '1px' : '0px'});
-    `;
-    container.appendChild(dot);
-
-    animate(dot, {
-      translateY: [0, -(Math.random() * 80 + 40)],
-      translateX: [0, (Math.random() - 0.5) * 60],
-      opacity:    [0, Math.random() * 0.7 + 0.3, 0],
-      duration:   Math.random() * 3000 + 3000,
-      delay:      Math.random() * 4000,
-      loop:       true,
-      ease:       'inOutSine',
-    });
-  }
-
-  // ── Efecto parallax sutil en scroll ──────────────────
-  const heroLogo = document.getElementById('hero-logo')!;
-  const heroTitle = document.getElementById('hero-title')!;
-
+  // ── Parallax del título al hacer scroll ──────────────────
+  const wordmark = document.querySelector('.hero-wordmark-wrap') as HTMLElement;
   window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const factor  = scrollY * 0.25;
-    heroLogo.style.transform  = `translateY(${factor}px)`;
-    heroTitle.style.transform = `translateY(${factor * 0.6}px)`;
+    if (!wordmark) return;
+    wordmark.style.transform = `translateY(${window.scrollY * 0.18}px)`;
   }, { passive: true });
+
+  // ── Efecto glitch en hover sobre las letras ───────────────
+  document.querySelectorAll('.hero-char').forEach(char => {
+    char.addEventListener('mouseenter', () => {
+      animate(char, {
+        translateX: [0, -4, 4, -2, 0],
+        skewX:      [0, -3, 3, 0],
+        duration:   300,
+        ease:       'outElastic(1, 0.5)',
+      });
+    });
+  });
 </script>

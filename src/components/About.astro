@@ -2,14 +2,13 @@
 import { asset } from '../utils/asset';
 ---
 
-<section id="about" class="relative py-28 md:py-40 overflow-hidden">
+<section id="about" class="relative overflow-hidden"
+  style="background: #060906; padding: 8rem 0 6rem;">
 
-  <!-- Número de sección decorativo -->
-  <span class="section-number top-8 left-4 md:left-10 select-none" aria-hidden="true">01</span>
-
-  <!-- Hoja decorativa -->
-  <div class="absolute -right-16 top-20 opacity-[0.06] rotate-[30deg] hidden lg:block" aria-hidden="true">
-    <svg width="200" height="320" viewBox="0 0 80 130" fill="#2A6B2A">
+  <!-- Hoja decorativa en fondo -->
+  <div class="absolute -right-24 top-0 opacity-[0.04] pointer-events-none" aria-hidden="true"
+       style="transform: rotate(20deg);">
+    <svg width="500" height="800" viewBox="0 0 80 130" fill="#2A6B2A">
       <path d="M40 125 C40 125 20 80 15 50 C10 20 30 2 40 2 C50 2 70 20 65 50 C60 80 40 125 40 125Z"/>
     </svg>
   </div>
@@ -17,152 +16,107 @@ import { asset } from '../utils/asset';
   <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
 
     <!-- Etiqueta de sección -->
-    <div class="flex items-center gap-4 mb-12" data-reveal>
-      <div class="h-px w-12 bg-[#C41E3A]"></div>
-      <span class="font-[family-name:var(--font-family-display)] text-xs tracking-[0.5em] uppercase text-[#C41E3A] font-600">
+    <div class="flex items-center gap-4 mb-16 md:mb-20" data-reveal>
+      <div class="h-px w-10 bg-[#C41E3A]"></div>
+      <span class="font-[family-name:var(--font-family-display)] text-[10px] tracking-[0.6em] uppercase text-[#C41E3A] font-600">
         Orígenes
       </span>
     </div>
 
-    <!-- Layout de dos columnas -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+    <!-- Cita enorme — primer impacto visual -->
+    <div class="mb-20 md:mb-28" data-reveal>
+      <p class="font-[family-name:var(--font-family-display)] font-800 text-[#F2EDE3] leading-[0.9]"
+         style="font-size: clamp(2.8rem, 7vw, 7rem);">
+        No somos<br/>
+        un género.<br/>
+        <span style="color: #C41E3A;">Somos</span> un<br/>
+        territorio.
+      </p>
+    </div>
 
-      <!-- Columna izquierda: texto principal -->
-      <div>
-        <h2
-          class="font-[family-name:var(--font-family-display)] font-800 text-[#F2EDE3] leading-none mb-8"
-          style="font-size: clamp(2.8rem, 6vw, 5rem);"
-          data-reveal
-        >
-          Donde la selva<br/>
-          <span style="color: #C41E3A;">rompe</span> el silencio.
-        </h2>
+    <!-- Layout de dos columnas: bio + imagen -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
 
-        <!-- Bio principal (press kit) -->
-        <div class="space-y-5 data-reveal-block">
-          <p
-            class="text-[#9CA3AF] leading-relaxed text-lg"
-            data-reveal
-          >
-            <strong class="text-[#F2EDE3] font-600">Nasúa</strong> es un colectivo musical latinoamericano
-            que nació en la intersección entre la selva y el futuro. Tomando el nombre del coatí
-            —ese animal curioso, ágil e indomable—, la banda construyó un universo sonoro donde el
-            pop tropical dialoga con el funk, el afrobeat y la electrónica sin pedir permiso.
+      <!-- Columna de texto -->
+      <div class="lg:col-span-7 lg:col-start-1">
+
+        <div class="space-y-6 mb-12">
+          <p class="text-[#9CA3AF] leading-[1.8] text-lg md:text-xl" data-reveal>
+            <strong class="text-[#F2EDE3] font-600">Nasúa</strong> es un colectivo musical
+            latinoamericano que lleva el nombre del coatí — ese animal curioso, ágil e
+            indomable. Como él, su música no se deja clasificar.
           </p>
 
-          <p class="text-[#9CA3AF] leading-relaxed" data-reveal>
-            Su propuesta, bautizada <em class="text-[#F2EDE3] not-italic font-500">Música Sin Fronteras</em>,
-            es más que un género: es un manifiesto. Una declaración de que la música latinoamericana no
-            cabe en una sola categoría, en un solo idioma ni en un solo continente.
+          <p class="text-[#6B7280] leading-[1.8]" data-reveal>
+            Pop tropical que dialoga con el funk, el afrobeat y la electrónica sin pedir permiso.
+            Tres voces que construyen algo mayor que la suma de sus partes.
           </p>
 
-          <p class="text-[#9CA3AF] leading-relaxed" data-reveal>
-            Con cada lanzamiento, Nasúa ha demostrado que la identidad colectiva puede ser poderosa sin
-            perder individualidad. Sus tres voces —tan distintas como complementarias— construyen algo
-            mayor que la suma de sus partes.
+          <p class="text-[#6B7280] leading-[1.8]" data-reveal>
+            Su propuesta — <em class="text-[#F2EDE3] not-italic">Música Sin Fronteras</em> —
+            es un manifiesto. La música latinoamericana no cabe en una sola categoría,
+            en un solo idioma ni en un solo continente.
           </p>
         </div>
 
-        <!-- Cita destacada -->
-        <blockquote
-          class="mt-10 pl-5 border-l-2 border-[#C41E3A]"
-          data-reveal
-        >
-          <p class="font-[family-name:var(--font-family-display)] font-700 text-[#F2EDE3] text-xl leading-snug italic">
-            "No somos un género.<br/>Somos un territorio."
-          </p>
-          <cite class="mt-2 block text-sm text-[#6B7280] not-italic tracking-widest uppercase font-[family-name:var(--font-family-display)]">
-            — Nasúa Narica
-          </cite>
-        </blockquote>
+        <!-- Línea divisoria minimalista -->
+        <div class="h-px w-full mb-8" style="background: rgba(255,255,255,0.06);" aria-hidden="true"></div>
 
-        <!-- Botón descarga EPK -->
-        <div class="mt-10" data-reveal>
-          <a
-            href="#contacto"
-            class="btn-outline"
-          >
-            <span>Solicitar Press Kit completo</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Columna derecha: stats + logo -->
-      <div class="lg:pt-8">
-
-        <!-- Logo grande del ícono -->
-        <div class="relative mb-12 flex justify-center lg:justify-start" data-reveal-scale>
-          <div class="relative inline-block">
-            <!-- Glow rojo detrás del logo -->
-            <div
-              class="absolute inset-0 rounded-full blur-3xl opacity-20"
-              style="background: radial-gradient(circle, #C41E3A 0%, transparent 70%); transform: scale(1.2);"
-              aria-hidden="true"
-            ></div>
-            <div
-              class="absolute inset-0 rounded-full blur-2xl opacity-10"
-              style="background: radial-gradient(circle, #2A6B2A 0%, transparent 70%); transform: scale(1.5);"
-              aria-hidden="true"
-            ></div>
-            <img
-              src={asset('/logos/logo-icon.png')}
-              alt="Ícono Nasúa"
-              class="logo-img relative z-10 w-48 md:w-56 h-auto"
-              width="224"
-              height="224"
-              id="about-icon"
-            />
-          </div>
-        </div>
-
-        <!-- Stats del press kit -->
-        <div class="grid grid-cols-2 gap-4 mb-10" data-reveal>
+        <!-- Datos minimalistas — sin cajas, solo texto -->
+        <div class="grid grid-cols-2 gap-y-5 gap-x-8" data-reveal>
           {[
-            { label: 'Género',   value: 'Pop Tropical / Fusión' },
-            { label: 'Origen',   value: 'América Latina'        },
-            { label: 'Idioma',   value: 'Español / Multilingüe' },
-            { label: 'Formados', value: '2022'                  },
-          ].map(stat => (
-            <div
-              class="p-4 rounded"
-              style="background: rgba(15,43,15,0.3); border: 1px solid rgba(42,107,42,0.2);"
-            >
-              <dt class="text-[10px] tracking-[0.4em] uppercase text-[#6B7280] font-[family-name:var(--font-family-display)] font-600 mb-1">
-                {stat.label}
+            { label: 'Origen',   valor: 'América Latina'        },
+            { label: 'Género',   valor: 'Pop Tropical / Fusión'  },
+            { label: 'Formados', valor: '2022'                   },
+            { label: 'Idioma',   valor: 'Español · Global'       },
+          ].map(d => (
+            <div>
+              <dt class="font-[family-name:var(--font-family-display)] text-[9px] tracking-[0.5em] uppercase text-[#C41E3A] font-600 mb-0.5">
+                {d.label}
               </dt>
-              <dd class="text-[#F2EDE3] font-600 text-sm">{stat.value}</dd>
+              <dd class="font-[family-name:var(--font-family-display)] text-[#F2EDE3] font-600 text-sm tracking-wide">
+                {d.valor}
+              </dd>
             </div>
           ))}
         </div>
+      </div>
 
-        <!-- Géneros / tags -->
-        <div class="flex flex-wrap gap-2" data-reveal>
-          {['Pop Tropical', 'Fusión', 'Afrobeat', 'Electrónica', 'Música Sin Fronteras', 'Indie Latino'].map(tag => (
-            <span
-              class="text-[11px] tracking-wider uppercase font-[family-name:var(--font-family-display)] font-600 px-3 py-1.5 rounded-full"
-              style="background: rgba(42,107,42,0.15); border: 1px solid rgba(42,107,42,0.3); color: #6B7280;"
-            >
-              {tag}
-            </span>
-          ))}
+      <!-- Columna visual: ícono grande con atmósfera -->
+      <div class="lg:col-span-4 lg:col-start-9 flex flex-col items-center lg:items-end" data-reveal-right>
+
+        <!-- Marco editorial para la imagen del artista -->
+        <div class="relative w-full max-w-xs">
+          <!-- Borde editorial -->
+          <div class="absolute -top-3 -left-3 w-16 h-16 border-l-2 border-t-2 border-[#C41E3A] opacity-60"></div>
+          <div class="absolute -bottom-3 -right-3 w-16 h-16 border-r-2 border-b-2 border-[#C41E3A] opacity-60"></div>
+
+          <!-- Placeholder de foto de banda -->
+          <div class="relative aspect-[3/4] w-full overflow-hidden"
+               style="background: linear-gradient(160deg, #0A1E0A 0%, #0D2B0D 60%, #060906 100%);">
+            <!-- Logo como elemento visual hasta tener foto real -->
+            <img
+              src={asset('/logos/logo-icon.png')}
+              alt="Nasúa Narica"
+              class="logo-img absolute inset-0 m-auto w-2/3 h-auto opacity-[0.12]"
+              width="200" height="200"
+            />
+            <!-- Texto de contexto discreto -->
+            <div class="absolute bottom-0 left-0 right-0 p-4"
+                 style="background: linear-gradient(to top, rgba(6,9,6,0.9), transparent);">
+              <p class="font-[family-name:var(--font-family-display)] text-[9px] tracking-[0.4em] uppercase text-[#6B7280]">
+                Foto del colectivo
+              </p>
+            </div>
+          </div>
         </div>
+
+        <!-- Año en tipografía enorme — elemento decorativo -->
+        <p class="mt-6 font-[family-name:var(--font-family-display)] font-800 text-[#F2EDE3] opacity-[0.04]"
+           style="font-size: 7rem; line-height: 1; letter-spacing: -0.04em;">
+          2022
+        </p>
       </div>
     </div>
   </div>
 </section>
-
-<script>
-  import { animate } from 'animejs';
-
-  // Animación del ícono al hacer hover (respiración)
-  const icon = document.getElementById('about-icon');
-  if (icon) {
-    animate(icon, {
-      scale:    [1, 1.04],
-      duration: 3500,
-      loop:     true,
-      alternate: true,
-      ease:     'inOutSine',
-    });
-  }
-</script>

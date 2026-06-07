@@ -119,12 +119,7 @@ import { VIDEOS } from '../data/videos';
       })}
     </div>
 
-    <!-- Nota si todos son placeholders -->
-    {VIDEOS.every(v => v.youtubeId.startsWith('PENDIENTE')) && (
-      <p class="mt-8 text-center text-xs text-[#6B7280] font-mono opacity-60">
-        ✏️ Agregar IDs de YouTube en <code>src/data/videos.ts</code>
-      </p>
-    )}
+    <!-- Videos se agregan en src/data/videos.ts -->
   </div>
 
   <!-- Divisor inferior -->
