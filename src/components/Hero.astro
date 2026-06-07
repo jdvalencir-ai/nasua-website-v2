@@ -4,29 +4,73 @@ import JungleScene from './JungleScene.astro';
 ---
 
 <section id="inicio" class="relative min-h-screen flex flex-col justify-center overflow-hidden"
-  style="background: #060906;">
+  style="background: #050D05;">
 
-  <!-- Grano de película sobre todo -->
+  <!-- ── Deep jungle background gradient ── -->
+  <div class="absolute inset-0" aria-hidden="true"
+    style="background:
+      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(15,40,10,0.95) 0%, transparent 55%),
+      radial-gradient(ellipse 80% 50% at 20% 100%, rgba(8,20,6,0.8) 0%, transparent 50%),
+      radial-gradient(ellipse 80% 50% at 80% 100%, rgba(8,20,6,0.8) 0%, transparent 50%),
+      linear-gradient(180deg, #030803 0%, #050D05 30%, #060A06 70%, #040804 100%);">
+  </div>
+
+  <!-- ── Canopy top — warm amber glow seeping through leaves ── -->
+  <div class="absolute top-0 left-0 right-0 pointer-events-none" aria-hidden="true"
+    style="height: 45%; background: linear-gradient(to bottom, rgba(140,70,8,0.08) 0%, transparent 100%);">
+  </div>
+
+  <!-- ── Light shafts from canopy top ── -->
+  <div aria-hidden="true" class="absolute inset-0 pointer-events-none overflow-hidden">
+    <div class="jungle-ray"
+         style="position:absolute; top:0; left:30%; width:180px; height:65%;
+                background: linear-gradient(to bottom, rgba(190,100,12,0.06) 0%, transparent 100%);
+                transform: rotate(-14deg); transform-origin: top center; filter: blur(25px);">
+    </div>
+    <div class="jungle-ray-2"
+         style="position:absolute; top:0; left:50%; width:140px; height:55%;
+                background: linear-gradient(to bottom, rgba(180,95,10,0.05) 0%, transparent 100%);
+                transform: rotate(6deg); transform-origin: top center; filter: blur(30px);">
+    </div>
+    <div class="jungle-ray"
+         style="position:absolute; top:0; right:25%; width:160px; height:60%;
+                background: linear-gradient(to bottom, rgba(175,90,10,0.055) 0%, transparent 100%);
+                transform: rotate(20deg); transform-origin: top center; filter: blur(22px);
+                animation-delay: 2s;">
+    </div>
+  </div>
+
+  <!-- ── Distant canopy silhouette (mid-dark layer, blurred) ── -->
+  <div class="absolute top-0 left-0 right-0 pointer-events-none" aria-hidden="true"
+       style="height: 38%; filter: blur(3px); opacity: 0.6;">
+    <svg viewBox="0 0 1440 280" preserveAspectRatio="none" style="width:100%; height:100%;">
+      <!-- Layered canopy bumps -->
+      <path d="M0 280 L0 180 C60 160 90 120 140 140 C190 160 210 110 260 100 C310 90 340 130 390 125
+               C440 120 460 80 520 70 C580 60 610 100 660 95 C710 90 730 50 790 40 C850 30 880 75 930 80
+               C980 85 1000 45 1060 50 C1120 55 1140 95 1190 100 C1240 105 1260 70 1320 80
+               C1380 90 1410 130 1440 140 L1440 280 Z"
+            fill="#030A03"/>
+      <path d="M0 280 L0 200 C50 185 80 155 120 165 C160 175 185 140 230 135
+               C275 130 295 160 340 158 C385 156 400 125 450 118 C500 111 520 140 570 138
+               C620 136 640 105 695 100 C750 95 770 128 820 130 C870 132 890 100 945 105
+               C1000 110 1015 140 1060 142 C1105 144 1120 115 1170 118 C1220 121 1240 152 1290 155
+               C1340 158 1380 175 1440 185 L1440 280 Z"
+            fill="#040C04" opacity="0.8"/>
+    </svg>
+  </div>
+
+  <!-- ── Film grain ── -->
   <div class="grain-overlay absolute inset-0 z-20 pointer-events-none" aria-hidden="true"></div>
 
-  <!-- Gradiente radial del centro -->
-  <div class="absolute inset-0"
-    style="background: radial-gradient(ellipse 80% 70% at 50% 40%, rgba(12,28,12,0.7) 0%, #060906 72%);"
-    aria-hidden="true">
+  <!-- ── Scan lines (very subtle depth texture) ── -->
+  <div class="absolute inset-0 pointer-events-none opacity-[0.012]" aria-hidden="true"
+    style="background-image: repeating-linear-gradient(0deg, #fff 0px, #fff 1px, transparent 1px, transparent 5px);">
   </div>
 
-  <!-- Líneas de scan muy sutiles -->
-  <div class="absolute inset-0 pointer-events-none opacity-[0.018]"
-    style="background-image: repeating-linear-gradient(0deg, #fff 0px, #fff 1px, transparent 1px, transparent 4px);"
-    aria-hidden="true">
-  </div>
+  <!-- ── MAIN CONTENT — centered over jungle scene ── -->
+  <div class="relative z-10 flex flex-col items-start justify-center px-6 md:px-10 lg:px-16 pt-24 pb-64 md:pb-72">
 
-  <!-- Logo pequeño — esquina superior izquierda (se oculta con el header) -->
-
-  <!-- Contenido central -->
-  <div class="relative z-10 flex flex-col items-start justify-center px-6 md:px-10 lg:px-16 pt-20 pb-40">
-
-    <!-- Etiqueta vertical discreta -->
+    <!-- Eyebrow label -->
     <div class="flex items-center gap-3 mb-10 md:mb-14" data-reveal>
       <div class="h-px w-10 bg-[#E8681C] opacity-70"></div>
       <span class="font-[family-name:var(--font-display)] text-[10px] tracking-[0.6em] uppercase text-[#E8681C] opacity-80">
@@ -34,15 +78,15 @@ import JungleScene from './JungleScene.astro';
       </span>
     </div>
 
-    <!-- "NASUA" — tipografía que llena la pantalla -->
-    <div class="hero-wordmark-wrap w-full overflow-hidden" aria-label="Nasua">
+    <!-- NASUA wordmark -->
+    <div class="hero-wordmark-wrap w-full overflow-visible" aria-label="Nasua">
       <div
         id="hero-title"
-        class="hero-wordmark font-[family-name:var(--font-display)] font-800 text-[#F2EDE3] leading-none select-none"
-        style="font-size: clamp(5rem, 21.5vw, 22rem); letter-spacing: -0.02em; line-height: 0.88;"
+        class="hero-wordmark font-[family-name:var(--font-display)] font-800 text-[#F0EBE2] leading-none select-none"
+        style="font-size: clamp(5rem, 21.5vw, 22rem); letter-spacing: -0.02em; line-height: 0.88;
+               text-shadow: 0 0 80px rgba(10,30,8,0.8);"
         aria-hidden="true"
       >
-        <!-- Cada letra en su propio span para animar individualmente -->
         <span class="hero-char inline-block" data-char="N">N</span><!--
         --><span class="hero-char inline-block" data-char="A">A</span><!--
         --><span class="hero-char inline-block" data-char="S">S</span><!--
@@ -51,7 +95,7 @@ import JungleScene from './JungleScene.astro';
       </div>
     </div>
 
-    <!-- Subtítulo editorial debajo del wordmark -->
+    <!-- Subtitle row -->
     <div id="hero-sub" class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 mt-6 md:mt-8 opacity-0">
       <p class="font-[family-name:var(--font-display)] text-[11px] md:text-xs tracking-[0.55em] uppercase text-[#6B7280] font-500 max-w-xs">
         Música Sin Fronteras<br/>Pop Tropical · Fusión
@@ -64,10 +108,10 @@ import JungleScene from './JungleScene.astro';
     </div>
   </div>
 
-  <!-- Escena selvática en el fondo inferior -->
+  <!-- ── JUNGLE SCENE — fills bottom of hero ── -->
   <JungleScene variant="hero" />
 
-  <!-- Indicador de scroll -->
+  <!-- ── Scroll indicator ── -->
   <div id="scroll-indicator"
        class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-30 opacity-0">
     <div id="scroll-line" class="w-px h-14 bg-gradient-to-b from-[#E8681C] to-transparent"></div>
@@ -77,59 +121,54 @@ import JungleScene from './JungleScene.astro';
 <script>
   import { animate, createTimeline, spring } from 'animejs';
 
-  // ── Secuencia de entrada ──────────────────────────────────
   const tl = createTimeline();
 
-  // Letras: entran una por una cayendo desde arriba con distinto ángulo
   tl.add('.hero-char', {
     opacity:    [0, 1],
-    translateY: (el: Element, i: number) => [-(60 + i * 20), 0],
-    rotate:     (el: Element, i: number) => [i % 2 === 0 ? -6 : 6, 0],
-    delay:      (el: Element, i: number) => i * 100 + 200,
-    duration:   700,
-    ease:       spring({ stiffness: 120, damping: 14 }),
+    translateY: (el: Element, i: number) => [-(80 + i * 15), 0],
+    rotate:     (el: Element, i: number) => [i % 2 === 0 ? -8 : 8, 0],
+    delay:      (el: Element, i: number) => i * 110 + 200,
+    duration:   800,
+    ease:       spring({ stiffness: 110, damping: 13 }),
   });
 
-  // Subtítulo
   tl.add('#hero-sub', {
     opacity:    [0, 1],
-    translateY: [16, 0],
-    duration:   500,
+    translateY: [20, 0],
+    duration:   600,
     ease:       'outQuart',
-  }, '-=200');
+  }, '-=300');
 
-  // Scroll indicator
   tl.add('#scroll-indicator', {
     opacity: [0, 1],
-    duration: 600,
+    duration: 700,
     ease: 'outQuart',
-  }, '+=400');
+  }, '+=500');
 
-  // Scroll indicator pulse
   animate('#scroll-line', {
-    scaleY:          [1, 0.2],
+    scaleY:          [1, 0.15],
     transformOrigin: 'top center',
-    duration:        1100,
+    duration:        1200,
     loop:            true,
     alternate:       true,
     ease:            'inOutSine',
-    delay:           2000,
+    delay:           2200,
   });
 
-  // ── Parallax del título al hacer scroll ──────────────────
+  // Parallax on scroll
   const wordmark = document.querySelector('.hero-wordmark-wrap') as HTMLElement;
   window.addEventListener('scroll', () => {
     if (!wordmark) return;
     wordmark.style.transform = `translateY(${window.scrollY * 0.18}px)`;
   }, { passive: true });
 
-  // ── Efecto glitch en hover sobre las letras ───────────────
+  // Glitch hover
   document.querySelectorAll('.hero-char').forEach(char => {
     char.addEventListener('mouseenter', () => {
       animate(char, {
-        translateX: [0, -4, 4, -2, 0],
-        skewX:      [0, -3, 3, 0],
-        duration:   300,
+        translateX: [0, -5, 5, -3, 0],
+        skewX:      [0, -4, 4, 0],
+        duration:   320,
         ease:       'outElastic(1, 0.5)',
       });
     });

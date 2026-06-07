@@ -1,21 +1,27 @@
 ---
 import { asset } from '../utils/asset';
+import JungleScene from './JungleScene.astro';
 ---
 
 <section id="about" class="relative overflow-hidden"
-  style="background: #060906; padding: 8rem 0 6rem;">
+  style="background: linear-gradient(180deg, #040804 0%, #060C06 40%, #050A05 100%); padding: 8rem 0 7rem;">
 
-  <!-- Hoja decorativa en fondo -->
-  <div class="absolute -right-24 top-0 opacity-[0.04] pointer-events-none" aria-hidden="true"
-       style="transform: rotate(20deg);">
-    <svg width="500" height="800" viewBox="0 0 80 130" fill="#2A6B2A">
-      <path d="M40 125 C40 125 20 80 15 50 C10 20 30 2 40 2 C50 2 70 20 65 50 C60 80 40 125 40 125Z"/>
-    </svg>
+  <!-- Jungle section corner accents -->
+  <JungleScene variant="section" />
+
+  <!-- Atmospheric glow from top-left (as if light coming through leaves) -->
+  <div class="absolute top-0 left-0 w-2/3 h-1/2 pointer-events-none" aria-hidden="true"
+       style="background: radial-gradient(ellipse at 0% 0%, rgba(120,65,8,0.06) 0%, transparent 65%);">
   </div>
 
-  <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
+  <!-- Large watermark number -->
+  <span class="absolute right-6 top-8 font-[family-name:var(--font-display)] font-800 pointer-events-none select-none"
+        style="font-size: clamp(7rem, 18vw, 16rem); line-height: 1; color: rgba(255,255,255,0.018); letter-spacing: -0.04em;"
+        aria-hidden="true">01</span>
 
-    <!-- Etiqueta de sección -->
+  <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-16 relative z-10">
+
+    <!-- Section label -->
     <div class="flex items-center gap-4 mb-16 md:mb-20" data-reveal>
       <div class="h-px w-10 bg-[#E8681C]"></div>
       <span class="font-[family-name:var(--font-display)] text-[10px] tracking-[0.6em] uppercase text-[#E8681C] font-600">
@@ -23,10 +29,10 @@ import { asset } from '../utils/asset';
       </span>
     </div>
 
-    <!-- Cita enorme — primer impacto visual -->
+    <!-- Giant pull quote — first visual punch -->
     <div class="mb-20 md:mb-28" data-reveal>
-      <p class="font-[family-name:var(--font-display)] font-800 text-[#F2EDE3] leading-[0.9]"
-         style="font-size: clamp(2.8rem, 7vw, 7rem);">
+      <p class="font-[family-name:var(--font-display)] font-800 text-[#F0EBE2] leading-[0.88]"
+         style="font-size: clamp(2.8rem, 7vw, 7rem); letter-spacing: -0.03em;">
         No somos<br/>
         un género.<br/>
         <span style="color: #E8681C;">Somos</span> un<br/>
@@ -34,35 +40,35 @@ import { asset } from '../utils/asset';
       </p>
     </div>
 
-    <!-- Layout de dos columnas: bio + imagen -->
+    <!-- Two-column: text left, visual right -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
 
-      <!-- Columna de texto -->
+      <!-- Text column -->
       <div class="lg:col-span-7 lg:col-start-1">
 
         <div class="space-y-6 mb-12">
-          <p class="text-[#9CA3AF] leading-[1.8] text-lg md:text-xl" data-reveal>
-            <strong class="text-[#F2EDE3] font-600">Nasúa</strong> es un colectivo musical
+          <p class="text-[#9CA3AF] leading-[1.85] text-lg md:text-xl" data-reveal>
+            <strong class="text-[#F0EBE2] font-600">Nasúa</strong> es un colectivo musical
             latinoamericano que lleva el nombre del coatí — ese animal curioso, ágil e
             indomable. Como él, su música no se deja clasificar.
           </p>
 
-          <p class="text-[#6B7280] leading-[1.8]" data-reveal>
+          <p class="text-[#6B7280] leading-[1.85]" data-reveal>
             Pop tropical que dialoga con el funk, el afrobeat y la electrónica sin pedir permiso.
             Tres voces que construyen algo mayor que la suma de sus partes.
           </p>
 
-          <p class="text-[#6B7280] leading-[1.8]" data-reveal>
-            Su propuesta — <em class="text-[#F2EDE3] not-italic">Música Sin Fronteras</em> —
+          <p class="text-[#6B7280] leading-[1.85]" data-reveal>
+            Su propuesta — <em class="text-[#F0EBE2] not-italic">Música Sin Fronteras</em> —
             es un manifiesto. La música latinoamericana no cabe en una sola categoría,
             en un solo idioma ni en un solo continente.
           </p>
         </div>
 
-        <!-- Línea divisoria minimalista -->
-        <div class="h-px w-full mb-8" style="background: rgba(255,255,255,0.06);" aria-hidden="true"></div>
+        <!-- Thin divider -->
+        <div class="h-px w-full mb-8" style="background: rgba(255,255,255,0.05);" aria-hidden="true"></div>
 
-        <!-- Datos minimalistas — sin cajas, solo texto -->
+        <!-- Band facts — minimal, no boxes -->
         <div class="grid grid-cols-2 gap-y-5 gap-x-8" data-reveal>
           {[
             { label: 'Origen',   valor: 'América Latina'        },
@@ -74,7 +80,7 @@ import { asset } from '../utils/asset';
               <dt class="font-[family-name:var(--font-display)] text-[9px] tracking-[0.5em] uppercase text-[#E8681C] font-600 mb-0.5">
                 {d.label}
               </dt>
-              <dd class="font-[family-name:var(--font-display)] text-[#F2EDE3] font-600 text-sm tracking-wide">
+              <dd class="font-[family-name:var(--font-display)] text-[#F0EBE2] font-600 text-sm tracking-wide">
                 {d.valor}
               </dd>
             </div>
@@ -82,37 +88,51 @@ import { asset } from '../utils/asset';
         </div>
       </div>
 
-      <!-- Columna visual: ícono grande con atmósfera -->
+      <!-- Visual column: editorial photo placeholder -->
       <div class="lg:col-span-4 lg:col-start-9 flex flex-col items-center lg:items-end" data-reveal-right>
 
-        <!-- Marco editorial para la imagen del artista -->
         <div class="relative w-full max-w-xs">
-          <!-- Borde editorial -->
-          <div class="absolute -top-3 -left-3 w-16 h-16 border-l-2 border-t-2 border-[#E8681C] opacity-60"></div>
-          <div class="absolute -bottom-3 -right-3 w-16 h-16 border-r-2 border-b-2 border-[#E8681C] opacity-60"></div>
+          <!-- Orange corner brackets -->
+          <div class="absolute -top-3 -left-3 w-14 h-14 border-l-2 border-t-2 border-[#E8681C] opacity-50"></div>
+          <div class="absolute -bottom-3 -right-3 w-14 h-14 border-r-2 border-b-2 border-[#E8681C] opacity-50"></div>
 
-          <!-- Placeholder de foto de banda -->
+          <!-- Placeholder with jungle atmosphere -->
           <div class="relative aspect-[3/4] w-full overflow-hidden"
-               style="background: linear-gradient(160deg, #0A1E0A 0%, #0D2B0D 60%, #060906 100%);">
-            <!-- Logo como elemento visual hasta tener foto real -->
+               style="background: linear-gradient(160deg, #071507 0%, #0A220A 50%, #050D05 100%);">
+
+            <!-- Atmospheric inner glow -->
+            <div class="absolute inset-0"
+                 style="background: radial-gradient(ellipse at 50% 30%, rgba(120,65,8,0.12) 0%, transparent 60%);">
+            </div>
+
+            <!-- Leaf silhouettes inside the frame -->
+            <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 200 280" preserveAspectRatio="xMidYMid slice">
+              <path d="M-20 280 C0 220 40 150 80 90 C110 45 140 25 135 60 C130 95 95 160 70 230 C50 265 20 285 -20 280 Z"
+                    fill="#0D2A0D"/>
+              <path d="M220 280 C200 220 160 150 120 90 C90 45 60 25 65 60 C70 95 105 160 130 230 C150 265 180 285 220 280 Z"
+                    fill="#0D2A0D"/>
+            </svg>
+
+            <!-- Logo watermark -->
             <img
               src={asset('/logos/logo-icon.png')}
               alt="Nasúa Narica"
-              class="logo-inv absolute inset-0 m-auto w-2/3 h-auto opacity-[0.12]"
+              class="logo-inv absolute inset-0 m-auto w-1/2 h-auto opacity-[0.08]"
               width="200" height="200"
             />
-            <!-- Texto de contexto discreto -->
+
+            <!-- Label -->
             <div class="absolute bottom-0 left-0 right-0 p-4"
-                 style="background: linear-gradient(to top, rgba(6,9,6,0.9), transparent);">
-              <p class="font-[family-name:var(--font-display)] text-[9px] tracking-[0.4em] uppercase text-[#6B7280]">
+                 style="background: linear-gradient(to top, rgba(5,13,5,0.95), transparent);">
+              <p class="font-[family-name:var(--font-display)] text-[9px] tracking-[0.4em] uppercase text-[#4B5563]">
                 Foto del colectivo
               </p>
             </div>
           </div>
         </div>
 
-        <!-- Año en tipografía enorme — elemento decorativo -->
-        <p class="mt-6 font-[family-name:var(--font-display)] font-800 text-[#F2EDE3] opacity-[0.04]"
+        <!-- Decorative year -->
+        <p class="mt-6 font-[family-name:var(--font-display)] font-800 text-[#F2EDE3] opacity-[0.03]"
            style="font-size: 7rem; line-height: 1; letter-spacing: -0.04em;">
           2022
         </p>
