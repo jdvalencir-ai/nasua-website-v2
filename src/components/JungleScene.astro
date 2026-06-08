@@ -6,424 +6,347 @@ const { variant = 'hero' } = Astro.props;
 ---
 
 {variant === 'hero' && (
-  <div class="jungle-scene absolute bottom-0 left-0 right-0 pointer-events-none" aria-hidden="true"
-       style="height: 560px; overflow: visible;">
+  <div class="absolute bottom-0 left-0 right-0 pointer-events-none" aria-hidden="true"
+       style="height: 460px; overflow: hidden;">
 
-    <!-- ── Canopy glow — warm amber from above ── -->
-    <div class="absolute left-1/2 -translate-x-1/2"
-         style="bottom: 420px; width: 75%; height: 320px;
-                background: radial-gradient(ellipse at 50% 0%, rgba(170,85,8,0.1) 0%, transparent 68%);
-                pointer-events:none;">
-    </div>
-
-    <!-- ── Light shafts ── -->
-    <div class="jungle-ray absolute"
-         style="bottom: 0; left: 26%; width: 130px; height: 500px;
-                background: linear-gradient(to bottom, rgba(195,105,18,0.07) 0%, transparent 100%);
-                transform: rotate(-18deg); transform-origin: top center; filter: blur(20px);">
-    </div>
-    <div class="jungle-ray-2 absolute"
-         style="bottom: 0; left: 50%; width: 95px; height: 440px;
-                background: linear-gradient(to bottom, rgba(185,100,14,0.05) 0%, transparent 100%);
-                transform: rotate(6deg); transform-origin: top center; filter: blur(25px);">
-    </div>
-    <div class="jungle-ray absolute"
-         style="bottom: 0; right: 20%; width: 110px; height: 420px;
-                background: linear-gradient(to bottom, rgba(175,95,12,0.06) 0%, transparent 100%);
-                transform: rotate(22deg); transform-origin: top center; filter: blur(22px); animation-delay:2s;">
-    </div>
-
-    <!-- ── Ambient glow behind jaguar eyes ── -->
-    <div class="jaguar-eyes absolute"
-         style="bottom: 155px; left: 50%; transform: translateX(-50%);
-                width: 180px; height: 100px;
-                background: radial-gradient(ellipse, rgba(200,120,8,0.08) 0%, transparent 70%);
-                filter: blur(12px);">
-    </div>
-
-    <!-- ══ LEFT FOLIAGE ═══════════════════════════════════ -->
-    <svg class="absolute left-0 bottom-0 float-leaf" viewBox="0 0 600 560"
-         style="height: 560px; width: auto; min-width: 330px; animation-duration: 10s;">
-
-      <!-- Back palm trunk -->
-      <path d="M-30 560 C10 450 30 330 80 210 C120 118 170 65 185 88"
-            stroke="#071507" stroke-width="22" fill="none" stroke-linecap="round"/>
-      <path d="M-30 560 C10 450 30 330 80 210 C120 118 170 65 185 88"
-            stroke="#0A1E0A" stroke-width="10" fill="none" stroke-linecap="round"/>
-
-      <!-- Palm fronds -->
-      <path d="M185 88 C230 45 315 22 345 52 C285 63 232 84 185 88 Z" fill="#071A07"/>
-      <path d="M185 88 C242 32 335 12 368 40 C303 55 242 75 185 88 Z" fill="#0A2010" opacity="0.7"/>
-      <path d="M185 88 C148 32 78 12 48 40 C100 57 150 75 185 88 Z" fill="#071A07"/>
-      <path d="M185 88 C138 22 58 2 18 30 C82 52 137 72 185 88 Z" fill="#0A2010" opacity="0.7"/>
-      <path d="M185 88 C190 32 196 -18 185 -48 C174 -18 170 32 185 88 Z" fill="#081808"/>
-      <path d="M185 88 C212 25 252 -8 272 18 C237 38 207 65 185 88 Z" fill="#0D2A0D" opacity="0.8"/>
-      <path d="M185 88 C158 25 118 2 98 28 C133 48 162 68 185 88 Z" fill="#0D2A0D" opacity="0.8"/>
-      <!-- Midrib lines -->
-      <path d="M185 88 C252 48 322 34 350 50" stroke="#071507" stroke-width="2" fill="none" opacity="0.5"/>
-      <path d="M185 88 C132 42 78 25 50 38" stroke="#071507" stroke-width="2" fill="none" opacity="0.5"/>
-
-      <!-- BANANA LEAF — large, foreground left -->
-      <path d="M-40 450 C22 408 105 318 162 222 C202 162 224 125 213 104 C197 82 165 97 140 134
-               C100 192 55 278 10 370 C-16 412 -36 440 -40 450 Z"
-            fill="#0B2B0B"/>
-      <path d="M-40 450 C2 408 82 318 148 222 C188 162 213 118 213 104"
-            stroke="#061206" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <path d="M58 355 C78 340 98 322 114 300" stroke="#071507" stroke-width="1.5" fill="none" opacity="0.5"/>
-      <path d="M95 298 C115 282 130 266 144 246" stroke="#071507" stroke-width="1.5" fill="none" opacity="0.5"/>
-      <path d="M130 246 C148 230 162 215 172 196" stroke="#071507" stroke-width="1.5" fill="none" opacity="0.5"/>
-
-      <!-- MONSTERA — mid left -->
-      <path d="M0 510 C16 458 42 395 82 330 C113 280 150 248 162 264
-               C150 292 130 310 108 334 C80 364 50 408 30 462 Z"
-            fill="#0D2D0D" opacity="0.9"/>
-      <ellipse cx="100" cy="310" rx="8" ry="13" fill="#060906" opacity="0.7" transform="rotate(-20,100,310)"/>
-      <ellipse cx="120" cy="285" rx="6" ry="10" fill="#060906" opacity="0.6" transform="rotate(-25,120,285)"/>
-      <path d="M0 510 C42 448 90 368 148 278 C158 264 164 258 162 264"
-            stroke="#071507" stroke-width="2.5" fill="none" opacity="0.5"/>
-
-      <!-- POISON DART FROG on banana leaf — brand orange, tiny + perfect -->
-      <g transform="translate(84, 248)">
-        <!-- Body -->
-        <ellipse cx="0" cy="0" rx="11" ry="8" fill="#E8681C"/>
-        <!-- Dark back stripe pattern (dart frog marking) -->
-        <path d="M-8 -3 Q0 -7 8 -3 Q0 -2 -8 -3 Z" fill="#1A0A00" opacity="0.5"/>
-        <path d="M-6 3 Q0 5 6 3" stroke="#1A0A00" stroke-width="1.5" fill="none" opacity="0.4"/>
-        <!-- Head (slightly forward) -->
-        <ellipse cx="10" cy="-2" rx="7" ry="6" fill="#E8681C"/>
-        <!-- Eye (big, round — frog characteristic) -->
-        <circle cx="13" cy="-4" r="4" fill="#D4A030" opacity="0.9"/>
-        <circle cx="13" cy="-4" r="2.5" fill="#0A0505"/>
-        <circle cx="12" cy="-5" r="1" fill="rgba(255,255,255,0.5)"/>
-        <!-- Legs -->
-        <path d="M-8 6 Q-14 12 -10 16 M-10 16 Q-8 20 -5 18" stroke="#D44800" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M4 6 Q10 12 6 16 M6 16 Q8 20 11 18" stroke="#D44800" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <!-- Front tiny legs -->
-        <path d="M6 0 Q12 -2 14 2" stroke="#D44800" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-      </g>
-
-      <!-- Alocasia arrow leaf -->
-      <path d="M60 510 C76 478 108 440 128 408 C142 382 150 360 142 352
-               C126 347 110 362 94 386 C74 415 60 454 60 510 Z"
-            fill="#112811" opacity="0.75"/>
-      <path d="M62 508 C80 476 112 440 140 354" stroke="#071507" stroke-width="1.5" fill="none" opacity="0.4"/>
-
-      <!-- TOUCAN perched on left palm -->
-      <g transform="translate(100, 130) scale(1.1)">
-        <path d="M-15 55 Q10 52 35 55" stroke="#0A1E0A" stroke-width="5" fill="none" stroke-linecap="round"/>
-        <!-- Body -->
-        <ellipse cx="8" cy="28" rx="24" ry="19" fill="#0C0C0C"/>
-        <!-- Chest: yellow-white -->
-        <ellipse cx="6" cy="30" rx="13" ry="15" fill="#E0D855" opacity="0.13"/>
-        <ellipse cx="6" cy="30" rx="9" ry="11" fill="#F0EDE0" opacity="0.10"/>
-        <!-- Head -->
-        <circle cx="30" cy="10" r="17" fill="#0C0C0C"/>
-        <!-- Blue eye ring -->
-        <circle cx="35" cy="8" r="8" fill="#0D5A7A" opacity="0.55"/>
-        <!-- Eye -->
-        <circle cx="35" cy="8" r="5" fill="white" opacity="0.92"/>
-        <circle cx="36" cy="8" r="3" fill="#0C0C0C"/>
-        <circle cx="37" cy="7" r="1.2" fill="rgba(255,255,255,0.65)"/>
-        <!-- BEAK — big, orange (brand color) -->
-        <path d="M44 4 Q82 -5 88 13 Q86 27 44 27 Q36 18 36 12 Z" fill="#E8681C"/>
-        <path d="M44 4 Q82 -5 88 13" stroke="#B44E0E" stroke-width="1.8" fill="none"/>
-        <path d="M44 27 Q82 25 88 13" stroke="#8B3A0A" stroke-width="1" fill="none" opacity="0.5"/>
-        <!-- Beak yellow tip accent -->
-        <path d="M83 10 Q88 13 83 17" stroke="#FFE040" stroke-width="2" fill="none" opacity="0.35"/>
-        <!-- Wing -->
-        <path d="M-16 22 C-28 32 -26 50 -12 46 C-4 42 6 36 8 28 Z" fill="#111" opacity="0.8"/>
-        <path d="M-16 22 C-28 34 -26 46 -12 46" stroke="#1A1A1A" stroke-width="1.5" fill="none"/>
-        <!-- Tail -->
-        <path d="M-24 40 Q-38 58 -44 52 Q-36 42 -24 40 Z" fill="#1C1C1C"/>
-        <!-- Feet -->
-        <path d="M0 47 L0 56 M0 56 L-8 63 M0 56 L4 63 M0 56 L8 60" stroke="#2A1A0A" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M14 47 L14 57 M14 57 L7 64 M14 57 L19 64 M14 57 L22 61" stroke="#2A1A0A" stroke-width="2.5" stroke-linecap="round"/>
-      </g>
-    </svg>
-
-    <!-- ══ RIGHT FOLIAGE ══════════════════════════════════ -->
-    <svg class="absolute right-0 bottom-0 float-leaf-r" viewBox="0 0 600 560"
-         style="height: 560px; width: auto; min-width: 330px; animation-duration: 13s;">
-
-      <!-- Back palm trunk (mirrored) -->
-      <path d="M630 560 C590 450 570 330 520 210 C480 118 430 65 415 88"
-            stroke="#071507" stroke-width="22" fill="none" stroke-linecap="round"/>
-      <path d="M630 560 C590 450 570 330 520 210 C480 118 430 65 415 88"
-            stroke="#0A1E0A" stroke-width="10" fill="none" stroke-linecap="round"/>
-
-      <!-- Palm fronds -->
-      <path d="M415 88 C370 45 285 22 255 52 C315 63 368 84 415 88 Z" fill="#071A07"/>
-      <path d="M415 88 C358 32 265 12 232 40 C297 55 358 75 415 88 Z" fill="#0A2010" opacity="0.7"/>
-      <path d="M415 88 C452 32 522 12 552 40 C500 57 450 75 415 88 Z" fill="#071A07"/>
-      <path d="M415 88 C462 22 542 2 582 30 C518 52 463 72 415 88 Z" fill="#0A2010" opacity="0.7"/>
-      <path d="M415 88 C410 32 404 -18 415 -48 C426 -18 430 32 415 88 Z" fill="#081808"/>
-      <path d="M415 88 C388 25 348 -8 328 18 C363 38 393 65 415 88 Z" fill="#0D2A0D" opacity="0.8"/>
-      <path d="M415 88 C442 25 482 2 502 28 C467 48 438 68 415 88 Z" fill="#0D2A0D" opacity="0.8"/>
-      <!-- Midrib lines -->
-      <path d="M415 88 C348 48 278 34 250 50" stroke="#071507" stroke-width="2" fill="none" opacity="0.5"/>
-      <path d="M415 88 C468 42 522 25 550 38" stroke="#071507" stroke-width="2" fill="none" opacity="0.5"/>
-
-      <!-- BANANA LEAF — right foreground (mirror) -->
-      <path d="M640 450 C578 408 495 318 438 222 C398 162 376 125 387 104 C403 82 435 97 460 134
-               C500 192 545 278 590 370 C616 412 636 440 640 450 Z"
-            fill="#0B2B0B"/>
-      <path d="M640 450 C598 408 518 318 452 222 C412 162 387 118 387 104"
-            stroke="#061206" stroke-width="4" fill="none" stroke-linecap="round"/>
-      <path d="M542 355 C522 340 502 322 486 300" stroke="#071507" stroke-width="1.5" fill="none" opacity="0.5"/>
-      <path d="M505 298 C485 282 470 266 456 246" stroke="#071507" stroke-width="1.5" fill="none" opacity="0.5"/>
-      <path d="M470 246 C452 230 438 215 428 196" stroke="#071507" stroke-width="1.5" fill="none" opacity="0.5"/>
-
-      <!-- MONSTERA right -->
-      <path d="M600 510 C584 458 558 395 518 330 C487 280 450 248 438 264
-               C450 292 470 310 492 334 C520 364 550 408 570 462 Z"
-            fill="#0D2D0D" opacity="0.9"/>
-      <ellipse cx="500" cy="310" rx="8" ry="13" fill="#060906" opacity="0.7" transform="rotate(20,500,310)"/>
-      <ellipse cx="480" cy="285" rx="6" ry="10" fill="#060906" opacity="0.6" transform="rotate(25,480,285)"/>
-      <path d="M600 510 C558 448 510 368 452 278 C442 264 436 258 438 264"
-            stroke="#071507" stroke-width="2.5" fill="none" opacity="0.5"/>
-
-      <!-- Arrow leaf right -->
-      <path d="M540 510 C524 478 492 440 472 408 C458 382 450 360 458 352
-               C474 347 490 362 506 386 C526 415 540 454 540 510 Z"
-            fill="#112811" opacity="0.75"/>
-
-      <!-- COATÍ peeking from right foliage -->
-      <g transform="translate(448, 220) scale(-1, 1)">
-        <!-- Ringed tail curving up -->
-        <path d="M-5 -60 C-10 -92 0 -115 18 -103 C36 -90 32 -68 16 -62 C6 -58 -5 -60 -5 -60"
-              stroke="#1A1A1A" stroke-width="13" fill="none" stroke-linecap="round"/>
-        <path d="M-5 -60 C-10 -92 0 -115 18 -103 C36 -90 32 -68 16 -62"
-              stroke="#3A3A3A" stroke-width="4" fill="none" stroke-dasharray="9 9" stroke-linecap="round"/>
-        <!-- Body -->
-        <ellipse cx="0" cy="0" rx="33" ry="22" fill="#1A1A1A"/>
-        <path d="M-20 -12 C-10 -15 5 -14 18 -10" stroke="#252525" stroke-width="2" fill="none" opacity="0.6"/>
-        <path d="M-22 0 C-10 -3 5 -2 20 2" stroke="#252525" stroke-width="2" fill="none" opacity="0.6"/>
-        <!-- Head with long snout -->
-        <ellipse cx="36" cy="-8" rx="22" ry="16" fill="#141414"/>
-        <ellipse cx="56" cy="-5" rx="14" ry="8" fill="#1E1E1E"/>
-        <!-- Facial markings -->
-        <ellipse cx="40" cy="-17" rx="4" ry="3" fill="rgba(255,255,255,0.18)"/>
-        <ellipse cx="52" cy="-14" rx="3" ry="2" fill="rgba(255,255,255,0.12)"/>
-        <path d="M38 2 Q48 6 56 2" stroke="rgba(255,255,255,0.12)" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <!-- Eye -->
-        <circle cx="42" cy="-12" r="5" fill="white" opacity="0.8"/>
-        <circle cx="43" cy="-12" r="3.5" fill="#0A0A0A"/>
-        <circle cx="44" cy="-13" r="1.3" fill="rgba(255,255,255,0.6)"/>
-        <!-- Nose pad -->
-        <ellipse cx="67" cy="-4" rx="6" ry="4" fill="#2A2A2A"/>
-        <circle cx="65" cy="-5" r="1" fill="#111"/>
-        <circle cx="69" cy="-5" r="1" fill="#111"/>
-        <!-- Legs -->
-        <line x1="-18" y1="20" x2="-22" y2="40" stroke="#161616" stroke-width="6" stroke-linecap="round"/>
-        <line x1="-5" y1="21" x2="-5" y2="42" stroke="#161616" stroke-width="6" stroke-linecap="round"/>
-        <line x1="10" y1="21" x2="12" y2="42" stroke="#161616" stroke-width="6" stroke-linecap="round"/>
-        <path d="M-22 40 L-26 47 L-19 47" stroke="#222" stroke-width="2" fill="#1A1A1A" stroke-linecap="round"/>
-        <path d="M-5 42 L-9 49 L-2 49" stroke="#222" stroke-width="2" fill="#1A1A1A" stroke-linecap="round"/>
-      </g>
-    </svg>
-
-    <!-- ══ JAGUAR — lurking center, eyes glowing ════════ -->
-    <svg class="absolute"
-         viewBox="0 0 320 250"
-         style="width: 320px; bottom: 125px; left: 50%; transform: translateX(-50%); z-index: 2;">
-
-      <!-- Ambient body heat haze -->
+    <!-- ── Landscape panorama — one unified scene ── -->
+    <svg
+      viewBox="0 0 1440 460"
+      preserveAspectRatio="xMidYMax meet"
+      style="width:100%; height:100%; display:block;"
+    >
       <defs>
-        <radialGradient id="jagEyeL" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#D4840A" stop-opacity="0.6"/>
-          <stop offset="100%" stop-color="#D4840A" stop-opacity="0"/>
+        <!-- Canopy light shafts -->
+        <linearGradient id="shaft1" x1="0" y1="0" x2="0.15" y2="1">
+          <stop offset="0%" stop-color="rgba(190,100,12,0.09)"/>
+          <stop offset="100%" stop-color="rgba(190,100,12,0)"/>
+        </linearGradient>
+        <linearGradient id="shaft2" x1="0" y1="0" x2="0.08" y2="1">
+          <stop offset="0%" stop-color="rgba(170,90,10,0.07)"/>
+          <stop offset="100%" stop-color="rgba(170,90,10,0)"/>
+        </linearGradient>
+        <!-- Ambient glow behind jaguar eyes -->
+        <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="rgba(200,120,8,0.55)"/>
+          <stop offset="100%" stop-color="rgba(200,120,8,0)"/>
         </radialGradient>
-        <radialGradient id="jagEyeR" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#D4840A" stop-opacity="0.6"/>
-          <stop offset="100%" stop-color="#D4840A" stop-opacity="0"/>
-        </radialGradient>
+        <!-- Ground fog gradient -->
+        <linearGradient id="fogGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(4,8,4,0)"/>
+          <stop offset="100%" stop-color="rgba(4,8,4,0.95)"/>
+        </linearGradient>
+        <!-- Water reflection -->
+        <linearGradient id="waterGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="rgba(10,30,10,0.5)"/>
+          <stop offset="100%" stop-color="rgba(4,10,4,0.8)"/>
+        </linearGradient>
       </defs>
 
-      <!-- Body (lower, will be covered by foliage) -->
-      <ellipse cx="160" cy="210" rx="95" ry="52" fill="#231508"/>
-      <!-- Shoulders -->
-      <ellipse cx="82"  cy="218" rx="55" ry="38" fill="#231508"/>
-      <ellipse cx="238" cy="218" rx="55" ry="38" fill="#231508"/>
-      <!-- Shoulder rosettes -->
-      <circle cx="70"  cy="215" r="13" fill="none" stroke="#120A02" stroke-width="3" opacity="0.6"/>
-      <circle cx="70"  cy="215" r="5.5" fill="#120A02" opacity="0.5"/>
-      <circle cx="248" cy="215" r="13" fill="none" stroke="#120A02" stroke-width="3" opacity="0.6"/>
-      <circle cx="248" cy="215" r="5.5" fill="#120A02" opacity="0.5"/>
-      <!-- Chest rosettes -->
-      <circle cx="130" cy="222" r="10" fill="none" stroke="#120A02" stroke-width="2.5" opacity="0.4"/>
-      <circle cx="190" cy="222" r="10" fill="none" stroke="#120A02" stroke-width="2.5" opacity="0.4"/>
+      <!-- ═══ LAYER 1: FAR BACKGROUND — distant forest silhouette ═══ -->
+      <path d="M0 460 L0 195
+               C55 185 95 162 140 170 C185 178 215 150 264 142
+               C313 134 345 158 390 154 C435 150 462 122 516 115
+               C570 108 600 136 650 132 C700 128 725 100 778 94
+               C831 88 858 118 908 122 C958 126 982 100 1032 106
+               C1082 112 1108 140 1155 145 C1202 150 1228 125 1275 132
+               C1322 139 1360 162 1400 170 L1440 174 L1440 460 Z"
+            fill="#060D06"/>
 
-      <!-- Neck -->
-      <ellipse cx="160" cy="170" rx="60" ry="40" fill="#271808"/>
+      <!-- Atmospheric mist strip at far horizon -->
+      <rect x="0" y="190" width="1440" height="18" fill="rgba(10,22,8,0.45)"/>
 
-      <!-- HEAD — broad jaguar skull -->
-      <ellipse cx="160" cy="118" rx="84" ry="75" fill="#271808"/>
-      <!-- Brow ridge (jaguars have prominent brows) -->
-      <ellipse cx="160" cy="82" rx="68" ry="22" fill="#1C1005"/>
+      <!-- ═══ LAYER 2: MID-BACKGROUND trees — barely visible ═══ -->
+      <!-- Left cluster -->
+      <path d="M95 460 L95 175 C88 158 80 138 86 115 C92 92 110 100 116 122 C122 144 118 168 122 195 L128 460 Z"
+            fill="#091509"/>
+      <path d="M86 115 C80 78 96 44 106 55 C100 75 98 98 86 115 Z" fill="#091509"/>
+      <path d="M116 122 C126 82 138 55 140 76 C136 96 128 112 116 122 Z" fill="#091509"/>
+      <!-- Right cluster -->
+      <path d="M1318 460 L1318 180 C1328 158 1340 135 1334 110 C1328 85 1310 95 1302 118 C1294 141 1300 168 1296 196 L1290 460 Z"
+            fill="#091509"/>
+      <path d="M1334 110 C1342 72 1325 38 1313 49 C1318 70 1322 92 1328 110 Z" fill="#091509"/>
+      <path d="M1302 118 C1292 80 1278 52 1276 74 C1280 95 1290 108 1302 118 Z" fill="#091509"/>
 
-      <!-- Ears — small, rounded -->
-      <ellipse cx="88"  cy="62" rx="24" ry="26" fill="#1C1005"/>
-      <ellipse cx="88"  cy="66" rx="15" ry="17" fill="#0A0502" opacity="0.7"/>
-      <ellipse cx="88"  cy="66" rx="8"  ry="9"  fill="#2A1408" opacity="0.4"/>
-      <ellipse cx="232" cy="62" rx="24" ry="26" fill="#1C1005"/>
-      <ellipse cx="232" cy="66" rx="15" ry="17" fill="#0A0502" opacity="0.7"/>
-      <ellipse cx="232" cy="66" rx="8"  ry="9"  fill="#2A1408" opacity="0.4"/>
+      <!-- Mid-background canopy masses -->
+      <ellipse cx="210" cy="128" rx="68" ry="50" fill="#091509"/>
+      <ellipse cx="185" cy="145" rx="50" ry="38" fill="#091509"/>
+      <ellipse cx="240" cy="140" rx="45" ry="35" fill="#091509"/>
+      <ellipse cx="1232" cy="130" rx="65" ry="48" fill="#091509"/>
+      <ellipse cx="1258" cy="148" rx="48" ry="36" fill="#091509"/>
+      <ellipse cx="1205" cy="145" rx="44" ry="34" fill="#091509"/>
 
-      <!-- Muzzle (broader, slightly lighter) -->
-      <ellipse cx="160" cy="155" rx="58" ry="44" fill="#321E0A"/>
-      <!-- Muzzle center division -->
-      <path d="M160 136 L160 164" stroke="#180C04" stroke-width="2.5" opacity="0.7"/>
+      <!-- ═══ LAYER 3: LIGHT SHAFTS through canopy ═══ -->
+      <polygon points="380,0 440,0 390,460 330,460" fill="url(#shaft1)" opacity="0.9"/>
+      <polygon points="620,0 665,0 635,460 590,460" fill="url(#shaft2)" opacity="0.8"/>
+      <polygon points="880,0 915,0 895,460 858,460" fill="url(#shaft1)" opacity="0.75"/>
 
-      <!-- NOSE — broad, characteristic jaguar -->
-      <path d="M142 136 Q160 124 178 136 Q170 150 160 153 Q150 150 142 136 Z" fill="#1A0808"/>
-      <path d="M144 136 Q160 128 176 136" stroke="rgba(255,180,180,0.08)" stroke-width="1.5" fill="none"/>
-      <!-- Nostril dots -->
-      <circle cx="152" cy="140" r="2.5" fill="#0A0404"/>
-      <circle cx="168" cy="140" r="2.5" fill="#0A0404"/>
+      <!-- ═══ LAYER 4: MAIN TREES — left ceiba ═══ -->
+      <!-- Trunk -->
+      <path d="M342 460 L335 390 L330 260 C326 200 322 140 328 80 L348 460 Z"
+            fill="#0E2A0E"/>
+      <path d="M328 80 C322 40 334 8 342 20 C338 42 336 62 328 80 Z" fill="#0C2208"/>
+      <!-- Buttress roots spreading at base -->
+      <path d="M330 460 C315 445 288 428 268 410 C286 402 312 420 328 445 L330 460 Z" fill="#0A2008"/>
+      <path d="M334 460 C320 440 298 418 282 398 C300 390 322 410 332 435 L334 460 Z" fill="#0A2008"/>
+      <path d="M342 460 C342 438 348 415 362 396 C377 382 394 396 382 418 C370 440 355 450 342 460 Z" fill="#0A2008"/>
+      <path d="M348 460 C355 442 372 420 390 402 C405 392 416 404 406 422 C396 440 370 455 348 460 Z" fill="#0A2008"/>
+      <!-- Main branches (going off-screen upper-left and right) -->
+      <path d="M328 180 C300 155 258 135 218 122" stroke="#0E2A0E" stroke-width="20" fill="none" stroke-linecap="round"/>
+      <path d="M328 180 C315 148 308 112 305 78"  stroke="#0E2A0E" stroke-width="16" fill="none" stroke-linecap="round"/>
+      <path d="M328 180 C348 158 372 138 395 118" stroke="#0E2A0E" stroke-width="12" fill="none" stroke-linecap="round"/>
+      <!-- Branch where toucan sits -->
+      <path d="M310 222 C265 216 215 220 168 225" stroke="#0E2A0E" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <!-- Canopy masses around left tree top -->
+      <ellipse cx="298" cy="95"  rx="72" ry="58" fill="#0C2208"/>
+      <ellipse cx="260" cy="118" rx="52" ry="42" fill="#0C2208"/>
+      <ellipse cx="340" cy="108" rx="48" ry="40" fill="#0C2208"/>
+      <ellipse cx="318" cy="72"  rx="40" ry="32" fill="#0A1E08"/>
+
+      <!-- ═══ LAYER 4b: MAIN TREE — right ═══ -->
+      <path d="M1098 460 L1105 390 L1110 260 C1114 200 1118 140 1112 80 L1092 460 Z"
+            fill="#0E2A0E"/>
+      <path d="M1112 80 C1118 40 1106 8 1098 20 C1102 42 1104 62 1112 80 Z" fill="#0C2208"/>
+      <!-- Buttress roots right -->
+      <path d="M1110 460 C1125 445 1152 428 1172 410 C1154 402 1128 420 1112 445 L1110 460 Z" fill="#0A2008"/>
+      <path d="M1106 460 C1120 440 1142 418 1158 398 C1140 390 1118 410 1108 435 L1106 460 Z" fill="#0A2008"/>
+      <path d="M1098 460 C1098 438 1092 415 1078 396 C1063 382 1046 396 1058 418 C1070 440 1085 450 1098 460 Z" fill="#0A2008"/>
+      <path d="M1092 460 C1085 442 1068 420 1050 402 C1035 392 1024 404 1034 422 C1044 440 1070 455 1092 460 Z" fill="#0A2008"/>
+      <!-- Branches right -->
+      <path d="M1112 180 C1140 155 1182 135 1222 122" stroke="#0E2A0E" stroke-width="20" fill="none" stroke-linecap="round"/>
+      <path d="M1112 180 C1125 148 1132 112 1135 78"  stroke="#0E2A0E" stroke-width="16" fill="none" stroke-linecap="round"/>
+      <path d="M1112 180 C1092 158 1068 138 1045 118" stroke="#0E2A0E" stroke-width="12" fill="none" stroke-linecap="round"/>
+      <!-- Canopy masses right -->
+      <ellipse cx="1142" cy="95"  rx="70" ry="56" fill="#0C2208"/>
+      <ellipse cx="1180" cy="118" rx="50" ry="40" fill="#0C2208"/>
+      <ellipse cx="1102" cy="110" rx="46" ry="38" fill="#0C2208"/>
+      <ellipse cx="1122" cy="72"  rx="38" ry="30" fill="#0A1E08"/>
+
+      <!-- ═══ HANGING VINES / LIANAS ═══ -->
+      <path d="M296  0 C289 110 302 220 295 330 C290 400 286 440 290 460" stroke="#0A1E0A" stroke-width="4.5" fill="none" opacity="0.75"/>
+      <path d="M318  0 C325 105 314 210 320 318 C326 400 330 435 325 460"  stroke="#0A1E0A" stroke-width="3.5" fill="none" opacity="0.65"/>
+      <path d="M365  0 C370 120 358 235 365 352 C370 428 374 452 368 460"  stroke="#0B200B" stroke-width="3"   fill="none" opacity="0.55"/>
+      <path d="M1116 0 C1124 115 1110 225 1117 338 C1123 412 1127 445 1122 460" stroke="#0A1E0A" stroke-width="4.5" fill="none" opacity="0.75"/>
+      <path d="M1094 0 C1088 108 1102 218 1095 326 C1090 402 1086 438 1090 460" stroke="#0A1E0A" stroke-width="3.5" fill="none" opacity="0.65"/>
+      <!-- Center vines -->
+      <path d="M695  0 C690 130 704 260 697 385 C694 430 690 455 695 460" stroke="#0B200B" stroke-width="3"   fill="none" opacity="0.45"/>
+      <path d="M748  0 C754 125 742 252 748 372 C752 425 756 450 750 460" stroke="#0B200B" stroke-width="2.5" fill="none" opacity="0.40"/>
+
+      <!-- ═══ LAYER 5: GROUND PLANE ═══ -->
+      <path d="M0 460 L0 400 C180 390 380 385 720 388 C1060 391 1260 390 1440 398 L1440 460 Z"
+            fill="#081408"/>
+      <!-- Ground texture — surface roots -->
+      <path d="M420 460 C416 448 408 432 395 418" stroke="#0C200C" stroke-width="7"  fill="none" stroke-linecap="round" opacity="0.6"/>
+      <path d="M444 460 C450 448 460 434 474 420"  stroke="#0C200C" stroke-width="6"  fill="none" stroke-linecap="round" opacity="0.55"/>
+      <path d="M862 460 C858 448 850 432 838 418"  stroke="#0C200C" stroke-width="7"  fill="none" stroke-linecap="round" opacity="0.6"/>
+      <path d="M885 460 C892 448 902 432 916 418"  stroke="#0C200C" stroke-width="6"  fill="none" stroke-linecap="round" opacity="0.55"/>
+      <!-- Small water pool reflecting light -->
+      <ellipse cx="560" cy="412" rx="80" ry="16" fill="url(#waterGrad)" opacity="0.6"/>
+      <ellipse cx="560" cy="412" rx="78" ry="12" fill="rgba(20,50,15,0.3)"/>
+      <!-- Amber glimmer on water -->
+      <ellipse cx="558" cy="410" rx="22" ry="4" fill="rgba(180,100,10,0.12)"/>
+
+      <!-- ═══ LAYER 6: FALLEN LOG — where jaguar crouches ═══ -->
+      <path d="M480 400 C570 388 675 382 780 385 C885 388 975 390 1060 396"
+            stroke="#193808" stroke-width="26" fill="none" stroke-linecap="round"/>
+      <path d="M480 400 C570 388 675 382 780 385 C885 388 975 390 1060 396"
+            stroke="#213F0A" stroke-width="14" fill="none" stroke-linecap="round"/>
+      <path d="M480 400 C570 388 675 382 780 385 C885 388 975 390 1060 396"
+            stroke="#0F2508" stroke-width="5" fill="none" stroke-linecap="round" stroke-dasharray="0 40"/>
+      <!-- Log left end (cross-section) -->
+      <ellipse cx="480" cy="400" rx="16" ry="13" fill="#193808" transform="rotate(-6,480,400)"/>
+      <ellipse cx="480" cy="400" rx="10" ry="8"  fill="#102005" transform="rotate(-6,480,400)"/>
+      <ellipse cx="480" cy="400" rx="5"  ry="4"  fill="#193808" opacity="0.5" transform="rotate(-6,480,400)"/>
+      <!-- Bark detail lines -->
+      <path d="M540 388 C575 384 615 382 650 383" stroke="#102005" stroke-width="2.5" fill="none" opacity="0.4"/>
+      <path d="M700 382 C745 381 790 382 830 384"  stroke="#102005" stroke-width="2.5" fill="none" opacity="0.4"/>
+      <!-- Moss patches -->
+      <ellipse cx="610" cy="385" rx="18" ry="5" fill="#0C2208" opacity="0.5"/>
+      <ellipse cx="860" cy="388" rx="15" ry="4" fill="#0C2208" opacity="0.45"/>
+
+      <!-- ═══ JAGUAR — profile, crouching on log ═══ -->
+      <!-- TAIL — curves behind and upward -->
+      <path d="M1038 382 C1062 368 1085 352 1096 328 C1107 304 1100 286 1088 293 C1080 298 1078 316 1072 332"
+            stroke="#2C1A06" stroke-width="16" fill="none" stroke-linecap="round"/>
+      <!-- Tail banding (tip) -->
+      <path d="M1084 298 C1090 284 1097 272 1095 260" stroke="#1A0E04" stroke-width="14" fill="none" stroke-linecap="round"/>
+      <path d="M1084 298 C1090 284 1097 272 1095 260" stroke="#2C1A06" stroke-width="6"  fill="none" stroke-linecap="round"/>
+
+      <!-- BODY — long, powerful, low-crouching -->
+      <ellipse cx="842" cy="376" rx="118" ry="34" fill="#2C1A06"/>
+      <!-- Shoulder hump (jaguars have powerful shoulders) -->
+      <ellipse cx="792" cy="363" rx="52" ry="24" fill="#281605"/>
+      <!-- Haunches -->
+      <ellipse cx="930" cy="378" rx="58" ry="30" fill="#241405"/>
+      <!-- Underbelly (slightly lighter) -->
+      <ellipse cx="842" cy="388" rx="95" ry="16" fill="#341E08" opacity="0.5"/>
+
+      <!-- FRONT LEGS — paws resting on log -->
+      <path d="M752 382 L746 408 L732 412 C722 413 716 408 726 404 L744 402 L748 385 Z" fill="#241405"/>
+      <path d="M778 380 L773 406 L760 410 C750 411 744 406 754 402 L770 400 L775 382 Z" fill="#241405"/>
+      <!-- Paw detail -->
+      <path d="M726 410 L724 416 M732 412 L730 418 M738 413 L736 419" stroke="#1A0E04" stroke-width="2" stroke-linecap="round"/>
+      <!-- Back leg -->
+      <path d="M942 384 L940 408 L928 412 C918 413 915 408 924 404 L938 402 L940 386 Z" fill="#241405"/>
+
+      <!-- HEAD — 3/4 view, slightly turning toward viewer -->
+      <ellipse cx="695" cy="365" rx="52" ry="44" fill="#2C1A06"/>
+      <!-- Brow ridge -->
+      <ellipse cx="695" cy="338" rx="42" ry="16" fill="#221205"/>
+      <!-- Muzzle — broader, slightly lighter -->
+      <ellipse cx="672" cy="373" rx="34" ry="27" fill="#36200A"/>
+      <!-- Muzzle center line -->
+      <path d="M672 358 L672 384" stroke="#1A0E04" stroke-width="2.5" opacity="0.6"/>
+
+      <!-- EAR — visible, small and round -->
+      <ellipse cx="718" cy="334" rx="18" ry="20" fill="#201005"/>
+      <ellipse cx="718" cy="337" rx="11" ry="13" fill="#100804" opacity="0.65"/>
+      <ellipse cx="718" cy="337" rx="6"  ry="7"  fill="#2C1A06" opacity="0.35"/>
+      <!-- Second ear (far side) -->
+      <ellipse cx="680" cy="332" rx="11" ry="13" fill="#201005" opacity="0.5"/>
+
+      <!-- NOSE -->
+      <path d="M656 370 Q672 360 680 370 Q674 380 672 382 Q668 380 656 370 Z" fill="#1A0808"/>
+      <!-- Nostril marks -->
+      <circle cx="662" cy="372" r="2.5" fill="#0A0404"/>
+      <circle cx="675" cy="372" r="2.5" fill="#0A0404"/>
 
       <!-- Upper lip -->
-      <path d="M130 162 Q160 154 190 162" fill="#1A0C04" opacity="0.6"/>
+      <path d="M648 380 Q672 372 696 380" fill="#1C1005" opacity="0.55"/>
 
-      <!-- ── EYES — the hero of this SVG ── -->
-      <!-- Outer eye glow (ambient) -->
-      <ellipse class="jaguar-eyes" cx="112" cy="108" rx="28" ry="24" fill="url(#jagEyeL)"/>
-      <ellipse class="jaguar-eyes" cx="208" cy="108" rx="28" ry="24" fill="url(#jagEyeR)" style="animation-delay:0.4s"/>
-      <!-- Eye socket shadow -->
-      <ellipse cx="112" cy="108" rx="20" ry="17" fill="#140A02"/>
-      <ellipse cx="208" cy="108" rx="20" ry="17" fill="#140A02"/>
-      <!-- Iris — amber -->
-      <ellipse class="jaguar-eyes" cx="112" cy="108" rx="15" ry="13" fill="#C87808"/>
-      <ellipse class="jaguar-eyes" cx="208" cy="108" rx="15" ry="13" fill="#C87808" style="animation-delay:0.4s"/>
-      <!-- Pupil — vertical slit -->
-      <ellipse cx="112" cy="108" rx="5" ry="11" fill="#0A0504"/>
-      <ellipse cx="208" cy="108" rx="5" ry="11" fill="#0A0504"/>
-      <!-- Eye shine -->
-      <ellipse cx="108" cy="103" rx="4.5" ry="3.5" fill="rgba(255,255,220,0.55)"/>
-      <ellipse cx="204" cy="103" rx="4.5" ry="3.5" fill="rgba(255,255,220,0.55)"/>
-      <!-- Inner glow ring -->
-      <ellipse cx="112" cy="108" rx="16" ry="14" fill="none" stroke="rgba(210,130,10,0.35)" stroke-width="3"/>
-      <ellipse cx="208" cy="108" rx="16" ry="14" fill="none" stroke="rgba(210,130,10,0.35)" stroke-width="3"/>
+      <!-- ── JAGUAR EYE — the focal point ── -->
+      <!-- Ambient eye glow -->
+      <ellipse class="jaguar-eyes" cx="692" cy="360" rx="22" ry="20" fill="url(#eyeGlow)"/>
+      <!-- Socket -->
+      <ellipse cx="692" cy="360" rx="14" ry="13" fill="#160A02"/>
+      <!-- Iris — amber gold -->
+      <ellipse class="jaguar-eyes" cx="692" cy="360" rx="11" ry="10" fill="#C87808"/>
+      <!-- Vertical slit pupil -->
+      <ellipse cx="692" cy="360" rx="3.5" ry="8.5" fill="#0A0504"/>
+      <!-- Highlight -->
+      <ellipse cx="690" cy="356" rx="3.5" ry="2.5" fill="rgba(255,255,200,0.55)"/>
+      <!-- Outer glow ring -->
+      <ellipse cx="692" cy="360" rx="12" ry="11" fill="none" stroke="rgba(200,120,8,0.4)" stroke-width="2.5"/>
 
-      <!-- FOREHEAD SPOTS — line of dots (jaguar characteristic) -->
-      <ellipse cx="160" cy="88"  rx="6"   ry="4" fill="#160C02" opacity="0.7"/>
-      <ellipse cx="138" cy="93"  rx="4.5" ry="3" fill="#160C02" opacity="0.5"/>
-      <ellipse cx="182" cy="93"  rx="4.5" ry="3" fill="#160C02" opacity="0.5"/>
-      <!-- Cheek rosettes -->
-      <circle cx="90"  cy="132" r="11" fill="none" stroke="#160C02" stroke-width="2.5" opacity="0.65"/>
-      <circle cx="90"  cy="132" r="4.5" fill="#160C02" opacity="0.55"/>
-      <circle cx="230" cy="132" r="11" fill="none" stroke="#160C02" stroke-width="2.5" opacity="0.65"/>
-      <circle cx="230" cy="132" r="4.5" fill="#160C02" opacity="0.55"/>
-      <!-- Top of head rosettes -->
-      <circle cx="118" cy="86" r="7" fill="none" stroke="#160C02" stroke-width="2" opacity="0.45"/>
-      <circle cx="202" cy="86" r="7" fill="none" stroke="#160C02" stroke-width="2" opacity="0.45"/>
+      <!-- SPOTS on body — jaguar rosettes (ring + inner dot) -->
+      <circle cx="832" cy="365" r="13" fill="none" stroke="#190E02" stroke-width="2.5" opacity="0.7"/>
+      <circle cx="832" cy="365" r="5"  fill="#190E02" opacity="0.6"/>
+      <circle cx="868" cy="372" r="12" fill="none" stroke="#190E02" stroke-width="2.5" opacity="0.65"/>
+      <circle cx="868" cy="372" r="4.5" fill="#190E02" opacity="0.55"/>
+      <circle cx="900" cy="370" r="11" fill="none" stroke="#190E02" stroke-width="2" opacity="0.6"/>
+      <circle cx="900" cy="370" r="4"  fill="#190E02" opacity="0.5"/>
+      <circle cx="798" cy="366" r="10" fill="none" stroke="#190E02" stroke-width="2" opacity="0.55"/>
+      <circle cx="798" cy="366" r="3.5" fill="#190E02" opacity="0.45"/>
+      <!-- Head cheek spot -->
+      <circle cx="724" cy="368" r="8" fill="none" stroke="#190E02" stroke-width="1.8" opacity="0.5"/>
+      <circle cx="724" cy="368" r="3" fill="#190E02" opacity="0.45"/>
+      <!-- Forehead line (characteristic jaguar marking) -->
+      <ellipse cx="695" cy="342" rx="5"  ry="3.5" fill="#190E02" opacity="0.6"/>
+      <ellipse cx="680" cy="346" rx="4"  ry="3"   fill="#190E02" opacity="0.45"/>
+      <ellipse cx="710" cy="346" rx="4"  ry="3"   fill="#190E02" opacity="0.45"/>
+      <!-- Whisker dots -->
+      <circle cx="654" cy="374" r="1.8" fill="#190E02" opacity="0.75"/>
+      <circle cx="652" cy="380" r="1.8" fill="#190E02" opacity="0.75"/>
+      <circle cx="650" cy="386" r="1.8" fill="#190E02" opacity="0.75"/>
+      <circle cx="688" cy="374" r="1.8" fill="#190E02" opacity="0.75"/>
+      <circle cx="686" cy="380" r="1.8" fill="#190E02" opacity="0.75"/>
 
-      <!-- Whisker dots on muzzle -->
-      <circle cx="122" cy="154" r="2.2" fill="#160C02" opacity="0.8"/>
-      <circle cx="126" cy="161" r="2.2" fill="#160C02" opacity="0.8"/>
-      <circle cx="130" cy="168" r="2.2" fill="#160C02" opacity="0.8"/>
-      <circle cx="198" cy="154" r="2.2" fill="#160C02" opacity="0.8"/>
-      <circle cx="194" cy="161" r="2.2" fill="#160C02" opacity="0.8"/>
-      <circle cx="190" cy="168" r="2.2" fill="#160C02" opacity="0.8"/>
-      <!-- Chin spot -->
-      <ellipse cx="160" cy="182" rx="16" ry="9" fill="#160C02" opacity="0.45"/>
+      <!-- ═══ TOUCAN on branch of left tree ═══ -->
+      <!-- Branch (already drawn above at y≈222) -->
+      <!-- Body — perched, facing right -->
+      <ellipse cx="230" cy="210" rx="30" ry="22" fill="#0D0D0D"/>
+      <!-- Chest patch: white-yellow (muted) -->
+      <ellipse cx="224" cy="214" rx="15" ry="18" fill="#E8D860" opacity="0.10"/>
+      <ellipse cx="224" cy="214" rx="10" ry="13" fill="#F0EDE0" opacity="0.08"/>
+      <!-- Head -->
+      <circle cx="258" cy="196" r="20" fill="#0D0D0D"/>
+      <!-- Eye ring (teal-blue) -->
+      <circle cx="263" cy="193" r="8" fill="#0C5878" opacity="0.5"/>
+      <circle cx="263" cy="193" r="5" fill="white" opacity="0.88"/>
+      <circle cx="264" cy="193" r="3" fill="#0D0D0D"/>
+      <circle cx="265" cy="192" r="1.2" fill="rgba(255,255,255,0.6)"/>
+      <!-- BEAK — large, iconic, orange (brand color) -->
+      <path d="M270 190 Q312 181 318 196 Q316 210 270 210 Q262 202 262 198 Z" fill="#E8681C"/>
+      <path d="M270 190 Q312 181 318 196" stroke="#B44E0E" stroke-width="1.8" fill="none"/>
+      <path d="M270 210 Q312 208 318 196" stroke="#8B3A0A" stroke-width="1"   fill="none" opacity="0.45"/>
+      <!-- Beak yellow tip -->
+      <path d="M314 194 Q318 196 314 200" stroke="#FFE040" stroke-width="1.8" fill="none" opacity="0.38"/>
+      <!-- Wing -->
+      <path d="M202 207 C190 218 192 236 205 232 C213 228 224 222 224 213 Z" fill="#111" opacity="0.8"/>
+      <path d="M202 207 C190 220 192 232 205 232" stroke="#1A1A1A" stroke-width="1.5" fill="none"/>
+      <!-- Tail -->
+      <path d="M200 222 Q185 240 180 234 Q188 224 200 222 Z" fill="#1C1C1C"/>
+      <!-- Feet gripping branch -->
+      <path d="M220 231 L218 240 M218 240 L211 246 M218 240 L222 247 M218 240 L228 244" stroke="#1A0A00" stroke-width="2" stroke-linecap="round"/>
+      <path d="M238 231 L240 240 M240 240 L234 246 M240 240 L245 247 M240 240 L250 243" stroke="#1A0A00" stroke-width="2" stroke-linecap="round"/>
+
+      <!-- ═══ FOREGROUND LEFT — large banana leaf, monstera ═══ -->
+      <!-- Banana leaf (biggest, closest) -->
+      <path d="M-25 460 C28 412 105 330 162 248 C204 188 228 150 218 128
+               C200 104 165 120 138 158 C96 215 48 300 4 386 C-16 422 -32 448 -25 460 Z"
+            fill="#122E12"/>
+      <path d="M-25 460 C20 414 98 330 155 248 C197 188 222 152 218 128"
+            stroke="#091A09" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <!-- Lateral veins -->
+      <path d="M55 362 C74 346 92 328 108 305" stroke="#0A1E0A" stroke-width="1.5" fill="none" opacity="0.45"/>
+      <path d="M95 308 C112 292 126 275 140 254" stroke="#0A1E0A" stroke-width="1.5" fill="none" opacity="0.45"/>
+      <path d="M135 258 C150 242 162 227 172 208" stroke="#0A1E0A" stroke-width="1.5" fill="none" opacity="0.45"/>
+      <!-- Second banana leaf, partially behind first -->
+      <path d="M-45 460 C-18 432 15 385 50 335 C78 295 106 268 102 248
+               C90 228 68 238 52 260 C25 295 -10 348 -35 400 C-44 428 -50 450 -45 460 Z"
+            fill="#0F2A0F" opacity="0.85"/>
+      <!-- Monstera -->
+      <path d="M-35 460 C-18 408 12 348 52 290 C82 245 120 218 132 234
+               C120 260 100 278 78 302 C50 332 18 380 -2 430 Z"
+            fill="#162E16" opacity="0.88"/>
+      <ellipse cx="76"  cy="303" rx="9" ry="14" fill="#050D05" opacity="0.65" transform="rotate(-20,76,303)"/>
+      <ellipse cx="96"  cy="278" rx="7" ry="11" fill="#050D05" opacity="0.55" transform="rotate(-24,96,278)"/>
+
+      <!-- ═══ FOREGROUND RIGHT — banana leaf + monstera ═══ -->
+      <!-- Banana leaf -->
+      <path d="M1465 460 C1412 412 1335 330 1278 248 C1236 188 1212 150 1222 128
+               C1240 104 1275 120 1302 158 C1344 215 1392 300 1436 386 C1456 422 1472 448 1465 460 Z"
+            fill="#122E12"/>
+      <path d="M1465 460 C1420 414 1342 330 1285 248 C1243 188 1218 152 1222 128"
+            stroke="#091A09" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M1385 362 C1366 346 1348 328 1332 305" stroke="#0A1E0A" stroke-width="1.5" fill="none" opacity="0.45"/>
+      <path d="M1345 308 C1328 292 1314 275 1300 254" stroke="#0A1E0A" stroke-width="1.5" fill="none" opacity="0.45"/>
+      <!-- Second banana leaf right -->
+      <path d="M1485 460 C1458 432 1425 385 1390 335 C1362 295 1334 268 1338 248
+               C1350 228 1372 238 1388 260 C1415 295 1450 348 1475 400 C1484 428 1490 450 1485 460 Z"
+            fill="#0F2A0F" opacity="0.85"/>
+      <!-- Monstera right -->
+      <path d="M1475 460 C1458 408 1428 348 1388 290 C1358 245 1320 218 1308 234
+               C1320 260 1340 278 1362 302 C1390 332 1422 380 1442 430 Z"
+            fill="#162E16" opacity="0.88"/>
+      <ellipse cx="1364" cy="303" rx="9" ry="14" fill="#050D05" opacity="0.65" transform="rotate(20,1364,303)"/>
+      <ellipse cx="1344" cy="278" rx="7" ry="11" fill="#050D05" opacity="0.55" transform="rotate(24,1344,278)"/>
+
+      <!-- ═══ GROUND FOG / MIST ═══ -->
+      <rect x="0" y="0" width="1440" height="460" fill="url(#fogGrad)"/>
+      <!-- Additional mist rolls near ground -->
+      <ellipse cx="350"  cy="445" rx="260" ry="28" fill="rgba(5,10,5,0.65)"/>
+      <ellipse cx="1090" cy="440" rx="240" ry="25" fill="rgba(5,10,5,0.60)"/>
+      <ellipse cx="720"  cy="455" rx="340" ry="22" fill="rgba(4,8,4,0.70)"/>
     </svg>
 
-    <!-- ══ SNAKE — boa constrictor winding through undergrowth ══ -->
-    <svg class="absolute"
-         viewBox="0 0 900 120"
-         style="width: 65%; bottom: 105px; left: 18%; height: 120px; z-index: 1;">
-
-      <!-- Body — thick, winding S-curve -->
-      <path id="boa-body"
-            d="M-10 80 C60 80 85 25 165 52 C245 79 278 15 368 44 C458 73 492 12 582 40 C672 68 705 20 800 50 C870 70 910 55 930 50"
-            stroke="#1A3A0A" stroke-width="20" fill="none" stroke-linecap="round"/>
-      <!-- Scale pattern — lighter inner body -->
-      <path d="M-10 80 C60 80 85 25 165 52 C245 79 278 15 368 44 C458 73 492 12 582 40 C672 68 705 20 800 50 C870 70 910 55 930 50"
-            stroke="#234A0D" stroke-width="10" fill="none" stroke-linecap="round"/>
-      <!-- Diamond/saddle pattern -->
-      <path d="M-10 80 C60 80 85 25 165 52 C245 79 278 15 368 44 C458 73 492 12 582 40 C672 68 705 20 800 50 C870 70 910 55 930 50"
-            stroke="#0F2208" stroke-width="4" fill="none" stroke-dasharray="0 28" stroke-linecap="round"/>
-      <!-- Saddle blotches -->
-      <ellipse cx="100" cy="55" rx="22" ry="9" fill="#0D2208" opacity="0.5" transform="rotate(-28,100,55)"/>
-      <ellipse cx="218" cy="62" rx="22" ry="9" fill="#0D2208" opacity="0.5" transform="rotate(22,218,62)"/>
-      <ellipse cx="325" cy="48" rx="20" ry="8" fill="#0D2208" opacity="0.45" transform="rotate(-18,325,48)"/>
-      <ellipse cx="435" cy="58" rx="20" ry="8" fill="#0D2208" opacity="0.45" transform="rotate(20,435,58)"/>
-      <ellipse cx="540" cy="44" rx="19" ry="8" fill="#0D2208" opacity="0.4" transform="rotate(-15,540,44)"/>
-      <ellipse cx="648" cy="56" rx="19" ry="8" fill="#0D2208" opacity="0.4" transform="rotate(18,648,56)"/>
-      <ellipse cx="752" cy="48" rx="18" ry="7" fill="#0D2208" opacity="0.38" transform="rotate(-12,752,48)"/>
-
-      <!-- HEAD — triangular, at right end -->
-      <ellipse cx="900" cy="50" rx="30" ry="16" fill="#172E0A" transform="rotate(-8,900,50)"/>
-      <!-- Head marking (arrow/spear shape on top) -->
-      <path d="M880 38 Q900 30 920 38 Q900 42 880 38 Z" fill="#0D2208" opacity="0.6"/>
-      <!-- Eye -->
-      <circle cx="912" cy="46" r="6" fill="#C87808" opacity="0.9"/>
-      <ellipse cx="912" cy="46" rx="2.5" ry="5" fill="#0A0504"/>
-      <circle cx="911" cy="44" r="1.5" fill="rgba(255,255,200,0.4)"/>
-      <!-- TONGUE — forked, animated -->
-      <g class="snake-tongue" style="transform-origin: 930px 50px;">
-        <path d="M928 50 L948 48 M948 48 L958 43" stroke="#E8681C" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M928 50 L948 48 M948 48 L958 53" stroke="#E8681C" stroke-width="2.5" stroke-linecap="round"/>
-      </g>
-    </svg>
-
-    <!-- ══ GROUND FOLIAGE (renders above jaguar lower body) ══ -->
-    <svg class="absolute bottom-0 left-0 right-0"
-         viewBox="0 0 1400 190" preserveAspectRatio="xMidYMax meet"
-         style="width: 100%; height: 190px; z-index: 3;">
-      <!-- Left grass blades -->
-      <path d="M80 190 C75 138 65 96 48 64 C68 90 90 126 96 190 Z" fill="#071507" opacity="0.85"/>
-      <path d="M122 190 C120 142 114 106 102 76 C120 100 134 132 138 190 Z" fill="#0A1E0A" opacity="0.75"/>
-      <path d="M52 190 C50 150 45 118 36 90 C53 112 60 145 64 190 Z" fill="#071507" opacity="0.65"/>
-      <path d="M30 190 C32 158 36 128 44 100 C30 125 25 155 26 190 Z" fill="#0A1E0A" opacity="0.55"/>
-
-      <!-- Center ferns -->
-      <path d="M640 190 C635 156 626 118 605 92 C636 112 652 148 658 190 Z" fill="#071507" opacity="0.55"/>
-      <path d="M700 190 C698 160 693 132 682 108 C700 126 710 152 713 190 Z" fill="#0A1E0A" opacity="0.55"/>
-      <path d="M670 190 C668 162 662 138 648 114 C665 132 674 156 678 190 Z" fill="#071507" opacity="0.45"/>
-      <path d="M728 190 C726 158 720 130 706 106 C724 126 732 152 735 190 Z" fill="#0A1E0A" opacity="0.4"/>
-
-      <!-- Right grass blades -->
-      <path d="M1280 190 C1285 138 1295 96 1312 64 C1292 90 1270 126 1264 190 Z" fill="#071507" opacity="0.85"/>
-      <path d="M1320 190 C1322 142 1328 106 1340 76 C1322 100 1308 132 1305 190 Z" fill="#0A1E0A" opacity="0.75"/>
-      <path d="M1250 190 C1252 150 1258 118 1268 90 C1252 112 1244 145 1241 190 Z" fill="#0A1E0A" opacity="0.65"/>
-      <path d="M1360 190 C1358 158 1352 128 1342 100 C1356 125 1362 155 1362 190 Z" fill="#071507" opacity="0.55"/>
-
-      <!-- Ground shadow -->
-      <rect x="0" y="162" width="1400" height="28" fill="#050D05" opacity="0.7"/>
-    </svg>
-
-    <!-- ══ GROUND MIST ════════════════════════════════════ -->
-    <div class="jungle-mist absolute bottom-0 left-0 right-0"
-         style="height: 95px; z-index: 4;
-                background: linear-gradient(to top, rgba(4,8,4,0.92) 0%, rgba(6,14,6,0.55) 42%, transparent 100%);
-                filter: blur(4px);">
-    </div>
-    <div class="jungle-mist-2 absolute bottom-0 left-0 right-0"
-         style="height: 130px; z-index: 4;
-                background: radial-gradient(ellipse 85% 100% at 50% 100%, rgba(8,20,8,0.5) 0%, transparent 68%);
-                filter: blur(10px);">
-    </div>
-
-    <!-- ══ FIREFLIES ════════════════════════════════════ -->
-    <div class="firefly absolute" style="bottom:210px;left:34%;width:4px;height:4px;border-radius:50%;background:rgba(220,255,120,0.9);box-shadow:0 0 8px 3px rgba(180,240,80,0.5);animation-delay:0s;animation-duration:5s;z-index:5;"></div>
-    <div class="firefly absolute" style="bottom:295px;left:53%;width:3px;height:3px;border-radius:50%;background:rgba(200,255,100,0.8);box-shadow:0 0 6px 2px rgba(160,220,70,0.4);animation-delay:1.5s;animation-duration:7s;z-index:5;"></div>
-    <div class="firefly absolute" style="bottom:168px;right:37%;width:4px;height:4px;border-radius:50%;background:rgba(230,255,140,0.85);box-shadow:0 0 7px 3px rgba(190,250,90,0.45);animation-delay:3s;animation-duration:6s;z-index:5;"></div>
-    <div class="firefly absolute" style="bottom:335px;left:21%;width:3px;height:3px;border-radius:50%;background:rgba(210,255,110,0.7);box-shadow:0 0 6px 2px rgba(170,235,75,0.4);animation-delay:0.8s;animation-duration:8s;z-index:5;"></div>
-    <div class="firefly absolute" style="bottom:250px;right:27%;width:3px;height:3px;border-radius:50%;background:rgba(225,255,130,0.75);box-shadow:0 0 5px 2px rgba(185,245,85,0.4);animation-delay:2.2s;animation-duration:6.5s;z-index:5;"></div>
-    <div class="firefly absolute" style="bottom:180px;left:62%;width:3px;height:3px;border-radius:50%;background:rgba(215,255,115,0.7);box-shadow:0 0 5px 2px rgba(175,240,80,0.35);animation-delay:4s;animation-duration:9s;z-index:5;"></div>
+    <!-- ── Fireflies (over landscape) ── -->
+    <div class="firefly absolute" style="bottom:220px;left:38%;width:4px;height:4px;border-radius:50%;background:rgba(220,255,120,0.9);box-shadow:0 0 8px 3px rgba(180,240,80,0.5);animation-delay:0s;animation-duration:5s;"></div>
+    <div class="firefly absolute" style="bottom:300px;left:55%;width:3px;height:3px;border-radius:50%;background:rgba(200,255,100,0.8);box-shadow:0 0 6px 2px rgba(160,220,70,0.4);animation-delay:1.5s;animation-duration:7s;"></div>
+    <div class="firefly absolute" style="bottom:175px;right:35%;width:4px;height:4px;border-radius:50%;background:rgba(230,255,140,0.85);box-shadow:0 0 7px 3px rgba(190,250,90,0.45);animation-delay:3s;animation-duration:6s;"></div>
+    <div class="firefly absolute" style="bottom:340px;left:24%;width:3px;height:3px;border-radius:50%;background:rgba(210,255,110,0.7);box-shadow:0 0 6px 2px rgba(170,235,75,0.4);animation-delay:0.8s;animation-duration:8s;"></div>
+    <div class="firefly absolute" style="bottom:260px;right:30%;width:3px;height:3px;border-radius:50%;background:rgba(225,255,130,0.75);box-shadow:0 0 5px 2px rgba(185,245,85,0.4);animation-delay:2.2s;animation-duration:6.5s;"></div>
   </div>
 )}
 
 {variant === 'section' && (
   <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-    <svg class="absolute left-0 bottom-0 opacity-40" viewBox="0 0 300 400" style="height: 400px; width: auto;">
+    <svg class="absolute left-0 bottom-0 opacity-35" viewBox="0 0 300 400" style="height: 380px; width: auto;">
       <path d="M-20 400 C10 340 40 260 85 185 C120 120 165 80 175 100 C160 140 130 200 100 280 C75 340 50 375 -20 400 Z"
             fill="#071A07"/>
       <path d="M-20 400 C20 350 60 275 100 200 C135 135 175 95 185 115 C170 155 140 215 110 290 C85 345 58 378 -20 400 Z"
             fill="#0A2010" opacity="0.6"/>
     </svg>
-    <svg class="absolute right-0 top-0 opacity-30" viewBox="0 0 300 400" style="height: 300px; width: auto;">
+    <svg class="absolute right-0 top-0 opacity-25" viewBox="0 0 300 400" style="height: 280px; width: auto;">
       <path d="M320 0 C290 60 260 140 215 215 C180 280 135 320 125 300 C140 260 170 200 200 120 C225 60 250 25 320 0 Z"
             fill="#071A07"/>
     </svg>
@@ -434,8 +357,8 @@ const { variant = 'hero' } = Astro.props;
   <svg viewBox="0 0 120 80" style="width: 70px; opacity: 0.12;" aria-hidden="true">
     <ellipse cx="60" cy="55" rx="32" ry="20" fill="#F2EDE3"/>
     <ellipse cx="88" cy="44" rx="20" ry="14" fill="#F2EDE3"/>
-    <ellipse cx="106" cy="40" rx="11" ry="7" fill="#F2EDE3"/>
-    <circle cx="94" cy="40" r="3.5" fill="#0F0F0F"/>
+    <ellipse cx="106" cy="40" rx="11" ry="7"  fill="#F2EDE3"/>
+    <circle  cx="94"  cy="40" r="3.5"         fill="#0F0F0F"/>
     <path d="M28 52 C22 32 28 12 40 20 C52 28 48 46 42 54"
           stroke="#F2EDE3" stroke-width="7" fill="none" stroke-linecap="round"/>
   </svg>
