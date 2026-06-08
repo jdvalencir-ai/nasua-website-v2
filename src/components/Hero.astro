@@ -1,5 +1,6 @@
 ---
 import { asset } from '../utils/asset';
+import JungleArt from './JungleArt.astro';
 ---
 
 <section id="inicio" class="relative min-h-screen flex flex-col overflow-hidden"
@@ -8,84 +9,19 @@ import { asset } from '../utils/asset';
   <!-- ── Rich color field — warm amber canopy light from above ── -->
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true"
     style="background:
-      radial-gradient(ellipse 90% 55% at 50% -8%,  rgba(145,75,8,0.12)  0%, transparent 55%),
-      radial-gradient(ellipse 50% 40% at 8%  80%,  rgba(4,18,4,0.9)     0%, transparent 55%),
-      radial-gradient(ellipse 50% 40% at 92% 80%,  rgba(4,18,4,0.9)     0%, transparent 55%),
-      radial-gradient(ellipse 70% 60% at 50% 110%, rgba(2,10,2,0.95)    0%, transparent 60%),
+      radial-gradient(ellipse 90% 55% at 50% -8%,  rgba(145,75,8,0.10)  0%, transparent 55%),
       linear-gradient(175deg, #030A03 0%, #040D04 45%, #030903 100%);">
   </div>
 
-  <!-- ── Abstract botanical shapes — graphic design, not illustration ── -->
-  <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
-      <defs>
-        <linearGradient id="leafGradL" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%"   stop-color="#071A07" stop-opacity="0.9"/>
-          <stop offset="100%" stop-color="#050D05" stop-opacity="0.3"/>
-        </linearGradient>
-        <linearGradient id="leafGradR" x1="1" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stop-color="#071A07" stop-opacity="0.9"/>
-          <stop offset="100%" stop-color="#050D05" stop-opacity="0.3"/>
-        </linearGradient>
-        <linearGradient id="leafGradC" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stop-color="#060E06" stop-opacity="0.6"/>
-          <stop offset="100%" stop-color="#040A04" stop-opacity="0.95"/>
-        </linearGradient>
-      </defs>
+  <!-- ── Ilustración flat de la selva (paper-cut, estilo diseñador) ── -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    <JungleArt />
+  </div>
 
-      <!-- LEFT — two overlapping palm-frond silhouettes -->
-      <path d="M-180 -60
-               C 20  80,  180  260, 155  490
-               C 130 720,  10  850, -180 940
-               C -240 680, -220 280, -180 -60 Z"
-            fill="url(#leafGradL)"/>
-      <path d="M-90 -80
-               C 110  60,  260  240, 232  468
-               C 204 696,  80  830, -90  920
-               C -155 660, -135 260, -90 -80 Z"
-            fill="#091509" opacity="0.55"/>
-      <!-- Thin blade accent left -->
-      <path d="M 40 -40
-               C 90  60,  110 200,  95  380
-               C  80 560,  30 680,  -40 800
-               C  -5 620,  18 400,  40  -40 Z"
-            fill="#0A1A0A" opacity="0.35"/>
-
-      <!-- RIGHT — mirror botanical shapes -->
-      <path d="M1620 -60
-               C1420  80, 1260  260, 1285  490
-               C1310 720, 1430  850, 1620  940
-               C1680 680, 1660  280, 1620  -60 Z"
-            fill="url(#leafGradR)"/>
-      <path d="M1530 -80
-               C1330  60, 1180  240, 1208  468
-               C1236 696, 1360  830, 1530  920
-               C1595 660, 1575  260, 1530  -80 Z"
-            fill="#091509" opacity="0.55"/>
-      <!-- Thin blade accent right -->
-      <path d="M1400 -40
-               C1350  60, 1330  200, 1345  380
-               C1360 560, 1410  680, 1480  800
-               C1445 620, 1422  400, 1400  -40 Z"
-            fill="#0A1A0A" opacity="0.35"/>
-
-      <!-- BOTTOM — ground shadow mass -->
-      <path d="M0 900 L0 740
-               C 240 720, 480 714, 720 718
-               C 960 722, 1200 718, 1440 736
-               L1440 900 Z"
-            fill="url(#leafGradC)"/>
-
-      <!-- AMBER LIGHT LEAK — like sunlight piercing canopy -->
-      <ellipse cx="720" cy="-40" rx="380" ry="180"
-               fill="rgba(160,85,8,0.055)"/>
-      <ellipse cx="340" cy="80"  rx="120" ry="280"
-               fill="rgba(140,75,6,0.04)"
-               transform="rotate(-18 340 80)"/>
-      <ellipse cx="1100" cy="100" rx="100" ry="240"
-               fill="rgba(140,75,6,0.04)"
-               transform="rotate(22 1100 100)"/>
-    </svg>
+  <!-- ── Velo para legibilidad del texto sobre la ilustración ── -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true"
+    style="background:
+      radial-gradient(ellipse 70% 55% at 50% 42%, rgba(3,8,3,0.55) 0%, transparent 70%);">
   </div>
 
   <!-- ── Canvas — firefly particle system ── -->
