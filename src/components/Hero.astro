@@ -47,21 +47,16 @@ import JungleArt from './JungleArt.astro';
       </span>
     </div>
 
-    <!-- NASUA wordmark -->
-    <div class="hero-wordmark-wrap w-full overflow-visible" aria-label="Nasúa Narica">
-      <div id="hero-title"
-           class="font-[family-name:var(--font-display)] font-900 leading-none select-none"
-           style="font-size: clamp(5rem, 22vw, 24rem);
-                  letter-spacing: 0.04em;
-                  line-height: 0.86;
-                  color: #EDE8E0;"
-           aria-hidden="true">
-        <span class="hero-char inline-block" data-char="N">N</span><!--
-        --><span class="hero-char inline-block" data-char="A">A</span><!--
-        --><span class="hero-char inline-block" data-char="S">S</span><!--
-        --><span class="hero-char inline-block" data-char="U">U</span><!--
-        --><span class="hero-char inline-block" data-char="A" style="color:#E8681C;">A</span>
-      </div>
+    <!-- NASUA wordmark — tipografía oficial del logo -->
+    <div class="hero-wordmark-wrap w-full overflow-visible">
+      <img
+        id="hero-title"
+        src={asset('/logos/logo-wordmark-dark-trim.png')}
+        alt="Nasúa Narica"
+        class="select-none opacity-0"
+        style="width: clamp(250px, 74vw, 880px); height: auto; display: block; will-change: transform, opacity;"
+        width="818" height="327"
+      />
     </div>
 
     <!-- Divider + subtitle row -->
@@ -164,13 +159,12 @@ import JungleArt from './JungleArt.astro';
   // ── Entrance animation sequence ────────────────────────
   const tl = createTimeline();
 
-  tl.add('.hero-char', {
+  tl.add('#hero-title', {
     opacity:    [0, 1],
-    translateY: (_el: Element, i: number) => [-(70 + i * 18), 0],
-    rotate:     (_el: Element, i: number) => [i % 2 === 0 ? -9 : 9, 0],
-    delay:      (_el: Element, i: number) => i * 105 + 180,
-    duration:   850,
-    ease:       spring({ stiffness: 105, damping: 13 }),
+    translateY: [70, 0],
+    scale:      [0.9, 1],
+    delay:      200,
+    ease:       spring({ stiffness: 92, damping: 13 }),
   });
 
   tl.add('#hero-eyebrow', {
@@ -209,15 +203,13 @@ import JungleArt from './JungleArt.astro';
     if (wordmark) wordmark.style.transform = `translateY(${window.scrollY * 0.16}px)`;
   }, { passive: true });
 
-  // ── Glitch on letter hover ─────────────────────────────
-  document.querySelectorAll('.hero-char').forEach(char => {
-    char.addEventListener('mouseenter', () => {
-      animate(char, {
-        translateX: [0, -5, 5, -3, 0],
-        skewX:      [0, -4, 4, 0],
-        duration:   300,
-        ease:       'outElastic(1, 0.5)',
-      });
+  // ── Sutileza al pasar el cursor sobre el wordmark ──────
+  const title = document.getElementById('hero-title');
+  title?.addEventListener('mouseenter', () => {
+    animate(title, {
+      scale:    [1, 1.015, 1],
+      duration: 700,
+      ease:     'inOutQuad',
     });
   });
 </script>

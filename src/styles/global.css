@@ -69,16 +69,6 @@
     0%, 80%, 100% { transform: scaleX(0); transform-origin: left; }
     88%           { transform: scaleX(1); transform-origin: left; }
   }
-  @keyframes glitch-h {
-    0%, 87%, 100% { transform: translateX(-3px) skewX(0deg); }
-    90%           { transform: translateX(5px) skewX(-6deg); }
-    94%           { transform: translateX(-4px) skewX(4deg); }
-  }
-  @keyframes glitch-v {
-    0%, 85%, 100% { transform: translateX(3px) skewX(0deg); }
-    88%           { transform: translateX(-5px) skewX(5deg); }
-    92%           { transform: translateX(4px) skewX(-4deg); }
-  }
 }
 
 /* ══ Jungle atmosphere helpers ═════════════════════ */
@@ -195,12 +185,9 @@ body:has(button:hover) #cursor-ring {
   body { cursor: auto; }
 }
 
-/* ══ Logos: adaptación a fondo oscuro ════════════════ */
-
-.logo-inv {
-  filter: invert(1);
-  mix-blend-mode: screen;
-}
+/* ══ Logos ═══════════════════════════════════════════
+   Se usan versiones *-dark.png (cara blanca + lengua roja)
+   generadas para fondo oscuro. No requieren filtro CSS. */
 
 /* ══ Grano de película global ════════════════════════ */
 
@@ -298,41 +285,6 @@ body:has(button:hover) #cursor-ring {
 [data-reveal-scale] {
   opacity: 0;
   transform: scale(0.88);
-}
-
-/* ══ Glitch en letras del hero ══════════════════════ */
-
-.hero-char {
-  position: relative;
-  display: inline-block;
-  transition: color 0.2s;
-}
-
-.hero-char::before,
-.hero-char::after {
-  content: attr(data-char);
-  position: absolute;
-  top: 0; left: 0;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.hero-char::before {
-  color: var(--color-jungle-bright);
-  clip-path: polygon(0 25%, 100% 25%, 100% 55%, 0 55%);
-  animation: glitch-h 5s infinite;
-}
-
-.hero-char::after {
-  color: var(--color-orange);
-  clip-path: polygon(0 60%, 100% 60%, 100% 78%, 0 78%);
-  animation: glitch-v 5s infinite;
-  animation-delay: 0.15s;
-}
-
-.hero-char:hover::before,
-.hero-char:hover::after {
-  opacity: 0.7;
 }
 
 /* ══ Menú hamburguesa / overlay ═════════════════════ */
