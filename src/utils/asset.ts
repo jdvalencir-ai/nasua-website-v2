@@ -3,7 +3,7 @@
 // BASE_URL = '/'                   en local / dominio propio
 
 export function asset(path: string): string {
-  const base = import.meta.env.BASE_URL;          // siempre termina en "/"
-  const clean = path.replace(/^\//, '');           // quitar "/" inicial
-  return `${base}${clean}`;
+  const base  = import.meta.env.BASE_URL.replace(/\/$/, ''); // quitar "/" final si existe
+  const clean = path.replace(/^\//, '');                      // quitar "/" inicial
+  return `${base}/${clean}`;
 }
