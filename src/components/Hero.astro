@@ -1,119 +1,154 @@
 ---
 import { asset } from '../utils/asset';
-import JungleScene from './JungleScene.astro';
 ---
 
-<section id="inicio" class="relative min-h-screen flex flex-col justify-center overflow-hidden"
-  style="background: #050D05;">
+<section id="inicio" class="relative min-h-screen flex flex-col overflow-hidden"
+  style="background: #030803;">
 
-  <!-- ── Deep jungle background gradient ── -->
-  <div class="absolute inset-0" aria-hidden="true"
+  <!-- ── Rich color field — warm amber canopy light from above ── -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true"
     style="background:
-      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(15,40,10,0.95) 0%, transparent 55%),
-      radial-gradient(ellipse 80% 50% at 20% 100%, rgba(8,20,6,0.8) 0%, transparent 50%),
-      radial-gradient(ellipse 80% 50% at 80% 100%, rgba(8,20,6,0.8) 0%, transparent 50%),
-      linear-gradient(180deg, #030803 0%, #050D05 30%, #060A06 70%, #040804 100%);">
+      radial-gradient(ellipse 90% 55% at 50% -8%,  rgba(145,75,8,0.12)  0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 8%  80%,  rgba(4,18,4,0.9)     0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 92% 80%,  rgba(4,18,4,0.9)     0%, transparent 55%),
+      radial-gradient(ellipse 70% 60% at 50% 110%, rgba(2,10,2,0.95)    0%, transparent 60%),
+      linear-gradient(175deg, #030A03 0%, #040D04 45%, #030903 100%);">
   </div>
 
-  <!-- ── Canopy top — warm amber glow seeping through leaves ── -->
-  <div class="absolute top-0 left-0 right-0 pointer-events-none" aria-hidden="true"
-    style="height: 45%; background: linear-gradient(to bottom, rgba(140,70,8,0.08) 0%, transparent 100%);">
-  </div>
+  <!-- ── Abstract botanical shapes — graphic design, not illustration ── -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="leafGradL" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%"   stop-color="#071A07" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#050D05" stop-opacity="0.3"/>
+        </linearGradient>
+        <linearGradient id="leafGradR" x1="1" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#071A07" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#050D05" stop-opacity="0.3"/>
+        </linearGradient>
+        <linearGradient id="leafGradC" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#060E06" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#040A04" stop-opacity="0.95"/>
+        </linearGradient>
+      </defs>
 
-  <!-- ── Light shafts from canopy top ── -->
-  <div aria-hidden="true" class="absolute inset-0 pointer-events-none overflow-hidden">
-    <div class="jungle-ray"
-         style="position:absolute; top:0; left:30%; width:180px; height:65%;
-                background: linear-gradient(to bottom, rgba(190,100,12,0.06) 0%, transparent 100%);
-                transform: rotate(-14deg); transform-origin: top center; filter: blur(25px);">
-    </div>
-    <div class="jungle-ray-2"
-         style="position:absolute; top:0; left:50%; width:140px; height:55%;
-                background: linear-gradient(to bottom, rgba(180,95,10,0.05) 0%, transparent 100%);
-                transform: rotate(6deg); transform-origin: top center; filter: blur(30px);">
-    </div>
-    <div class="jungle-ray"
-         style="position:absolute; top:0; right:25%; width:160px; height:60%;
-                background: linear-gradient(to bottom, rgba(175,90,10,0.055) 0%, transparent 100%);
-                transform: rotate(20deg); transform-origin: top center; filter: blur(22px);
-                animation-delay: 2s;">
-    </div>
-  </div>
+      <!-- LEFT — two overlapping palm-frond silhouettes -->
+      <path d="M-180 -60
+               C 20  80,  180  260, 155  490
+               C 130 720,  10  850, -180 940
+               C -240 680, -220 280, -180 -60 Z"
+            fill="url(#leafGradL)"/>
+      <path d="M-90 -80
+               C 110  60,  260  240, 232  468
+               C 204 696,  80  830, -90  920
+               C -155 660, -135 260, -90 -80 Z"
+            fill="#091509" opacity="0.55"/>
+      <!-- Thin blade accent left -->
+      <path d="M 40 -40
+               C 90  60,  110 200,  95  380
+               C  80 560,  30 680,  -40 800
+               C  -5 620,  18 400,  40  -40 Z"
+            fill="#0A1A0A" opacity="0.35"/>
 
-  <!-- ── Distant canopy silhouette (mid-dark layer, blurred) ── -->
-  <div class="absolute top-0 left-0 right-0 pointer-events-none" aria-hidden="true"
-       style="height: 38%; filter: blur(3px); opacity: 0.6;">
-    <svg viewBox="0 0 1440 280" preserveAspectRatio="none" style="width:100%; height:100%;">
-      <!-- Layered canopy bumps -->
-      <path d="M0 280 L0 180 C60 160 90 120 140 140 C190 160 210 110 260 100 C310 90 340 130 390 125
-               C440 120 460 80 520 70 C580 60 610 100 660 95 C710 90 730 50 790 40 C850 30 880 75 930 80
-               C980 85 1000 45 1060 50 C1120 55 1140 95 1190 100 C1240 105 1260 70 1320 80
-               C1380 90 1410 130 1440 140 L1440 280 Z"
-            fill="#030A03"/>
-      <path d="M0 280 L0 200 C50 185 80 155 120 165 C160 175 185 140 230 135
-               C275 130 295 160 340 158 C385 156 400 125 450 118 C500 111 520 140 570 138
-               C620 136 640 105 695 100 C750 95 770 128 820 130 C870 132 890 100 945 105
-               C1000 110 1015 140 1060 142 C1105 144 1120 115 1170 118 C1220 121 1240 152 1290 155
-               C1340 158 1380 175 1440 185 L1440 280 Z"
-            fill="#040C04" opacity="0.8"/>
+      <!-- RIGHT — mirror botanical shapes -->
+      <path d="M1620 -60
+               C1420  80, 1260  260, 1285  490
+               C1310 720, 1430  850, 1620  940
+               C1680 680, 1660  280, 1620  -60 Z"
+            fill="url(#leafGradR)"/>
+      <path d="M1530 -80
+               C1330  60, 1180  240, 1208  468
+               C1236 696, 1360  830, 1530  920
+               C1595 660, 1575  260, 1530  -80 Z"
+            fill="#091509" opacity="0.55"/>
+      <!-- Thin blade accent right -->
+      <path d="M1400 -40
+               C1350  60, 1330  200, 1345  380
+               C1360 560, 1410  680, 1480  800
+               C1445 620, 1422  400, 1400  -40 Z"
+            fill="#0A1A0A" opacity="0.35"/>
+
+      <!-- BOTTOM — ground shadow mass -->
+      <path d="M0 900 L0 740
+               C 240 720, 480 714, 720 718
+               C 960 722, 1200 718, 1440 736
+               L1440 900 Z"
+            fill="url(#leafGradC)"/>
+
+      <!-- AMBER LIGHT LEAK — like sunlight piercing canopy -->
+      <ellipse cx="720" cy="-40" rx="380" ry="180"
+               fill="rgba(160,85,8,0.055)"/>
+      <ellipse cx="340" cy="80"  rx="120" ry="280"
+               fill="rgba(140,75,6,0.04)"
+               transform="rotate(-18 340 80)"/>
+      <ellipse cx="1100" cy="100" rx="100" ry="240"
+               fill="rgba(140,75,6,0.04)"
+               transform="rotate(22 1100 100)"/>
     </svg>
   </div>
 
+  <!-- ── Canvas — firefly particle system ── -->
+  <canvas id="hero-canvas"
+          class="absolute inset-0 pointer-events-none"
+          style="z-index: 6; mix-blend-mode: screen;"
+          aria-hidden="true">
+  </canvas>
+
   <!-- ── Film grain ── -->
-  <div class="grain-overlay absolute inset-0 z-20 pointer-events-none" aria-hidden="true"></div>
+  <div class="grain-overlay absolute inset-0 pointer-events-none" style="z-index: 15;" aria-hidden="true"></div>
 
-  <!-- ── Scan lines (very subtle depth texture) ── -->
-  <div class="absolute inset-0 pointer-events-none opacity-[0.012]" aria-hidden="true"
-    style="background-image: repeating-linear-gradient(0deg, #fff 0px, #fff 1px, transparent 1px, transparent 5px);">
-  </div>
+  <!-- ── CONTENT ── -->
+  <div class="relative flex flex-col justify-center min-h-screen px-6 md:px-10 lg:px-16 py-32"
+       style="z-index: 10;">
 
-  <!-- ── MAIN CONTENT — centered over jungle scene ── -->
-  <div class="relative z-10 flex flex-col items-start justify-center px-6 md:px-10 lg:px-16 pt-24 pb-64 md:pb-72">
-
-    <!-- Eyebrow label -->
-    <div class="flex items-center gap-3 mb-10 md:mb-14" data-reveal>
-      <div class="h-px w-10 bg-[#E8681C] opacity-70"></div>
-      <span class="font-[family-name:var(--font-display)] text-[10px] tracking-[0.6em] uppercase text-[#E8681C] opacity-80">
+    <!-- Eyebrow -->
+    <div class="flex items-center gap-3 mb-10 md:mb-14 opacity-0" id="hero-eyebrow">
+      <div class="h-px w-10 bg-[#E8681C]" style="opacity:0.7;"></div>
+      <span class="font-[family-name:var(--font-display)] text-[10px] tracking-[0.65em] uppercase"
+            style="color:#E8681C; opacity:0.85; font-weight:600;">
         Colectivo · América Latina
       </span>
     </div>
 
     <!-- NASUA wordmark -->
-    <div class="hero-wordmark-wrap w-full overflow-visible" aria-label="Nasua">
-      <div
-        id="hero-title"
-        class="hero-wordmark font-[family-name:var(--font-display)] font-800 text-[#F0EBE2] leading-none select-none"
-        style="font-size: clamp(5rem, 22vw, 24rem); letter-spacing: 0.04em; line-height: 0.88;
-               text-shadow: 0 0 80px rgba(10,30,8,0.8);"
-        aria-hidden="true"
-      >
+    <div class="hero-wordmark-wrap w-full overflow-visible" aria-label="Nasúa Narica">
+      <div id="hero-title"
+           class="font-[family-name:var(--font-display)] font-900 leading-none select-none"
+           style="font-size: clamp(5rem, 22vw, 24rem);
+                  letter-spacing: 0.04em;
+                  line-height: 0.86;
+                  color: #EDE8E0;"
+           aria-hidden="true">
         <span class="hero-char inline-block" data-char="N">N</span><!--
         --><span class="hero-char inline-block" data-char="A">A</span><!--
         --><span class="hero-char inline-block" data-char="S">S</span><!--
         --><span class="hero-char inline-block" data-char="U">U</span><!--
-        --><span class="hero-char inline-block" data-char="A" style="color: #E8681C;">A</span>
+        --><span class="hero-char inline-block" data-char="A" style="color:#E8681C;">A</span>
       </div>
     </div>
 
-    <!-- Subtitle row -->
-    <div id="hero-sub" class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 mt-6 md:mt-8 opacity-0">
-      <p class="font-[family-name:var(--font-display)] text-[11px] md:text-xs tracking-[0.55em] uppercase text-[#6B7280] font-500 max-w-xs">
-        Música Sin Fronteras<br/>Pop Tropical · Fusión
-      </p>
-      <div class="h-px w-full sm:w-24 bg-[#6B7280] opacity-30 sm:self-center" aria-hidden="true"></div>
-      <a href="#contacto"
-         class="font-[family-name:var(--font-display)] text-[11px] tracking-[0.4em] uppercase text-[#F2EDE3] font-600 hover:text-[#E8681C] transition-colors duration-300">
-        Booking →
-      </a>
+    <!-- Divider + subtitle row -->
+    <div id="hero-sub" class="mt-8 md:mt-10 opacity-0">
+      <!-- Thin full-width rule -->
+      <div class="w-full h-px mb-6" style="background: rgba(237,232,224,0.08);"></div>
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
+        <p class="font-[family-name:var(--font-display)] text-[11px] tracking-[0.55em] uppercase font-500 max-w-xs"
+           style="color:#5C5A55;">
+          Música Sin Fronteras &nbsp;·&nbsp; Pop Tropical &nbsp;·&nbsp; Fusión
+        </p>
+        <a href="#contacto"
+           class="btn-orange text-xs tracking-widest py-2.5 px-6 self-start sm:self-auto">
+          Booking
+        </a>
+      </div>
     </div>
   </div>
 
-  <!-- ── JUNGLE SCENE — fills bottom of hero ── -->
-  <JungleScene variant="hero" />
-
   <!-- ── Scroll indicator ── -->
   <div id="scroll-indicator"
-       class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-30 opacity-0">
+       class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0"
+       style="z-index: 20;">
     <div id="scroll-line" class="w-px h-14 bg-gradient-to-b from-[#E8681C] to-transparent"></div>
   </div>
 </section>
@@ -121,54 +156,130 @@ import JungleScene from './JungleScene.astro';
 <script>
   import { animate, createTimeline, spring } from 'animejs';
 
+  // ── Firefly canvas particle system ─────────────────────
+  const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement;
+  const ctx    = canvas.getContext('2d')!;
+  let W = 0, H = 0;
+
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize, { passive: true });
+  resize();
+
+  interface Fly {
+    x: number; y: number; size: number;
+    vx: number; vy: number;
+    op: number; dop: number; maxOp: number;
+    amber: boolean; t: number;
+  }
+
+  const COUNT = 72;
+  const flies: Fly[] = Array.from({ length: COUNT }, () => {
+    const amber  = Math.random() > 0.72;
+    const maxOp  = Math.random() * 0.6 + 0.22;
+    return {
+      x:     Math.random() * window.innerWidth,
+      y:     Math.random() * window.innerHeight,
+      size:  Math.random() * 1.8 + 0.4,
+      vx:    (Math.random() - 0.5) * 0.22,
+      vy:    -(Math.random() * 0.30 + 0.08),
+      op:    Math.random() * maxOp,
+      dop:   (Math.random() * 0.005 + 0.002) * (Math.random() > 0.5 ? 1 : -1),
+      maxOp,
+      amber,
+      t:     Math.random() * Math.PI * 2,
+    };
+  });
+
+  function drawFlies() {
+    ctx.clearRect(0, 0, W, H);
+    for (const f of flies) {
+      f.t  += 0.016;
+      f.x  += f.vx + Math.sin(f.t) * 0.16;
+      f.y  += f.vy;
+      f.op += f.dop;
+      if (f.op >= f.maxOp) { f.op = f.maxOp; f.dop = -Math.abs(f.dop); }
+      if (f.op <= 0)       { f.op = 0;        f.dop =  Math.abs(f.dop); }
+      if (f.y < -20)  { f.y = H + 20; f.x = Math.random() * W; }
+      if (f.x < -50)  { f.x = W + 50; }
+      if (f.x > W+50) { f.x = -50;    }
+
+      const [r, g, b] = f.amber ? [218, 152, 22] : [195, 255, 98];
+      const glowR      = f.size * 5.5;
+      const grd        = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, glowR);
+      grd.addColorStop(0, `rgba(${r},${g},${b},${f.op * 0.42})`);
+      grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
+      ctx.fillStyle = grd;
+      ctx.beginPath();
+      ctx.arc(f.x, f.y, glowR, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.fillStyle = `rgba(${r},${g},${b},${f.op})`;
+      ctx.beginPath();
+      ctx.arc(f.x, f.y, f.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    requestAnimationFrame(drawFlies);
+  }
+  drawFlies();
+
+  // ── Entrance animation sequence ────────────────────────
   const tl = createTimeline();
 
   tl.add('.hero-char', {
     opacity:    [0, 1],
-    translateY: (el: Element, i: number) => [-(80 + i * 15), 0],
-    rotate:     (el: Element, i: number) => [i % 2 === 0 ? -8 : 8, 0],
-    delay:      (el: Element, i: number) => i * 110 + 200,
-    duration:   800,
-    ease:       spring({ stiffness: 110, damping: 13 }),
+    translateY: (_el: Element, i: number) => [-(70 + i * 18), 0],
+    rotate:     (_el: Element, i: number) => [i % 2 === 0 ? -9 : 9, 0],
+    delay:      (_el: Element, i: number) => i * 105 + 180,
+    duration:   850,
+    ease:       spring({ stiffness: 105, damping: 13 }),
   });
+
+  tl.add('#hero-eyebrow', {
+    opacity:    [0, 1],
+    translateY: [-12, 0],
+    duration:   500,
+    ease:       'outQuart',
+  }, 0);
 
   tl.add('#hero-sub', {
     opacity:    [0, 1],
     translateY: [20, 0],
     duration:   600,
     ease:       'outQuart',
-  }, '-=300');
+  }, '-=200');
 
   tl.add('#scroll-indicator', {
     opacity: [0, 1],
-    duration: 700,
+    duration: 600,
     ease: 'outQuart',
   }, '+=500');
 
   animate('#scroll-line', {
-    scaleY:          [1, 0.15],
+    scaleY:          [1, 0.12],
     transformOrigin: 'top center',
     duration:        1200,
     loop:            true,
     alternate:       true,
     ease:            'inOutSine',
-    delay:           2200,
+    delay:           2400,
   });
 
-  // Parallax on scroll
+  // ── Parallax on scroll ─────────────────────────────────
   const wordmark = document.querySelector('.hero-wordmark-wrap') as HTMLElement;
   window.addEventListener('scroll', () => {
-    if (!wordmark) return;
-    wordmark.style.transform = `translateY(${window.scrollY * 0.18}px)`;
+    if (wordmark) wordmark.style.transform = `translateY(${window.scrollY * 0.16}px)`;
   }, { passive: true });
 
-  // Glitch hover
+  // ── Glitch on letter hover ─────────────────────────────
   document.querySelectorAll('.hero-char').forEach(char => {
     char.addEventListener('mouseenter', () => {
       animate(char, {
         translateX: [0, -5, 5, -3, 0],
         skewX:      [0, -4, 4, 0],
-        duration:   320,
+        duration:   300,
         ease:       'outElastic(1, 0.5)',
       });
     });
