@@ -52,7 +52,7 @@ const NAV = [
   <!-- Botón hamburguesa (mobile) -->
   <button
     id="menu-btn"
-    class="relative z-[200] md:hidden ml-auto flex flex-col items-end gap-[5px] p-2.5 -mr-1"
+    class="relative z-[200] md:hidden ml-auto flex flex-col items-end gap-[5px] p-2.5 -mr-1 transition-opacity duration-200"
     aria-label="Abrir menú"
     aria-expanded="false"
   >
@@ -110,6 +110,16 @@ const NAV = [
         width="40" height="40"
         aria-hidden="true"
       />
+      <button
+        id="menu-close"
+        class="-mr-2 p-3 text-[#F5EDE0] hover:text-[#E8681C] transition-colors duration-300"
+        aria-label="Cerrar menú"
+      >
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18"/>
+        </svg>
+      </button>
     </div>
 
     <!-- Links de navegación -->
@@ -165,6 +175,7 @@ const NAV = [
   const headerBg  = document.getElementById('header-bg')!;
   const logo      = document.getElementById('header-logo')!;
   const menuBtn   = document.getElementById('menu-btn')!;
+  const closeBtn  = document.getElementById('menu-close')!;
   const overlay   = document.getElementById('menu-overlay')!;
   const navLinks  = document.querySelectorAll<HTMLElement>('.overlay-link');
   const socials   = document.querySelector<HTMLElement>('.overlay-socials')!;
@@ -205,6 +216,9 @@ const NAV = [
     isOpen = true;
     menuBtn.classList.add('is-open');
     menuBtn.setAttribute('aria-expanded', 'true');
+    // Ocultar la hamburguesa: dentro del menú cierra la X dedicada
+    menuBtn.style.opacity = '0';
+    menuBtn.style.pointerEvents = 'none';
     overlay.classList.add('is-open');
     overlay.style.pointerEvents = 'auto';
     overlay.setAttribute('aria-hidden', 'false');
@@ -229,6 +243,8 @@ const NAV = [
     isOpen = false;
     menuBtn.classList.remove('is-open');
     menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.style.opacity = '';
+    menuBtn.style.pointerEvents = '';
 
     // Resetear links para la próxima apertura
     navLinks.forEach(l => {
@@ -248,6 +264,7 @@ const NAV = [
   }
 
   menuBtn.addEventListener('click', () => isOpen ? closeMenu() : openMenu());
+  closeBtn.addEventListener('click', closeMenu);
 
   // Cerrar al hacer click en un link del overlay
   document.querySelectorAll('[data-overlay-link]').forEach(link => {
