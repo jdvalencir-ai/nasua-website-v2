@@ -69,25 +69,24 @@ import { asset } from '../utils/asset';
               class="relative overflow-hidden"
               style={`aspect-ratio: ${isFeature ? '3/4' : '4/5'};`}
             >
-              <!-- Gradiente de fondo sofisticado — diferente por miembro -->
+              <!-- Foto del miembro como fondo -->
+              <img
+                src={asset(miembro.imagen)}
+                alt={miembro.nombre}
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+                style="filter: grayscale(0.15) contrast(1.05);"
+              />
+
+              <!-- Capa de tinte color para integrar con la paleta jungla -->
               <div
-                class="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
+                class="absolute inset-0 mix-blend-multiply pointer-events-none"
                 style={`background: ${
-                  index === 0 ? 'linear-gradient(160deg, #0A1E0A, #111811, #060906)' :
-                  index === 1 ? 'linear-gradient(160deg, #111011, #1A0D0D, #060906)' :
-                                'linear-gradient(160deg, #0A100A, #0D180D, #060906)'
+                  index === 0 ? 'linear-gradient(160deg, rgba(10,30,10,0.5), rgba(17,24,17,0.55), rgba(6,9,6,0.7))' :
+                  index === 1 ? 'linear-gradient(160deg, rgba(17,16,17,0.5), rgba(26,13,13,0.55), rgba(6,9,6,0.7))' :
+                                'linear-gradient(160deg, rgba(10,16,10,0.5), rgba(13,24,13,0.55), rgba(6,9,6,0.7))'
                 };`}
               ></div>
-
-              <!-- Logo como placeholder artístico -->
-              <img
-                src={asset('/logos/logo-icon.png')}
-                alt=""
-                class="logo-inv absolute inset-0 m-auto h-auto opacity-[0.07] transition-opacity duration-500 group-hover:opacity-[0.12]"
-                style={`width: ${isFeature ? '55%' : '60%'};`}
-                aria-hidden="true"
-                width="200" height="200"
-              />
 
               <!-- Gradiente overlay inferior -->
               <div class="absolute inset-0"
