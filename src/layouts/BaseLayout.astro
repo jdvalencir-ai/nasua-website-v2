@@ -58,40 +58,7 @@ const canonicalURL = Astro.url;
   <!-- Grano de película global -->
   <div class="grain-overlay fixed inset-0 z-[9001] pointer-events-none" aria-hidden="true"></div>
 
-  <!-- Cursor personalizado -->
-  <div id="cursor-dot"  aria-hidden="true"></div>
-  <div id="cursor-ring" aria-hidden="true"></div>
-
   <slot />
 
-  <!-- Cursor script -->
-  <script>
-    const dot  = document.getElementById('cursor-dot')!;
-    const ring = document.getElementById('cursor-ring')!;
-
-    let mouseX = 0, mouseY = 0;
-    let ringX  = 0, ringY  = 0;
-
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      dot.style.transform  = `translate(${mouseX - 4}px, ${mouseY - 4}px)`;
-    });
-
-    function animateRing() {
-      ringX += (mouseX - ringX - 18) * 0.12;
-      ringY += (mouseY - ringY - 18) * 0.12;
-      ring.style.transform = `translate(${ringX}px, ${ringY}px)`;
-      requestAnimationFrame(animateRing);
-    }
-    animateRing();
-
-    // Esconder cursor en mobile
-    if (window.innerWidth < 768) {
-      dot.style.display  = 'none';
-      ring.style.display = 'none';
-      document.body.style.cursor = 'auto';
-    }
-  </script>
 </body>
 </html>
