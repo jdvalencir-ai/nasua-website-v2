@@ -96,36 +96,25 @@ import JungleScene from './JungleScene.astro';
           <div class="absolute -top-3 -left-3 w-14 h-14 border-l-2 border-t-2 border-[#E8681C] opacity-50"></div>
           <div class="absolute -bottom-3 -right-3 w-14 h-14 border-r-2 border-b-2 border-[#E8681C] opacity-50"></div>
 
-          <!-- Placeholder with jungle atmosphere -->
-          <div class="relative aspect-[3/4] w-full overflow-hidden"
-               style="background: linear-gradient(160deg, #071507 0%, #0A220A 50%, #050D05 100%);">
-
-            <!-- Atmospheric inner glow -->
-            <div class="absolute inset-0"
-                 style="background: radial-gradient(ellipse at 50% 30%, rgba(120,65,8,0.12) 0%, transparent 60%);">
-            </div>
-
-            <!-- Leaf silhouettes inside the frame -->
-            <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 200 280" preserveAspectRatio="xMidYMid slice">
-              <path d="M-20 280 C0 220 40 150 80 90 C110 45 140 25 135 60 C130 95 95 160 70 230 C50 265 20 285 -20 280 Z"
-                    fill="#0D2A0D"/>
-              <path d="M220 280 C200 220 160 150 120 90 C90 45 60 25 65 60 C70 95 105 160 130 230 C150 265 180 285 220 280 Z"
-                    fill="#0D2A0D"/>
-            </svg>
-
-            <!-- Logo watermark -->
+          <!-- Foto real del colectivo (desde el sitio oficial) -->
+          <div class="relative aspect-[3/2] w-full overflow-hidden" style="background:#07120a;">
             <img
-              src={asset('/logos/logo-icon-dark.png')}
-              alt="Nasúa Narica"
-              class="absolute inset-0 m-auto w-1/2 h-auto opacity-[0.08]"
-              width="200" height="200"
+              src={asset('/images/about/colectivo.jpg')}
+              alt="Nasúa Narica — el colectivo"
+              class="w-full h-full object-cover"
+              style="object-position: center;"
+              width="1800" height="1200"
+              loading="lazy"
             />
-
+            <!-- Tinte de marca + gradiente inferior -->
+            <div class="absolute inset-0 pointer-events-none mix-blend-multiply"
+                 style="background: rgba(8,20,8,0.12);"></div>
+            <div class="absolute inset-0 pointer-events-none"
+                 style="background: linear-gradient(to top, rgba(5,13,5,0.7) 0%, transparent 55%);"></div>
             <!-- Label -->
-            <div class="absolute bottom-0 left-0 right-0 p-4"
-                 style="background: linear-gradient(to top, rgba(5,13,5,0.95), transparent);">
-              <p class="font-[family-name:var(--font-display)] text-[9px] tracking-[0.4em] uppercase text-[#4B5563]">
-                Foto del colectivo
+            <div class="absolute bottom-0 left-0 right-0 p-3">
+              <p class="font-[family-name:var(--font-display)] text-[9px] tracking-[0.4em] uppercase text-[#C9C2B4]">
+                El colectivo
               </p>
             </div>
           </div>
