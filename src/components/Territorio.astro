@@ -1,0 +1,112 @@
+---
+import { asset } from '../utils/asset';
+
+// Fauna real de la selva — refuerza la identidad de la banda.
+// Fotos en /public/images/fauna/ (reemplazables)
+const FAUNA = [
+  { img: '/images/fauna/coati.jpg',  nombre: 'Coatí',  latin: 'Nasua narica',  nota: 'El que nos da el nombre', destacado: true },
+  { img: '/images/fauna/toucan.jpg', nombre: 'Tucán',  latin: 'Ramphastos',    nota: 'Color sin fronteras' },
+  { img: '/images/fauna/frog.jpg',   nombre: 'Rana',   latin: 'Dendrobates',   nota: 'Veneno y belleza' },
+  { img: '/images/fauna/jaguar.jpg', nombre: 'Jaguar', latin: 'Panthera onca', nota: 'El pulso de la selva' },
+];
+---
+
+<section id="territorio" class="relative py-24 md:py-36 overflow-hidden"
+  style="background: linear-gradient(180deg, #040804 0%, #060c06 50%, #050a05 100%);">
+
+  <!-- Resplandor cálido superior -->
+  <div class="absolute top-0 left-0 right-0 h-1/2 pointer-events-none" aria-hidden="true"
+       style="background: radial-gradient(ellipse 70% 100% at 50% 0%, rgba(120,65,8,0.07) 0%, transparent 70%);"></div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-16 relative z-10">
+
+    <!-- Encabezado editorial -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-end mb-14 md:mb-20">
+      <div>
+        <div class="flex items-center gap-4 mb-5" data-reveal>
+          <div class="h-px w-10 bg-[#E8681C]"></div>
+          <span class="font-[family-name:var(--font-display)] text-[10px] tracking-[0.6em] uppercase text-[#E8681C] font-600">
+            El Territorio
+          </span>
+        </div>
+        <h2 class="font-[family-name:var(--font-display)] font-800 text-[#F0EBE2] leading-[0.9]"
+            style="font-size: clamp(2.4rem, 6vw, 5rem);" data-reveal>
+          La selva que<br/>nos da nombre.
+        </h2>
+      </div>
+      <p class="text-[#9CA3AF] leading-relaxed max-w-sm text-sm self-end md:justify-self-end" data-reveal>
+        Nasúa lleva el nombre del coatí. Como la selva que habita, su sonido es
+        diverso, territorial e imposible de domesticar.
+      </p>
+    </div>
+
+    <!-- Grid de fauna real -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
+      {FAUNA.map((a, i) => (
+        <article
+          class="fauna-card group relative overflow-hidden"
+          data-reveal
+          style={`transition-delay: ${i * 90}ms`}
+        >
+          <div class="relative overflow-hidden" style="aspect-ratio: 3/4;">
+            <img
+              src={asset(a.img)}
+              alt={`${a.nombre} — ${a.latin}`}
+              class="w-full h-full object-cover transition-transform duration-[900ms] ease-out group-hover:scale-110"
+              loading="lazy"
+              style="filter: saturate(1.02) contrast(1.04);"
+            />
+
+            <!-- Tinte de marca + gradiente inferior -->
+            <div class="absolute inset-0 pointer-events-none mix-blend-multiply"
+                 style="background: rgba(8,20,8,0.18);"></div>
+            <div class="absolute inset-0 pointer-events-none"
+                 style="background: linear-gradient(to top, rgba(4,8,4,0.96) 0%, rgba(4,8,4,0.3) 45%, transparent 75%);"></div>
+
+            <!-- Badge del destacado (coatí = la banda) -->
+            {a.destacado && (
+              <span class="absolute top-3 left-3 px-2.5 py-1 text-[9px] tracking-[0.3em] uppercase font-700
+                           font-[family-name:var(--font-display)]"
+                    style="background: #E8681C; color: #07120a;">
+                Nasúa
+              </span>
+            )}
+
+            <!-- Info -->
+            <div class="absolute bottom-0 left-0 right-0 p-4 md:p-5">
+              <div class="fauna-line h-0.5 bg-[#E8681C] mb-2.5" style="width: 22px;"></div>
+              <h3 class="font-[family-name:var(--font-display)] font-800 text-[#F0EBE2] leading-none"
+                  style="font-size: clamp(1.3rem, 2.4vw, 1.9rem);">
+                {a.nombre}
+              </h3>
+              <p class="font-[family-name:var(--font-display)] italic text-[11px] tracking-wide mt-1"
+                 style="color: #6FBF5A;">
+                {a.latin}
+              </p>
+              <p class="text-[#9CA3AF] text-[11px] leading-snug mt-2 opacity-0 -translate-y-1
+                        group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                {a.nota}
+              </p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { animate } from 'animejs';
+
+  // La línea naranja se expande al entrar en viewport
+  document.querySelectorAll('.fauna-line').forEach(line => {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        animate(line, { width: ['22px', '60%'], duration: 700, ease: 'outExpo', delay: 250 });
+        obs.disconnect();
+      });
+    }, { threshold: 0.4 });
+    obs.observe(line as Element);
+  });
+</script>

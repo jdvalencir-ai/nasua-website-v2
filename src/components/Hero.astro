@@ -1,40 +1,37 @@
 ---
 import { asset } from '../utils/asset';
-import JungleArt from './JungleArt.astro';
 ---
 
 <section id="inicio" class="relative min-h-screen flex flex-col overflow-hidden"
-  style="background: #030803;">
+  style="background: #03060a;">
 
-  <!-- ── Rich color field — warm amber canopy light from above ── -->
+  <!-- ── Foto real de selva (fondo) ── -->
+  <img
+    src={asset('/images/hero/jungle.jpg')}
+    alt=""
+    aria-hidden="true"
+    class="hero-photo absolute inset-0 w-full h-full object-cover"
+    style="object-position: center 42%; transform: scale(1.05); will-change: transform;"
+    fetchpriority="high"
+  />
+
+  <!-- ── Gradación profesional ──
+       oscurece + prioriza el lado del texto + viñeta + base oscura -->
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true"
     style="background:
-      radial-gradient(ellipse 90% 55% at 50% -8%,  rgba(145,75,8,0.10)  0%, transparent 55%),
-      linear-gradient(175deg, #030A03 0%, #040D04 45%, #030903 100%);">
+      linear-gradient(90deg, rgba(3,6,10,0.88) 0%, rgba(3,6,10,0.5) 45%, rgba(3,6,10,0.22) 100%),
+      radial-gradient(ellipse 80% 80% at 48% 42%, transparent 52%, rgba(3,6,10,0.62) 100%),
+      linear-gradient(180deg, rgba(3,6,10,0.45) 0%, transparent 28%, transparent 58%, rgba(3,6,10,0.8) 100%);">
   </div>
 
-  <!-- ── Ilustración flat de la selva (paper-cut, estilo diseñador) ── -->
-  <div class="absolute inset-0 pointer-events-none overflow-hidden">
-    <JungleArt />
-  </div>
-
-  <!-- ── Velo para legibilidad del texto sobre la ilustración ── -->
+  <!-- Tinte verde sutil — unifica con la paleta de marca -->
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true"
-    style="background:
-      radial-gradient(ellipse 70% 55% at 50% 42%, rgba(3,8,3,0.55) 0%, transparent 70%);">
-  </div>
+    style="background: rgba(8,24,10,0.22); mix-blend-mode: multiply;"></div>
 
-  <!-- ── Canvas — firefly particle system ── -->
-  <canvas id="hero-canvas"
-          class="absolute inset-0 pointer-events-none"
-          style="z-index: 6; mix-blend-mode: screen;"
-          aria-hidden="true">
-  </canvas>
-
-  <!-- ── Film grain ── -->
+  <!-- ── Grano de película ── -->
   <div class="grain-overlay absolute inset-0 pointer-events-none" style="z-index: 15;" aria-hidden="true"></div>
 
-  <!-- ── CONTENT ── -->
+  <!-- ── CONTENIDO ── -->
   <div class="relative flex flex-col justify-center min-h-screen px-6 md:px-10 lg:px-16 py-32"
        style="z-index: 10;">
 
@@ -42,30 +39,30 @@ import JungleArt from './JungleArt.astro';
     <div class="flex items-center gap-3 mb-10 md:mb-14 opacity-0" id="hero-eyebrow">
       <div class="h-px w-10 bg-[#E8681C]" style="opacity:0.7;"></div>
       <span class="font-[family-name:var(--font-display)] text-[10px] tracking-[0.65em] uppercase"
-            style="color:#E8681C; opacity:0.85; font-weight:600;">
+            style="color:#E8681C; opacity:0.9; font-weight:600;">
         Colectivo · América Latina
       </span>
     </div>
 
-    <!-- NASUA wordmark — tipografía oficial del logo -->
+    <!-- NASUA wordmark (blanco, tipografía oficial) -->
     <div class="hero-wordmark-wrap w-full overflow-visible">
       <img
         id="hero-title"
-        src={asset('/logos/logo-wordmark-orange-trim.png')}
+        src={asset('/logos/logo-wordmark-dark-trim.png')}
         alt="Nasúa Narica"
         class="select-none opacity-0"
-        style="width: clamp(250px, 74vw, 880px); height: auto; display: block; will-change: transform, opacity;"
+        style="width: clamp(250px, 74vw, 880px); height: auto; display: block;
+               will-change: transform, opacity; filter: drop-shadow(0 6px 30px rgba(0,0,0,0.55));"
         width="818" height="327"
       />
     </div>
 
-    <!-- Divider + subtitle row -->
+    <!-- Subtítulo + booking -->
     <div id="hero-sub" class="mt-8 md:mt-10 opacity-0">
-      <!-- Thin full-width rule -->
-      <div class="w-full h-px mb-6" style="background: rgba(237,232,224,0.08);"></div>
+      <div class="w-full h-px mb-6" style="background: rgba(237,232,224,0.12);"></div>
       <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
         <p class="font-[family-name:var(--font-display)] text-[11px] tracking-[0.55em] uppercase font-500 max-w-xs"
-           style="color:#E6E0D4; text-shadow: 0 1px 10px rgba(0,0,0,0.65);">
+           style="color:#E6E0D4; text-shadow: 0 1px 10px rgba(0,0,0,0.7);">
           Música Sin Fronteras &nbsp;·&nbsp; Pop Tropical &nbsp;·&nbsp; Fusión
         </p>
         <a href="#contacto"
@@ -87,76 +84,7 @@ import JungleArt from './JungleArt.astro';
 <script>
   import { animate, createTimeline, spring } from 'animejs';
 
-  // ── Firefly canvas particle system ─────────────────────
-  const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement;
-  const ctx    = canvas.getContext('2d')!;
-  let W = 0, H = 0;
-
-  function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resize, { passive: true });
-  resize();
-
-  interface Fly {
-    x: number; y: number; size: number;
-    vx: number; vy: number;
-    op: number; dop: number; maxOp: number;
-    amber: boolean; t: number;
-  }
-
-  const COUNT = 72;
-  const flies: Fly[] = Array.from({ length: COUNT }, () => {
-    const amber  = Math.random() > 0.72;
-    const maxOp  = Math.random() * 0.6 + 0.22;
-    return {
-      x:     Math.random() * window.innerWidth,
-      y:     Math.random() * window.innerHeight,
-      size:  Math.random() * 1.8 + 0.4,
-      vx:    (Math.random() - 0.5) * 0.22,
-      vy:    -(Math.random() * 0.30 + 0.08),
-      op:    Math.random() * maxOp,
-      dop:   (Math.random() * 0.005 + 0.002) * (Math.random() > 0.5 ? 1 : -1),
-      maxOp,
-      amber,
-      t:     Math.random() * Math.PI * 2,
-    };
-  });
-
-  function drawFlies() {
-    ctx.clearRect(0, 0, W, H);
-    for (const f of flies) {
-      f.t  += 0.016;
-      f.x  += f.vx + Math.sin(f.t) * 0.16;
-      f.y  += f.vy;
-      f.op += f.dop;
-      if (f.op >= f.maxOp) { f.op = f.maxOp; f.dop = -Math.abs(f.dop); }
-      if (f.op <= 0)       { f.op = 0;        f.dop =  Math.abs(f.dop); }
-      if (f.y < -20)  { f.y = H + 20; f.x = Math.random() * W; }
-      if (f.x < -50)  { f.x = W + 50; }
-      if (f.x > W+50) { f.x = -50;    }
-
-      const [r, g, b] = f.amber ? [218, 152, 22] : [195, 255, 98];
-      const glowR      = f.size * 5.5;
-      const grd        = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, glowR);
-      grd.addColorStop(0, `rgba(${r},${g},${b},${f.op * 0.42})`);
-      grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
-      ctx.fillStyle = grd;
-      ctx.beginPath();
-      ctx.arc(f.x, f.y, glowR, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.fillStyle = `rgba(${r},${g},${b},${f.op})`;
-      ctx.beginPath();
-      ctx.arc(f.x, f.y, f.size, 0, Math.PI * 2);
-      ctx.fill();
-    }
-    requestAnimationFrame(drawFlies);
-  }
-  drawFlies();
-
-  // ── Entrance animation sequence ────────────────────────
+  // ── Secuencia de entrada ───────────────────────────────
   const tl = createTimeline();
 
   tl.add('#hero-title', {
@@ -197,19 +125,18 @@ import JungleArt from './JungleArt.astro';
     delay:           2400,
   });
 
-  // ── Parallax on scroll ─────────────────────────────────
+  // ── Parallax sutil (wordmark + foto) ───────────────────
   const wordmark = document.querySelector('.hero-wordmark-wrap') as HTMLElement;
+  const photo    = document.querySelector('.hero-photo') as HTMLElement;
   window.addEventListener('scroll', () => {
-    if (wordmark) wordmark.style.transform = `translateY(${window.scrollY * 0.16}px)`;
+    const y = window.scrollY;
+    if (wordmark) wordmark.style.transform = `translateY(${y * 0.16}px)`;
+    if (photo)    photo.style.transform    = `scale(1.05) translateY(${y * 0.06}px)`;
   }, { passive: true });
 
-  // ── Sutileza al pasar el cursor sobre el wordmark ──────
+  // ── Hover sutil sobre el wordmark ──────────────────────
   const title = document.getElementById('hero-title');
   title?.addEventListener('mouseenter', () => {
-    animate(title, {
-      scale:    [1, 1.015, 1],
-      duration: 700,
-      ease:     'inOutQuad',
-    });
+    animate(title, { scale: [1, 1.015, 1], duration: 700, ease: 'inOutQuad' });
   });
 </script>
