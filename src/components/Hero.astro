@@ -32,7 +32,7 @@ import { asset } from '../utils/asset';
   <div class="grain-overlay absolute inset-0 pointer-events-none" style="z-index: 15;" aria-hidden="true"></div>
 
   <!-- ── CONTENIDO ── -->
-  <div class="relative flex flex-col justify-center min-h-screen px-6 md:px-10 lg:px-16 py-32"
+  <div class="relative flex flex-col md:justify-center min-h-screen px-6 md:px-10 lg:px-16 py-32"
        style="z-index: 10;">
 
     <!-- Eyebrow -->
@@ -45,14 +45,20 @@ import { asset } from '../utils/asset';
     </div>
 
     <!-- NASUA wordmark (blanco, tipografía oficial) -->
-    <div class="hero-wordmark-wrap w-full overflow-visible">
+    <div class="hero-wordmark-wrap relative w-full overflow-visible flex flex-col lg:flex-row items-center lg:items-start gap-6 md:gap-10">
+      <img
+        id="hero-icon"
+        src={asset('/logos/logo-icon.png')}
+        alt="Nasúa Narica"
+        aria-hidden="true"
+        class="hero-logo-icon select-none opacity-0"
+        width="420" height="420"
+      />
       <img
         id="hero-title"
         src={asset('/logos/logo-wordmark-dark-trim.png')}
         alt="Nasúa Narica"
-        class="select-none opacity-0"
-        style="width: clamp(250px, 74vw, 880px); height: auto; display: block;
-               will-change: transform, opacity; filter: drop-shadow(0 6px 30px rgba(0,0,0,0.55));"
+        class="hero-logo-title select-none opacity-0"
         width="818" height="327"
       />
     </div>
@@ -94,6 +100,12 @@ import { asset } from '../utils/asset';
     delay:      200,
     ease:       spring({ stiffness: 92, damping: 13 }),
   });
+
+  tl.add('#hero-icon', {
+    opacity:  [0, 1],
+    duration: 500,
+    ease:     'outQuart',
+  }, '-=500');
 
   tl.add('#hero-eyebrow', {
     opacity:    [0, 1],
@@ -140,3 +152,46 @@ import { asset } from '../utils/asset';
     animate(title, { scale: [1, 1.015, 1], duration: 700, ease: 'inOutQuad' });
   });
 </script>
+
+<style>
+  .hero-wordmark-wrap {
+    max-width: min(100%, 1320px);
+  }
+
+  .hero-logo-icon,
+  .hero-logo-title {
+    height: auto;
+    display: block;
+    will-change: transform, opacity;
+  }
+
+  .hero-logo-icon {
+    width: clamp(110px, 34vw, 190px);
+    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.45));
+  }
+
+  .hero-logo-title {
+    width: min(100%, clamp(250px, 86vw, 680px));
+    filter: drop-shadow(0 6px 30px rgba(0, 0, 0, 0.55));
+  }
+
+  @media (min-width: 1024px) {
+    .hero-logo-icon {
+      width: clamp(170px, 22vw, 360px);
+    }
+
+    .hero-logo-title {
+      width: clamp(460px, 54vw, 820px);
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .hero-logo-icon {
+      width: 420px;
+    }
+
+    .hero-logo-title {
+      width: 880px;
+    }
+  }
+</style>
