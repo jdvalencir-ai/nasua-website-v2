@@ -20,6 +20,15 @@ export const CONTACTO = {
   telefono: '',                            // ← PENDIENTE: agregar si aplica
 };
 
+// ── Manager / Representación ─────────────────────────────
+export const MANAGER = {
+  empresa:   'EL Entertainment',
+  nombre:    'Eder Lemus',
+  ubicacion: 'Los Angeles, California',
+  telefono:  '+1 760 623 9100',
+  email:     'manager@elentertainment.us',
+};
+
 // ── Redes sociales ───────────────────────────────────────
 export const REDES = {
   instagram:  'https://instagram.com/nasuamusica',

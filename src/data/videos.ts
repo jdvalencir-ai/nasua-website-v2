@@ -19,8 +19,8 @@ export const VIDEO_LEYENDA = {
 export const VIDEOS: Video[] = [
   { titulo: 'El profesor',                 youtubeId: 'k2OEo8H5-6c', destacado: true },
   { titulo: 'La verdad es un problema',    youtubeId: 'PjhKr1xpJ1c' },
-  { titulo: 'Mujeres con alma de hombre',  youtubeId: 'KUjNSLFevFA' },
-  { titulo: 'Para siempre',                youtubeId: 'dpJouJPQ2lw' },
+  { titulo: 'Aprovechemos',                youtubeId: 'c1lMzmMT34M' },
+  { titulo: 'Mejor Mal Acompañado',        youtubeId: 'vBHCGMpLwzA' },
   { titulo: 'No seas así',                 youtubeId: 'akh3KL7qABg' },
   { titulo: 'La vida va',                  youtubeId: 'fZOKIjx7Za0' },
 ];

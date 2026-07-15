@@ -1,6 +1,7 @@
 ---
 import type { Fragment } from 'astro/compiler-runtime';
 import { SOCIALS } from '../data/socials';
+import { MANAGER } from '../data/config';
 import { asset } from '../utils/asset';
 
 const year = new Date().getFullYear();
@@ -68,6 +69,33 @@ const year = new Date().getFullYear();
 
     <!-- Línea divisoria -->
     <div class="section-divider my-8" aria-hidden="true"></div>
+
+    <!-- Management / Booking -->
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-center sm:text-left">
+        <div>
+          <p class="text-[9px] tracking-[0.4em] uppercase text-[#E8681C] font-[family-name:var(--font-display)] font-600 mb-1">
+            Management
+          </p>
+          <p class="text-sm text-[#F2EDE3] font-[family-name:var(--font-display)] font-600">
+            {MANAGER.empresa} · {MANAGER.nombre}
+          </p>
+          <p class="text-[11px] tracking-wider uppercase text-[#6B7280] font-[family-name:var(--font-display)]">
+            {MANAGER.ubicacion}
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-6">
+        <a href={`tel:${MANAGER.telefono.replace(/\s/g, '')}`}
+           class="text-sm text-[#9CA3AF] hover:text-[#E8681C] transition-colors duration-300 font-[family-name:var(--font-display)]">
+          {MANAGER.telefono}
+        </a>
+        <a href={`mailto:${MANAGER.email}`}
+           class="text-sm text-[#9CA3AF] hover:text-[#E8681C] transition-colors duration-300 font-[family-name:var(--font-display)]">
+          {MANAGER.email}
+        </a>
+      </div>
+    </div>
 
     <!-- Copyright -->
     <div class="flex flex-col md:flex-row items-center md:justify-between gap-3 text-center">

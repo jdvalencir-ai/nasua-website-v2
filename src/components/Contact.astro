@@ -1,5 +1,5 @@
 ---
-import { CONTACTO, REDES } from '../data/config';
+import { CONTACTO, REDES, MANAGER } from '../data/config';
 import { asset } from '../utils/asset';
 ---
 
@@ -73,6 +73,31 @@ import { asset } from '../utils/asset';
           </a>
 
           <!-- Email editable en src/data/config.ts → CONTACTO.email -->
+        </div>
+
+        <!-- Management -->
+        <div class="mb-8" data-reveal>
+          <span class="block text-[10px] tracking-[0.4em] uppercase text-[#6B7280] font-[family-name:var(--font-display)] font-600 mb-3">
+            Management
+          </span>
+          <div class="rounded p-5" style="background: rgba(15,43,15,0.3); border: 1px solid rgba(42,107,42,0.2);">
+            <p class="font-[family-name:var(--font-display)] font-700 text-[#F2EDE3] text-base">
+              {MANAGER.empresa}
+            </p>
+            <p class="text-sm text-[#9CA3AF] mb-3">
+              {MANAGER.nombre} · {MANAGER.ubicacion}
+            </p>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-5">
+              <a href={`tel:${MANAGER.telefono.replace(/\s/g, '')}`}
+                 class="text-sm text-[#9CA3AF] hover:text-[#E8681C] transition-colors duration-300 font-[family-name:var(--font-display)]">
+                {MANAGER.telefono}
+              </a>
+              <a href={`mailto:${MANAGER.email}`}
+                 class="text-sm text-[#9CA3AF] hover:text-[#E8681C] transition-colors duration-300 font-[family-name:var(--font-display)]">
+                {MANAGER.email}
+              </a>
+            </div>
+          </div>
         </div>
 
         <!-- Redes sociales -->
