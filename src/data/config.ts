@@ -35,8 +35,7 @@ export const REDES = {
   facebook:   'https://facebook.com/nasuamusica',   // ← VERIFICAR URL real (perfil "NASUA Música")
   tiktok:     'https://www.tiktok.com/@nasuamusica',
   youtube:    'https://youtube.com/@nasuanarica',
-  spotify:    '',                          // ← PENDIENTE: pegar link del artista en Spotify
-  applemusic: '',                          // ← PENDIENTE: pegar link del artista en Apple Music
+  spotify:    'https://open.spotify.com/intl-es/artist/3D886oPEYkNZVK9K8t7O7H?si=aNbggApgRd2g0xVod0oOLQ',                          // ← PENDIENTE: pegar link del artista en Spotify
 };
 
 // ── SEO / Metadatos ───────────────────────────────────────
