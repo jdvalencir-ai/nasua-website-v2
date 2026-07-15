@@ -1,0 +1,108 @@
+---
+import { asset } from '../utils/asset';
+
+const TITULO = 'Artistas que se han sumado';
+
+const DESCRIPCION = `
+  Nasúa es una iniciativa que crece con cada voz que se une. Grandes referentes
+  de la música latinoamericana han sumado su talento a este movimiento,
+  aportando su arte, su historia y su fuerza a una causa compartida.
+`;
+
+// ── Artistas (editable) ──────────────────────────────────────
+const ARTISTAS = [
+  'Gilberto Santa Rosa',
+  'Los Hermanos Rosario',
+  'Jerau',
+  'Mimi Succar',
+  'Noel Schajris',
+  'Alberto Barros',
+];
+---
+
+<section
+  id="artistas"
+  class="relative py-28 md:py-40 overflow-hidden"
+>
+  <!-- Fondo selvático oscuro -->
+  <div class="absolute inset-0" style="background: linear-gradient(135deg, #070A07 0%, #0A1A0A 45%, #070A07 100%);" aria-hidden="true"></div>
+
+  <!-- Número de sección -->
+  <span class="section-number top-8 left-4 md:left-10" aria-hidden="true">04</span>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
+
+    <!-- Encabezado -->
+    <div class="flex flex-col items-center text-center mb-14 md:mb-20" data-reveal>
+      <div class="flex items-center gap-4 mb-6">
+        <div class="h-px w-10 bg-[#E8681C]"></div>
+        <span class="font-[family-name:var(--font-display)] text-[10px] tracking-[0.6em] uppercase text-[#E8681C] font-600">
+          El colectivo
+        </span>
+        <div class="h-px w-10 bg-[#E8681C]"></div>
+      </div>
+      <h2
+        class="font-[family-name:var(--font-display)] font-800 text-[#F2EDE3] leading-tight mb-6"
+        style="font-size: clamp(1.9rem, 4.5vw, 3.6rem);"
+      >
+        {TITULO}
+      </h2>
+      <p class="text-[#9CA3AF] leading-[1.85] max-w-2xl">
+        {DESCRIPCION}
+      </p>
+    </div>
+
+    <!-- Imagen de artistas -->
+    <div
+      class="relative rounded-xl overflow-hidden shadow-2xl mb-12 border border-[rgba(232,104,28,0.12)]"
+      data-reveal
+    >
+      <img
+        src={asset('/images/artistas/colaboradores.jpg')}
+        alt="Artistas que se han sumado a Nasúa: Gilberto Santa Rosa, Los Hermanos Rosario, Jerau, Mimi Succar, Noel Schajris y Alberto Barros"
+        class="w-full h-auto block"
+        width="1719"
+        height="520"
+        loading="lazy"
+      />
+    </div>
+
+    <!-- Lista de nombres -->
+    <div class="flex flex-wrap justify-center gap-3" data-reveal>
+      {ARTISTAS.map((nombre, i) => (
+        <span
+          class="artista-tag font-[family-name:var(--font-display)] text-[11px] md:text-xs tracking-wider uppercase font-700 px-4 py-2 opacity-0"
+          style={`background: rgba(232,104,28,0.08); border: 1px solid rgba(232,104,28,0.22); color: #D9C9A8; transition-delay: ${i * 60}ms;`}
+        >
+          {nombre}
+        </span>
+      ))}
+    </div>
+
+    <!-- Nota final -->
+    <p class="text-center text-[#6B7280] text-sm tracking-wide mt-8" data-reveal>
+      Y muchos más se están sumando a esta iniciativa.
+    </p>
+  </div>
+</section>
+
+<script>
+  import { animate } from 'animejs';
+
+  const tags = document.querySelectorAll('.artista-tag');
+  const tagObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animate(tags, {
+          opacity:    [0, 1],
+          translateY: [10, 0],
+          delay:      (el, i) => i * 60,
+          duration:   400,
+          ease:       'outQuart',
+        });
+        tagObs.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  if (tags[0]) tagObs.observe(tags[0]);
+</script>

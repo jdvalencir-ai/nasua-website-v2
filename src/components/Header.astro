@@ -14,7 +14,7 @@ const NAV = [
 <!-- ══ HEADER FIJO ════════════════════════════════════════════ -->
 <header
   id="site-header"
-  class="fixed top-0 left-0 right-0 z-[90] h-[68px] flex items-center px-5 md:px-10 lg:px-14"
+  class="fixed top-0 left-0 right-0 z-[90] h-[92px] flex items-center px-5 md:px-10 lg:px-14"
 >
   <!-- Fondo glassmorphism (aparece al hacer scroll) -->
   <div
@@ -25,18 +25,25 @@ const NAV = [
   ></div>
 
   <!-- Logo -->
-  <a href="#inicio" id="header-logo" class="relative z-10 flex items-center opacity-0"
+  <a href="#inicio" id="header-logo" class="relative z-10 flex items-center gap-2 md:gap-2.5 opacity-0"
      aria-label="Nasúa — inicio">
     <img
-      src={asset('/logos/logo-horizontal-dark.png')}
-      alt="Nasúa Narica"
-      class="h-14 md:h-20 w-auto"
-      width="220" height="48"
+      src={asset('/logos/logo-icon-dark.png')}
+      alt="Nasúa"
+      class="h-16 md:h-[76px] w-auto"
+      width="96" height="96"
+    />
+    <img
+      src={asset('/logos/logo-wordmark-dark-trim.png')}
+      alt=""
+      aria-hidden="true"
+      class="h-10 md:h-[52px] w-auto"
+      width="180" height="48"
     />
   </a>
 
   <!-- Nav desktop -->
-  <nav class="relative z-10 hidden md:flex items-center gap-7 lg:gap-9 ml-auto mr-2"
+  <nav class="relative z-10 hidden lg:flex items-center gap-7 lg:gap-9 ml-auto mr-2"
        aria-label="Navegación principal">
     {NAV.map(link => (
       <a
@@ -52,7 +59,7 @@ const NAV = [
   <!-- Botón hamburguesa (mobile) -->
   <button
     id="menu-btn"
-    class="relative z-[200] md:hidden ml-auto flex flex-col items-end gap-[5px] p-2.5 -mr-1 transition-opacity duration-200"
+    class="relative z-[200] lg:hidden ml-auto flex flex-col items-end gap-[5px] p-2.5 -mr-1 transition-opacity duration-200"
     aria-label="Abrir menú"
     aria-expanded="false"
   >

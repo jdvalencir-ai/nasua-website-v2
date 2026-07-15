@@ -16,22 +16,24 @@ export const LOGOS = {
 // ── Datos de contacto / Booking (PENDIENTE del cliente) ──
 export const CONTACTO = {
   email:   'booking@nasuamusica.com',     // ← PENDIENTE: actualizar
-  asunto:  'Booking - Nasúa Narica',
+  asunto:  'Booking - Nasúa',
   telefono: '',                            // ← PENDIENTE: agregar si aplica
 };
 
 // ── Redes sociales ───────────────────────────────────────
 export const REDES = {
-  instagram: 'https://instagram.com/nasuamusica',
-  youtube:   'https://youtube.com/@nasuamusica',
-  spotify:   '',                           // ← PENDIENTE: agregar link Spotify
-  tiktok:    '',                           // ← PENDIENTE: agregar si tienen
+  instagram:  'https://instagram.com/nasuamusica',
+  facebook:   'https://facebook.com/nasuamusica',   // ← VERIFICAR URL real (perfil "NASUA Música")
+  tiktok:     'https://www.tiktok.com/@nasuamusica',
+  youtube:    'https://youtube.com/@nasuanarica',
+  spotify:    '',                          // ← PENDIENTE: pegar link del artista en Spotify
+  applemusic: '',                          // ← PENDIENTE: pegar link del artista en Apple Music
 };
 
 // ── SEO / Metadatos ───────────────────────────────────────
 export const SEO = {
   sitio:       'https://nasuanarica.com',
-  titulo:      'Nasúa Narica — Música Sin Fronteras',
+  titulo:      'Nasúa — Música Sin Fronteras',
   descripcion: 'Colectivo de pop tropical y fusión latinoamericana. Música que rompe fronteras.',
   og_imagen:   '/logos/logo-full.png',
 };

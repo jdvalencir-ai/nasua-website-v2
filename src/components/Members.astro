@@ -6,6 +6,17 @@ import { asset } from '../utils/asset';
 <section id="colectivo" class="relative py-24 md:py-36 overflow-hidden"
   style="background: linear-gradient(180deg, #060906 0%, #080D08 100%);">
 
+  <!-- Fondo fotográfico de selva -->
+  <img
+    src={asset('/images/hero/darkjungle.jpg')}
+    alt=""
+    aria-hidden="true"
+    class="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none select-none"
+  />
+  <!-- Oscurecido para integrar la selva con la paleta -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true"
+       style="background: linear-gradient(180deg, rgba(6,9,6,0.82) 0%, rgba(6,9,6,0.7) 45%, rgba(6,9,6,0.92) 100%);"></div>
+
   <!-- Textura de manchas de jaguar — patrón de fondo -->
   <div class="absolute inset-0 pointer-events-none opacity-[0.025]" aria-hidden="true">
     <svg width="100%" height="100%">
@@ -27,7 +38,7 @@ import { asset } from '../utils/asset';
     </svg>
   </div>
 
-  <div class="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
+  <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
 
     <!-- Encabezado editorial -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-end mb-16 md:mb-20">
@@ -35,39 +46,35 @@ import { asset } from '../utils/asset';
         <div class="flex items-center gap-4 mb-5" data-reveal>
           <div class="h-px w-10 bg-[#E8681C]"></div>
           <span class="font-[family-name:var(--font-display)] text-[10px] tracking-[0.6em] uppercase text-[#E8681C] font-600">
-            El Colectivo
+            El Nombre
           </span>
         </div>
         <h2 class="font-[family-name:var(--font-display)] font-800 text-[#F2EDE3] leading-[0.88]"
             style="font-size: clamp(2.5rem, 6vw, 5rem);" data-reveal>
-          Tres voces.<br/>Un solo<br/>territorio.
+          ¿Por qué el<br/>nombre<br/>Nasúa?
         </h2>
       </div>
       <p class="text-[#6B7280] leading-relaxed max-w-sm text-sm self-end" data-reveal>
-        Distintos, complementarios. Juntos construyen un sonido que no respeta
-        fronteras geográficas ni de género musical.
+        Dentro de nuestra flora y fauna latinoamericana vive un animal intrépido,
+        luchador y arriesgado que representa nuestra fuerza como latinos.
+        <strong class="text-[#F0EBE2] font-600">Nasúa</strong> simboliza identidad,
+        valentía, unidad y raíz.
       </p>
     </div>
 
-    <!-- Grid editorial asimétrico -->
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-5">
+    <!-- Grid: 1 col (móvil) · 2 cols (tablet) · 4 cols (escritorio) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
       {MIEMBROS.map((miembro, index) => {
-        // Tamaños editoriales: primero grande, los otros medianos
-        const isFeature = index === 0;
-        const colClass  = isFeature
-          ? 'md:col-span-6 md:row-span-2'
-          : 'md:col-span-3';
-
         return (
           <article
-            class={`member-card group relative overflow-hidden ${colClass}`}
+            class="member-card group relative overflow-hidden"
             data-reveal
             style={`transition-delay: ${index * 80}ms`}
           >
             <!-- Imagen / placeholder de foto -->
             <div
               class="relative overflow-hidden"
-              style={`aspect-ratio: ${isFeature ? '3/4' : '4/5'};`}
+              style="aspect-ratio: 4/5;"
             >
               <!-- Foto del miembro como fondo -->
               <img
@@ -90,34 +97,36 @@ import { asset } from '../utils/asset';
 
               <!-- Gradiente overlay inferior -->
               <div class="absolute inset-0"
-                   style="background: linear-gradient(to top, rgba(6,9,6,0.95) 0%, rgba(6,9,6,0.3) 50%, transparent 100%);">
+                   style="background: linear-gradient(to top, rgba(6,9,6,0.96) 0%, rgba(6,9,6,0.82) 42%, rgba(6,9,6,0.35) 62%, transparent 82%);">
               </div>
 
               <!-- Número de posición decorativo -->
               <span class="absolute top-4 right-4 font-[family-name:var(--font-display)] font-800 text-[#F2EDE3] opacity-[0.06]"
-                    style={`font-size: ${isFeature ? '5rem' : '3.5rem'}; line-height: 1;`}
+                    style="font-size: 3.5rem; line-height: 1;"
                     aria-hidden="true">
                 0{index + 1}
               </span>
 
-              <!-- Info del miembro sobre la imagen -->
-              <div class="absolute bottom-0 left-0 right-0 p-5 md:p-6">
+              <!-- Info del miembro sobre la imagen.
+                   Anclada al 50% de la tarjeta para que la raya naranja
+                   quede al mismo nivel en todas las cards. -->
+              <div class="absolute inset-x-0 bottom-0 top-1/2 p-5 md:p-6 flex flex-col overflow-hidden">
                 <!-- Línea roja -->
-                <div class="h-0.5 bg-[#E8681C] mb-3 transition-all duration-500 origin-left"
+                <div class="h-0.5 bg-[#E8681C] mb-3 transition-all duration-500 origin-left shrink-0"
                      style="width: 24px;"
                      id={`member-line-${index}`}></div>
 
-                <h3 class="font-[family-name:var(--font-display)] font-800 text-[#F2EDE3] mb-0.5"
-                    style={`font-size: ${isFeature ? '2rem' : '1.3rem'};`}>
+                <h3 class="font-[family-name:var(--font-display)] font-800 text-[#F2EDE3] mb-0.5 shrink-0"
+                    style="font-size: 1.5rem;">
                   {miembro.nombre}
                 </h3>
-                <p class="font-[family-name:var(--font-display)] text-[10px] tracking-[0.4em] uppercase font-600"
+                <p class="font-[family-name:var(--font-display)] text-[10px] tracking-[0.4em] uppercase font-600 shrink-0"
                    style="color: #2A6B2A;">
                   {miembro.rol}
                 </p>
 
-                {isFeature && (
-                  <p class="mt-3 text-[#9CA3AF] text-sm leading-relaxed max-w-xs">
+                {miembro.bio && (
+                  <p class="mt-3 text-[#9CA3AF] text-sm">
                     {miembro.bio}
                   </p>
                 )}

@@ -99,7 +99,9 @@
   // ── Stagger para grupos de elementos ─────────────────────
   // Tarjetas de miembros, videos, productos
   const STAGGER_GROUPS = [
-    '.member-card',
+    // '.member-card' se anima vía data-reveal (con su propio transition-delay).
+    // Tenerla también aquí causaba doble animación de opacidad y dejaba
+    // tarjetas congeladas en opacity:0 (p. ej. Julie).
     '.video-card',
     '.product-card',
     '.genre-tag',

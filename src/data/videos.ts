@@ -17,11 +17,10 @@ export const VIDEO_LEYENDA = {
 
 // GRILLA DE VIDEOS
 export const VIDEOS: Video[] = [
-  // ← PENDIENTE: agregar los IDs reales de YouTube
-  { titulo: 'Video 1 — PENDIENTE',  youtubeId: 'PENDIENTE_1',  destacado: true },
-  { titulo: 'Video 2 — PENDIENTE',  youtubeId: 'PENDIENTE_2' },
-  { titulo: 'Video 3 — PENDIENTE',  youtubeId: 'PENDIENTE_3' },
-  { titulo: 'Video 4 — PENDIENTE',  youtubeId: 'PENDIENTE_4' },
-  { titulo: 'Video 5 — PENDIENTE',  youtubeId: 'PENDIENTE_5' },
-  { titulo: 'Video 6 — PENDIENTE',  youtubeId: 'PENDIENTE_6' },
+  { titulo: 'El profesor',                 youtubeId: 'k2OEo8H5-6c', destacado: true },
+  { titulo: 'La verdad es un problema',    youtubeId: 'PjhKr1xpJ1c' },
+  { titulo: 'Mujeres con alma de hombre',  youtubeId: 'KUjNSLFevFA' },
+  { titulo: 'Para siempre',                youtubeId: 'dpJouJPQ2lw' },
+  { titulo: 'No seas así',                 youtubeId: 'akh3KL7qABg' },
+  { titulo: 'La vida va',                  youtubeId: 'fZOKIjx7Za0' },
 ];

@@ -1,4 +1,5 @@
 ---
+import type { Fragment } from 'astro/compiler-runtime';
 import { asset } from '../utils/asset';
 // Imágenes de producto se colocan en /public/images/merch/
 
@@ -17,8 +18,7 @@ const PRODUCTOS: Producto[] = [
     nombre:      'Interplanetario',
     descripcion: 'El disco debut del colectivo. Pop tropical sin fronteras en formato físico.',
     imagen:      '/images/merch/disco-interplanetario.jpg',  // ← PENDIENTE: foto del disco
-    estado:      'disponible',
-    precio:      '$25 USD',
+    estado:      'pronto',
     link:        '#',   // ← PENDIENTE: link de venta
   },
   {
@@ -26,14 +26,12 @@ const PRODUCTOS: Producto[] = [
     descripcion: 'Trae la selva a donde vayas. Bordado exclusivo del colectivo.',
     imagen:      '/images/merch/gorra-nasua.jpg',    // ← PENDIENTE: foto de la gorra
     estado:      'pronto',
-    precio:      '$30 USD',
   },
   {
     nombre:      'Camiseta — Edición Selva',
     descripcion: 'Diseño exclusivo. Impresión de alta calidad sobre algodón premium.',
     imagen:      '/images/merch/camiseta-selva.jpg', // ← PENDIENTE: foto de la camiseta
     estado:      'pronto',
-    precio:      '$35 USD',
   },
 ];
 // ─────────────────────────────────────────────────────────────────

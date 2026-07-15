@@ -1,4 +1,5 @@
 ---
+import type { Fragment } from 'astro/compiler-runtime';
 import { asset } from '../utils/asset';
 import JungleScene from './JungleScene.astro';
 ---
@@ -48,20 +49,10 @@ import JungleScene from './JungleScene.astro';
 
         <div class="space-y-6 mb-12">
           <p class="text-[#9CA3AF] leading-[1.85] text-lg md:text-xl" data-reveal>
-            <strong class="text-[#F0EBE2] font-600">Nasúa</strong> es un colectivo musical
-            latinoamericano que lleva el nombre del coatí — ese animal curioso, ágil e
-            indomable. Como él, su música no se deja clasificar.
-          </p>
-
-          <p class="text-[#6B7280] leading-[1.85]" data-reveal>
-            Pop tropical que dialoga con el funk, el afrobeat y la electrónica sin pedir permiso.
-            Tres voces que construyen algo mayor que la suma de sus partes.
-          </p>
-
-          <p class="text-[#6B7280] leading-[1.85]" data-reveal>
-            Su propuesta — <em class="text-[#F0EBE2] not-italic">Música Sin Fronteras</em> —
-            es un manifiesto. La música latinoamericana no cabe en una sola categoría,
-            en un solo idioma ni en un solo continente.
+            <strong class="text-[#F0EBE2] font-600">Nasúa</strong> es un colectivo artístico
+            de origen nicaragüense donde se unen grandes voces y músicos de Latinoamérica
+            para dar vida a composiciones, letras e historias que reflejan nuestra manera
+            de ver la vida, sentirla y expresarla como latinos.
           </p>
         </div>
 
@@ -100,7 +91,7 @@ import JungleScene from './JungleScene.astro';
           <div class="relative aspect-[3/2] w-full overflow-hidden" style="background:#07120a;">
             <img
               src={asset('/images/about/colectivo.jpg')}
-              alt="Nasúa Narica — el colectivo"
+              alt="Nasúa — el colectivo"
               class="w-full h-full object-cover"
               style="object-position: center;"
               width="1800" height="1200"
